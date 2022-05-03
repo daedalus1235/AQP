@@ -1,0 +1,292 @@
+%! TEX root = 0-main.tex
+\chapter{Scattering}
+In our discussion with scattering problems, we are no longer concerned with bound states, but rather propagating states. The techniques we will use to approach scattering problems is relevant mainly to particle physics, but many techniques are shared with x-ray scattering as well. For atoms, optical spectroscopy tells us a lot about the atoms themselves, but to probe nuclei and other composite particles, we need to use scattering.
+
+Typically, we will send an incident particle---typically an electron or alpha particle---through a collimator, scatter it through a target, and measure the angle-resolved scattering amplitude. The nuclei are often very sparse within a material, so for a target of finite thickness, it is possible to have single-scattering. Typically, we will only consider short-range interactions (it is possible to consider long-range forces such as the coloumb force, but we will study this later). We can treat the incoming beam of (mono-energetic) particles as a planewave, and have scattering as a continuum of outgoing states. We will find that by measuring this scattering, we can determine properties of the potential and derive the interaction between the particles and the target.
+
+\section{1D to 3D}
+Recall the 1D case, where we had a planewave with wavenumber
+\[k = \sqrt{\frac{2\mu E}{\hbar^2}}\]
+We considered an incident wave \(Ae^{ikx}\) encountering a barrier, and becoming a reflected wave \(Be^{-ikx}\) and a transmitted wave \(Ce^{ikx}\). The transmission is given
+\[T = \frac{\abs C^2}{\abs A^2}\approx e^{-2\kappa a}\]
+where \(a\) is the barrier width and \(\kappa = \sqrt{\frac{2\mu (V_0-E)}{\hbar^2}}\). When we considder \(E>V_0\), then we see periodic behaviour in the transmission. We will see that the periodicity of this regime is related to how many wavelengths fit into the now well.
+
+Another interesting system is a barrier with a finite well inside of it, allowign for a set of bound states within the barrier. We will now see that in the previously monotonic regime \(V_0>E\), we will find resonant peaks corresponding to wavelengths inside of the barrier's well. In fact, the particle can get stuck inside the barrier to form a \emph{quasi-bound state} whose lifetime can be measured.
+
+For a 3D scattering problem, we will have a plane wave \(Ae^{ikz}\) incident to a fixed point about which a central force is centred. We will find that the scattered wave can be given \(Af(\theta,\phi) \frac{e^{ikr}}{r}\); however, most of our problems will have cylindrical symmetry and thus we will only need to consider the theta dependence. Recalling our radial schr\"odinger equation for \(u =rR\), we find
+\[-\frac{\hbar^2}{2\mu}\der{u}{r2}+\frac{\ell(\ell+1)\hbar^2}{2\mu r^2}u = Eu\]
+for large \(r\), this reduces to 
+\[-\frac{\hbar}{2\mu}\der{u}{r2} = Eu\]
+and thus we obtain \(u = e^{ikr}\) (where we reject the solution for \(-k\)). Revisiting the time dependent schrodinger equation and defining the probability current
+\begin{equation}
+	\vb j = \frac{\hbar}{2\mu i}\left(\p\ast\del\p - \p\del\p\ast\right)
+\end{equation}
+we can derive the continuity equation for probability,
+\[\pder{}{t}(\p\ast\p) +\del*\vb j = 0\]
+
+Using the probability current, we can define  coefficient analogous to reflection and transmission coefficients. We are interested in how many particles are scattered in a particular solid angle \(\d\Omega\), 
+\[\der{\sigma}{\Omega}\d\Omega = \frac{\text{\# of particles scattered into \(\d\Omega\) per unit time}}{\text{\# of paticles incident per unit area per unit time}}\]
+This quantity we see has units of area, hence we call \(\d\sigma\) the \emph{differential cross-section}. The total cross-section of a short range interaction is akin to the effective area that an incident particle can scatter off.
+\[\sigma = \int\der{\sigma}{\Omega}\d\Omega\]
+We can view the denominator as the probability flux in,
+\[j_{inc} = \left(\frac{\hbar k}{\mu}\right)\abs{A}^2\]
+and the scattered flux can be determined by plugging the scattered wavefunction into the equation for probability flux,
+\[\vb j_{sc} = \frac{\hbar k}{\mu r^2}\abs{A}^2\abs{f}^2 \e r\]
+
+The area covered by the detector is of course given by \(r^2\d\omega\), so the number scattered into the solid angle is gien
+\[\vb j_{sc}*\e r r^2\d\Omega = \frac{\hbar k}{\mu}\abs{A}^2\abs{f}^2\d\Omega\]
+and thus, we obtain
+\[\der{\sigma}{\Omega}\d\Omega = \frac{\vb j_{sc}*\e r r^2\d\Omega}{j_{inc}} = \abs{f}^2\d\Omega\]
+and so 
+\begin{equation}
+	\der{\sigma}{\Omega} = \abs{f(\theta,\phi)}^2
+\end{equation}
+
+Thus, to within a phase factor, we can determine the \emph{scattering amplitude}, \(f(\theta,\phi)\).
+
+\section{Born Approximation}
+The Born approximation is used to compute \(f(\theta,\phi)\) when we have high incident energy and low scattering intensity. The schrodinger equation can then be written
+\[(\del^2+k^2)\p = \frac{2\mu}{\hbar^2}V\p\]
+where of course we have \(k = \sqrt{2\mu E/\hbar^2}\). We will begin by finding the \emph{homogeneous solution}, or the null space of the operator.
+\[(\del^2+k^2)\p = 0\]
+The general solutions for this are given
+\[Ae^{ikr}\then \p_{inc} = Ae^{ikz}\]
+so our incident wave is a solution. We can then write the \emph{inhomogeneous solution}, or the particular solution, by using the Green's function
+\[\p(r) = Ae^{ikz} + \int\d[3]{r'}G(r,r') \frac{2\mu}{\hbar^2}V(r')\p(r')\]
+where the kernel \(G\) satisfies
+\[(\del^2+k^2)G = \delta^3(r-r')\]
+First, we will consider \(r'=0\). 
+\[(\del^2+k^2)G(r,0) = \delta^3(r)\]
+recall from our discussion of the radial wavefunction, we have the solutions to be
+\[G(r,0) = C\frac{e^{ikr}}{r}\]
+Further, \(\del^2 r^{-1} =-4\pi \delta^3(r)\), and so we obtain
+\[G(r,0) = -\frac{e^{ikr}}{4\pi r}\]
+further, we expect \(G\) to depend only on \(r-r'\), so our green's function can be written
+\begin{equation}
+	G(r,r') = -\frac{e^{ik\abs(r-r')}}{4\pi\abs{r-r'}}
+\end{equation}
+and our wavefunction
+\begin{equation}
+	\p(r) = Ar^{ikz}-\frac{\mu}{2\pi\hbar^2}\int\d[3]{r'}\frac{e^{ik\abs{r-r'}}}{\abs{r-r'}}V(r')\p(r')
+\end{equation}
+Generally, \(V(r')\to0\) except for small \(r'\), as we are dealing with short range interactions. Further, we typically only care about \(f(\theta,\phi)\) for \(\p(r)\) at large \(r\), so we can expand 
+\[\abs{r-r'} \approx r\left(1-\frac{r*r'}{r^2}\right)\]
+In principle, we should take a multipole expansion for the denominator, but leading order is sufficient. Thus, we can transform our kernel to
+\[\frac{e^{ik\abs{r-r'}}}{\abs{r-r'}}\approx \frac{e^{ikr}}{r}e^{-ik_f*r'}\]
+where \(k_f = k\e r\) is the wavevector of the outgoing wave. Thus,
+\[\p(r)\approx Ae^{ikz}-\frac{\mu e^{ikr}}{2\pi \hbar^2 r}\int\d[3]{r'}e^{-ik_f*r'}V(r')\p(r')\]
+When we compare this to our total wavefunction (or sum of incoming and scattered waves)
+\[\p(r) = Ae^{ikz}+Af(\theta,\phi)\frac{e^{ikr}}{r}\]
+so by inspection we see
+\[f(\theta,\phi)\approx -\frac{\mu}{A2\pi\hbar^2}\int\d[3]{r'}e^{-ik_f*r'}V(r')\p(r')\]
+Using the Born approximation, we assume that the scattered wave is small compared to the incident wave, which is valid as the high energy makes interactions, and thus scattering, weak. Alternatively, if the tunnel barrier is too tall, we can make the barrier very thin, and so the interaction length is longer than the barrier itself and we similarly have weak scattering. Thus,
+\begin{align*}
+	\p(r)&=-\frac{\mu}{A2\pi\hbar^2}\int\d[3]{r'}e^{-ik_f*r'}V(r')Ae^{ikz'}\\
+\end{align*}
+if we define a new wavevector \(q = k_i-k_f\) where \(k_i*r' = kz'\), we see that the our desired function is a fourier transform of the potential:
+\begin{equation}
+	f(\theta,\phi) = -\frac{\mu}{2\pi\hbar^2}\int\d[3]{r'}e^{i\vb q*\vb r}V(\vb r')
+\end{equation}
+Further, we can interpret \(\hbar \vb q\) as the momentum transfered to the target. Intererstingly, a very similar equation is used in crystallography to determine the molcular structure of biomolecules!
+
+Unfortunately our function does not include the phase. However, it is possible to recover the phase.
+
+\subsection{Yukawa Potential}
+Consider how the Born approximation acts on the Yukawa potential,
+\begin{equation}
+	V(r) = g\frac{e^{-m_0 r}}{r}
+\end{equation}
+If we take \(m_0=0\), we recover inverse-square laws such as the coulomb force; a screened coulomb force has an exponential decay, and the proton-nucleon force has \(g<0\). It turns out we can directly evaluate the scattering amplitude
+
+\begin{align*}
+	f(\theta,\phi) &= -\frac{\mu g}{2\pi\hbar^2}\int\d[3]{r'}\frac{e^{-m_0 r'}}{r'}e^{i\vb q*\vb r'}\\
+	\intertext{Fixing \(\vb q = q\hat z'\), we can directly evaluate the \(\d\phi\) integral, and rewrite the \(\d\theta'\) integral in terms of \(\d{(\cos\theta')}\), so }
+		       &=-\frac{\mu g}{2\pi\hbar^2}2\pi \int_0^\infty \d{r'}\int_{-1}^1\d{(\cos\theta')} r' e^{-m_0r'}e^{iqr'\cos\theta'}\\
+		       &=-\frac{\mu g}{\hbar^2}\int_0^\infty\d{r'} r' e^{-m_0 r'}\eval{\frac{1}{iqr'}e^{iqr'\cos\theta'}}{-1}{1}\\
+		       &=-\frac{\mu g}{\hbar^2}\frac{1}{iq}\int_0^\infty \d{r'}e^{-m_0 r'}(e^{iqr'}-e^{iqr'})\\
+		       &=-\frac{\mu g}{\hbar^2}\frac{1}{iq}\left[\frac{-1}{-m_0 + iq}-\frac{-1}{-m_0-iq}\right]\\
+		       &=-\frac{\mu g}{\hbar^2}\frac{1}{iq}\frac{2iq}{m_0^2+q^2}\\
+		       &=\frac{-2\mu g}{\hbar^2(m_0^2+q^2)}
+\end{align*}
+Rewriting in terms of the angle, we see that 
+\begin{align*}
+	q^2&= \abs{k_i-k_f}^2\\
+	   &=k^2 -2k_i*k_f+k^2\\
+	   &=2k^2-2k^2\cos\theta\\
+	   &=4k^2\sin^2\frac\theta2
+\end{align*}
+so
+\begin{equation}
+	f(\theta,\phi) = -\frac{2\mu g}{\hbar^2(m_0^24k^2\sin^2\frac\theta2)}
+\end{equation}
+and
+\begin{equation}
+	\der\sigma\Omega = \abs{f}^2 = \frac{4\mu^2 g^2}{\hbar^4[m_0^2+4k^2\sin^2\frac\theta2]^2}
+\end{equation}
+
+We see that for \(m_0=0\) we observe a divergence. This is because \(m=0\) corresponds to a long-range potential, such as the coulomb potential, which has many particles with slight deflection and only a few particles with large deflection. This is what Rutherford observed in his famous gold foil experiment. By substituting our values for \(g = Z_1Z_2e^2\), \(k = \sqrt{2\mu E/\hbar^2}\) and \(m_0=0\), we see
+\[\der\sigma\Omega = \frac{(Z_1Z_2e^2)^2}{16E^2\sin^4\frac\theta2}\]
+which has no \(\hbar\)! Indeed, this is the classical result.
+
+For \(m_0\neq 0\), the exponential decay makes the potential very short range. Thus, many particles are \emph{not scattered at all} and thus do not appear in our cross section \(\d\sigma/\d\Omega\). As such, we no longer observe a divergence at \(\theta=0\).
+
+An interesting case to note is the extended nucleus, or a ball of uniform charge density. Here, the potential reaches a maximum at the surface of the nucleus. Thus, if the energy of the incoming wave is above this maximum potential, we should expect exactly zero backscattering. The detection of back scattering can therefore act as a way to measure the size of the nucleus, given we know its charge.
+
+\section{Partial Wave Expansion}
+Once again, for a spherically symmetric potential, our problem has cylindrical symmetry (due to the axis of the incoming wave) and so
+\[f(\theta,\phi) = f(\theta)\]
+Because the legendre polynomials are a basis in 1D, we can write
+\[f(\theta) = \sum_{\ell=0}^\infty (2\ell+1)a_\ell(k) P_\ell(\cos\theta)\]
+This expansion is useful because typically at low energy, the contribution from higher \(\ell\) terms vanishes, and so we will typically only need a few terms. In particular, for limit of incredibly low energy, the wavelength is very long and \(f(\theta)\) is a constant. This is because for low energy, the wavelength is large compared to the scattering target, and the target acts as a point source. However, when the wavelength is comparable to the size of the target, and the scattered wave no longer acts as though it is from a point emitter and thus will have angular dependence\footnote{This is an incredibly BS argument and I don't actually understand why this is}. We can estimate how many \(\ell\) we need by using the impact parameter \(b\) as 
+\[\hbar \ell\approx b p\]
+Becuase the impact parameter is on the size of the target, or the radius \(a\), we see that
+\[\hbar\ell_{\max}\approx ap = a\hbar k = a\hbar2\pi/\lambda\]
+for small \(\ell_{\max}\) we want \(a/\lambda\ll1\) which is again, what we argued earlier.
+
+To determine \(a_\ell(k)\), we find the scattered wave \(\p_{sc}\) from the total and incoming waves in this polynomial expansion. The incident wave is a plane wave, which can be shown to have the below expansion.
+\[e^{ikz} = e^{ikr\cos\theta} = \sum_{\ell=0}^\infty i^\ell(2\ell+1)j_\ell(kr)P_\ell\cos\theta\]
+of course, in principle, we could also use the irregular bessel function \(\eta_\ell\) but these diverge at the origin, as \(e^{ikz}\) is finite everywhere. Similarly, the total wavefunction can be written in general using the bessel functions (at large \(r\))
+\[\p\to \sum_{\ell} [A_\ell j_\ell(kr) + B-\ell \eta_\ell(kr)]P_\ell (\cos\theta)\]
+Recall that as \(r\to\infty\) the bessel functions tend toward
+\[j_\ell(kr)\to\frac{\sin(kr-\ell\pi/2)}{kr}\qquad \qquad \eta_\ell(kr)\to -\frac{\cos(kr-\ell\pi/2)}{kr}\]
+Plugging this into our expressions for \(\p\) and \(\p_{inc}\), we see
+\[e^{ikz}\to \sum_{\ell=0}^\infty i^\ell(2\ell+1)\frac{\sin(kr-\ell\pi/2)}{kr}P_\ell(\cos\theta)\]
+and
+\begin{align*}
+	\p\to&\sum_{\ell}\left[A_\ell\frac{\sin(kr-\ell\pi/2)}{kr}-B_\ell\frac{\cos(kr-\ell\pi/2)}{kr}\right]P_\ell(\cos\theta)\\
+	     &= \sum_\ell C_\ell \frac{\sin[kr-\ell\pi/2 +\delta_\ell(k)]}{kr}P_\ell(\cos\theta)
+\end{align*}
+Thus, we will have a momentum dependent phase shift. For instance, imagine a wave emitting from free space. If we then include a small well, we see that the wavenumber \(k\sim\sqrt{E-V}\) we see that inside the well, the particle will have more momentum and oscillate faster until it leaves the well. After that, it acts again like a free particle, albeit with a phase shift due to the time it spent in the well.
+
+We can then use our expanded wavefunctions to determine \(f(\theta)\):
+\[\p-\p_{inc} = \p_{sc}\to f(\theta)\frac{e^{ikr}}{r}\]
+Expanding the sine terms as complex exponentials, we see that they are the sum of incoming waves and outgoing waves. However, the incoming wave is nonphysical for the scattered wave, and so when we take the difference \(\p-\p_{inc}\), the incoming wave must cancel out. Thus, we obtain
+\[i^\ell(2\ell+1) = c_\ell e^{i\delta_\ell}\]
+or
+\begin{equation}
+	c_\ell = (2\ell+1) e^{i\ell\pi/2}e^{\delta_\ell}
+\end{equation}
+Next, we match the outgoing waves to the \(\p_{sc}\). After some annoying algebra, we obtain
+\begin{align*}
+	f(\theta) &= \sum_\ell \frac{1}{2ik}\left(e^{2i\delta_\ell}-1\right)p_\ell(\cos\theta)\\
+		  &=\sum_\ell (2\ell+1)\frac{e^{i\delta_\ell}}{k}\sin(\delta_\ell) p_\ell(\cos\theta)
+\end{align*}
+so
+\begin{equation}
+	a_\ell(k) = \frac{e^{i\delta_\ell}}{k}\sin\delta_\ell
+\end{equation}
+The phase shift \(\delta\) is obtained by comparing solutions to the schrodinger equation with and without the potential. Plugging this result into the cross section, we find
+\begin{equation}
+	\sigma=\int\d\Omega \abs f^2 = \frac{4\pi}{k^2}\sum_\ell (2\ell+1)\sin^2\delta_\ell
+\end{equation}
+or, comparing with the form of the scattering amplitude, we find
+\begin{equation}
+	\sigma = \frac{4\pi}{k}\Im[f(0)]
+\end{equation}
+This is known as the \emph{optical theorem}. This is because we must have reduction in the forward flux to have scattering in different direction. Finally, due to the orthogonality of the legendre polynomials, we can separate the cross section into components, 
+\[\sigma = \sum_\ell \sigma_\ell\]
+where
+\begin{equation}
+	\sigma_\ell = \frac{4\pi}{k^2}(2\ell+1)\sin^2\delta_\ell
+\end{equation}
+and thus, we need only consider the phase shift, rather than the scattering amplitude.
+\subsection{Hard Sphere Scattering}
+Consider a scattering potential
+\[V = \begin{cases}
+	\infty & r<a\\
+	0 & r>a
+\end{cases}\]
+For low energy, we expect that the \(\ell = 0\) partial wave will dominate. This trivially gives
+\[-\frac{\hbar^2}{2\mu}\der{u}{r2} = Eu\]
+Matching the boundary condition \(u(a)=0\), we find the simplest solution is a planewave that has a zero at the boundary---
+\[u = C\sin(kr-ka)\]
+This trivially gives us a phase shift \(\delta_0 = -ka\). Thus, our cross section is given
+\[\sigma_0 = \frac{4\pi}{k}\sin^2 ka\]
+for \(k\to 0\), this term will dominate and \(\sin(x)\to x\). Thus, our total cross section will go to
+\[\sigma\to\sigma_0\to \frac{4\pi}{k^2}(ka)^2 = 4\pi a^2\]
+which is \(4\times\) the classically expected result of the cross sectional area of the target, \(\pi a^2\). Even at high energies, we still get \(\sigma\to 2\pi a^2\) which does not match our classical expectation. This is due to diffraction effects---as the wave passes around the target, it gets bent.We are not in the geometic optic limit, but rather in the far-field limit. However, if we increase \(k\) we are in the near-field regime, still not geometic, and so we still do not expect to have a cross section that matches the geometric cross section.
+
+\subsection{S-wave scattering for finite potential well}
+We now consider the case of an attractive finite well
+\[ V = \begin{cases}
+	-V_0 & r<a\\
+	0 & r>a
+\end{cases}\]
+For \(r<a\) we then have
+\[-\frac{\hbar^2}{2\mu}\der{u}{r2}-V_0 u = E_u\then k_0 = \sqrt{\frac{2\mu}{\hbar}(E+V_0)}\]
+and similarly for \(r>a\)
+\[-\frac{\hbar^2}{2\mu}\der{u}{r2} u = E_u\then k_0 = \sqrt{\frac{2\mu}{\hbar}E}\]
+To ensure the wavefunction doesn't diverge at the origin, we choose for \(r<a\) that 
+\[u = A\sin(k_0 r)\]
+Outside the well, we then have
+\[u = C\sin(k r+\delta_0)\]
+Matching boundary conditions, we have
+\[A\sin (k_0 a) = C\sin(ka+\delta_0)\]
+\[Ak_0\cos(k_0 a) = Ck\cos(ka+\delta_0)\]
+Dividing the two equations,
+\[\tan(ka+\delta_0) = \frac{ka}{k_0a}\tan(k_0 a)\]
+We will always have that \(ka\ll1\) because we are studying the low energy limit.
+
+If we assume \(\tan k_0 a\) relatively small, and choosing \(\delta_0\sim0\) rather than \(\delta_0\sim \pi\), we will have
+\[ka+\delta_0 \approx \frac{ka}{k_0a}\tan(k_0 a)\]
+or
+\[\delta_0 = ka\left(\frac{\tan(k_0 a)}{k_0 a}-1\right)\]
+thus, our cross section is 
+\[\sigma_{0} = \frac{4\pi}{k^2}\sin^2\delta_0^2\approx \frac{4\pi}{k^2}\delta^2 = 4\pi a^2\left(\frac{\tan (k_0 a)}{k_0 a}-1\right)^2\]
+Fruther, 
+\[k_0 a = \sqrt{(ka)^2+\frac{2\mu V_0 a^2}{\hbar^2}}\approx \sqrt{\frac{2\mu V_0 a^2}{\hbar^2}}\]
+so once again our cross section is (roughly) independent of energy.
+
+On the other hand, if we assume \(\tan k_0 a\) large, or \(k_0 a\to \pi/2\), we then have 
+\[\tan(ka+\delta_0)\to \infty\then \delta_0\to \frac{\pi}{2}\]
+for \(ka\ll1\). Then, our cross section is energy dependent.
+\[\sigma_0 = \frac{4\pi}{k^2}(\sin pi/2)^2 = 4\pi a^2\left(\frac{1}{ka}\right)^2\]
+When we consider further, 
+\[k_0 a\approx \sqrt{\frac{2\mu V_0 a^2}{\hbar^2}} \approx \frac{\pi}{2}\]
+which almost a bound state at \(E=0\). This resonance typically results in a large cross section. This state corresponds to a quarter wavelength inside the potential, and a very large wavelength outside the well.
+
+For \(\ell\neq 0\) we need to add the effective potential due to the centrifugal barrier, so 
+\[V_{eff} = V + \frac{\ell(\ell+1)\hbar^2}{2\mu r^2}\]
+We then see that there are positive energy states which are localized inside a local minimum of the potential, but then has a travelling solution outside the well. Such a state is known as a \emph{resonance} or a \emph{pseudo-localized state}. If we put an electron in such a state, it would stay in the well for a period of time, but leaks out after a while. If we plot the cross section, we now expect there to be a peak in \(\sigma_\ell\) at \(E = E_0\). This is because the resonant state is coupled to the propagating waves outside the well. The width of this peak corresponds to the inverse of the lifetime. Similar to resonance in mechanical oscillators, at the peak of the resonance, the phase shift is \(\pi/2\); this corresponds to \(\delta_\ell = \pi/2\) at \(E = E_0\). 
+
+In fact, it is possible to compute the phase shift as a function of energy\footnote{Bright wigner line?} If we expand the cotangent of the phase shift about \(\delta_\ell(E_0) = \pi/2\), we have
+\[\cot\delta_\ell(E) = \cot\delta_\ell(E_0) -\frac{1}{\sin^2\delta_\ell(E_0)}\at{\der{\delta_\ell}{E}}{E_0}(E-E_0)+\dots\]
+We define the slope as \(2/\Gamma\), so 
+\[\cot\delta_\ell(E)\approx -\frac{2}{\Gamma}(E-E_0)+\dots\]
+Using our previous expression for 
+\[a_\ell = \frac{e^{i\delta_\ell}}{k}\sin\delta_\ell = \frac{1}{k}\frac{1}{\cot\delta_\ell - i}\]
+Plugging in our expansion, we obtain (to first order)
+\[\sigma_\ell = 4\pi (2\ell+1)\abs{a_\ell}^2\approx \frac{4\pi}{k^2}(2\ell+1)\frac{(\Gamma/4)^2}{(E-E_0)^2+(\Gamma/2)^2}\]
+These resonances occur in experiment, particularly in particle physics.
+
+Finally, let us consider the other branch of arctan, where \(\delta_0\to \pi\) rather than \(\to 0\). Outside the well, we see 
+\[\p = C(kr+\pi)=-C\sin(kr)\]
+so the physical state is the same as in the absence of the potential. The wave thus does not look shifted and has perfect transmission---\(\sigma_0=0\). Further, matching boundary conditions, we see that the wavefunction inside of the well match very poorly, and thus we expect there to be a small cross section. However, there might still be noticable effects at \(\ell>0\).
+
+\subsection{Finite potential well with Born approximation}
+We now wish to compare the partial wave scattering with the Born approximation at low energy. Recall that our s-wave result was given
+\[\sigma_0 = 4\pi a^2\left(\frac{\tan k_0 a}{k_0 a}-1\right)^2\]
+where \(ka\ll1\) and \(\tan k_0 a\) is not large.
+
+Let us take the limit of the s-wave when we can apply the Born approximation. For the Born approximation, our requirement becomes
+\[\frac{\mu V_0 a^2}{\hbar^2}\ll1\]
+Using the definition
+\[k_0 = \sqrt{\frac{2\mu}{\hbar^2}(E+V_0)}\then k_0^2a^2 = k^2 a^2 +\frac{2\mu V_0a^2}{\hbar}\]
+However, we know that both terms on the RHS are small, as \(ka\ll1\) by assumption, and to use the born approximation, the second term must be small. Expanding the s-wave result as \(k\to 0\), we find
+\[\sigma_0\to 4\pi a^2\left(\frac{k_0 a}{k_0 a} + \frac{(k_0 a)^3}{3k_0 a} -1\right) = \frac{4\pi a^4k_0^4}{9} = \frac{16\pi a^6 \mu^2 V_0^2}{9\hbar^4}\]
+where we substituted the limit \(k_0^2a^2\to \frac{2\mu V_0 a^2}{\hbar^2}\) when \(k\to 0\).
+
+Considering the Born approximation,
+\begin{align*}
+	f(\theta)&=\frac{\mu}{2\pi \hbar}\int \d[3]{r'} e^{i\vb q*r}\\
+		 &=\frac{\mu V_0}{2\pi\hbar^2}\int_0^a (r')^2\d{r'}2\pi \int_{-1}^1\d{(\cos\theta')} e^{iqr'\cos\theta'}\\
+		 &=\frac{\mu V_0}{q\hbar^2}2\int_0^a r'\d{r'}\sin qr'\\
+		 &=\frac{2\mu V_0}{q\hbar^2}\left(\frac{\sin qa}{q^2}- \frac{a\cos qa}{q}\right)\\
+	 \intertext{Because \(q = 2k\sin\theta/2\to 0\) we can then taylor expand}
+	f(\theta)&\to \frac{2\mu V_0}{q^3\hbar^2}\left(qa - \frac{(qa)^3}{3!} - qa\left(1-\frac{(qa)^2}{2!}\right)\right)\\
+		 &\to\frac{2\mu V_0}{q^3\hbar^2}\frac{(qa)^3}{3}\\
+		 &=\frac{2\mu V_0 a^3}{3\hbar^2}
+\end{align*}
+and so
+\[\der\sigma\Omega = \abs f^2\then \sigma = \frac{16\pi \mu^2 V_0 a^6}{9\hbar^4}\]
+which matches our partial wave expansion.

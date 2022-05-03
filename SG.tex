@@ -1,0 +1,102 @@
+\documentclass[8pt]{article}
+\usepackage{hw}
+\geometry{margin = 0.25in}
+\usepackage{multicol}
+\setlength{\columnsep}{-1cm}
+
+\begin{document}
+\subsubsection*{AQP Formula Sheet}
+\begin{multicols}{3}
+	In SI units, the expressions for \(\mu\) have no \(c\).
+	\[\mu=IA=\tfrac{q}{2mc}{L}\]
+	\[\vv\mu = \tfrac{gq}{2mc}\vv S\]
+	\[F_z = \vv\mu * \pder{\vv B}{z}\approx \mu_z \pder{B_z}{z}\]
+	\[\sigma_A = \Delta A\]
+	\[\Delta f^2=\sum\left(\pder{f}{x}\right)^2\Delta x^2\]
+	\[\vect{A} = \sum_i a_i \abs{c_i}^2 = \b{\p} \hat{A} \k\p\]
+	\[\Delta A = \sqrt{\vect{A^2}-\vect{A}^2}\]
+	\[\hat{R}(\d{\phi}\kh) = 1-\tfrac{i}{\hbar}\hat{J}_z\d\phi\]
+	\[\hat{R}(\phi\kh) = \exp[-i\hat{J}_z\phi/\hbar]\]
+	\[\hat{R}(\phi\kh)\k{\pm z} = e^{\mp i\phi/2}\k{\pm z}\]
+
+	\[\hat P^2 = \hat{P}\]
+	\[\sum_i\hat{P}_i = \mathbbm{1}\]
+	\[\mathbbm{1}=\sum_i\k{i}\b{i}\]
+	\[A_{ij}\k{i}\b{j}=\k{i}\b{i}\hat{A}\k{j}\b{j}\]
+	\[[\hat{J}_x, \hat{J}_y] = i\hbar \hat{J}_z\]
+\end{multicols}
+Useful Representations
+\begin{multicols}{3}
+	\noindent
+	\[\k{\pm x} = \tfrac{1}{\sqrt{2}}\k{+z}\pm\tfrac{1}{\sqrt{2}}\k{-z}\]
+	\[\k{\pm y} = \tfrac{1}{\sqrt{2}}\k{+z}\pm\tfrac{i}{\sqrt{2}}\k{-z}\]
+	\[\k{+ n} = \cos\tfrac{\theta}{2}\k{+z} +e^{i\phi}\sin\tfrac\theta2\k{-z}\]
+	\[\k{- n} = \sin\tfrac{\theta}{2}\k{+z} -e^{i\phi}\cos\tfrac\theta2\k{-z}\]
+	\[\k{R} = \tfrac{1}{\sqrt{2}}\left(\k{x}+i\k{y}\right)\]
+	\[\k{L} = \tfrac{1}{\sqrt{2}}\left(\k{x}-i\k{y}\right)\]
+\end{multicols}
+Angular Momentum
+\begin{multicols}{3}
+	\noindent
+	\[\hat{R}(\Delta\phi\kh) = \exp\left[-i\Delta\phi \hat{J}_z/\hbar\right]\]
+	\[\hat{J}^2\k{j,m} = j(j+1) \hbar^2\k{j,m}\then\norm{J}=\hbar\sqrt{j(j+1)}\]
+	\[\hat{J}_z\k{j,m} = m\hbar\k{j,m}\]
+	\[\hat{J}_\pm = \hat{J}_x\pm i\hat{J}{_y}\]
+	\[\hat{J}_x=\tfrac{1}{2}\left(\hat{J}_++\hat{J}_-\right)\]
+	\[\hat{J}_y=\tfrac{1}{2i}\left(\hat{J}_+-\hat{J}_-\right)\]
+	\[\hat{J}_+\k{j,m}=\hbar\sqrt{j(j+1)-m(m+1)}\k{j,m+1}\]
+	\[\hat{J}_-\k{j,m}=\hbar\sqrt{j(j+1)-m(m-1)}\k{j,m-1}\]
+	\[\Delta \hat{J}_x\Delta \hat{J}_y\geq\tfrac{1}{2}\abs{\vect{[\hat{J}_x,\hat{J}_y]}}=\tfrac{\hbar}{2}\abs{\vect{\hat{J}_z}}\]
+\end{multicols}
+\begin{multicols}{3}
+	\noindent
+	\[\sigma_x=\sigma_1= \begin{pmatrix}
+		0 & 1 \\ 1 & 0
+	\end{pmatrix}\]
+	\[\sigma_y=\sigma_2= \begin{pmatrix}
+		0 & -i \\ i & 0
+	\end{pmatrix}\]
+	\[\sigma_z=\sigma_3= \begin{pmatrix}
+		1 & 0 \\ 0 & -1
+	\end{pmatrix}\]
+\end{multicols}
+\begin{multicols}{5}
+	\noindent
+	\[\hat{S}_+=\hbar\sqrt{2} \begin{pmatrix}
+		0 & 1 & 0\\0 & 0 & 1\\ 0 & 0 & 0
+	\end{pmatrix}\]
+	\[\hat{S}_-=\hbar\sqrt{2} \begin{pmatrix}
+		0 & 0 & 0\\1 & 0 & 0\\ 0 & 1 & 0
+	\end{pmatrix}\]
+	\[\hat{S}_x=\frac{\hbar}{\sqrt{2}} \begin{pmatrix}
+		0 & 1 & 0 \\ 1 & 0 & 1\\ 0 & 1 & 0
+	\end{pmatrix}\]
+	\[\hat{S}_y=\frac{\hbar}{\sqrt{2}} \begin{pmatrix}
+		0 & -i & 0 \\ 1 & 0 & -i\\ 0 & 1 & 0
+	\end{pmatrix}\]
+	\[\hat{S}_z=\hbar \begin{pmatrix}
+		1 & 0 & 0 \\ 0 & 0 & 0\\ 0 & 0 & -1
+	\end{pmatrix}\]
+\end{multicols}
+Time Dependence
+\begin{multicols}{3}
+	\noindent
+	\[U(t)=\exp\left[i\hat{H}t/\hbar\right]\]
+	\[i\hbar\der{}{t}\hat{U}(t)\k{\p(0)} = \hat{H}\hat{U}(t)\k{\p(0)}\]
+	\[\der{\vect{A}}{t}=\frac{i}{\hbar}\b{\p(t)}\left[\hat{H},\hat{A}\right]\k{\p(t)}+\b{\p(t)}\pder{\hat{A}}{t}\k{\p(t)}\]
+\end{multicols}
+\begin{multicols}{3}
+	\noindent
+	\[\hat{H}\k{E}=E\k{E}\]
+	\[U(t)\k{E}=\exp[-iEt/\hbar]\k{E}\]
+	\[\Delta E \Delta t \gtrsim \tfrac{\hbar}{2}\]
+	\[\omega_i\equiv-\frac{gqB_{i+1}}{2mc}\]
+	\[\hat{H}_{\vv\mu}=-\hat{\vv{\mu}}*\vv{B}=\omega_0S_z\]
+
+	\[\hat{H}_{mr}=\hat{H}_{\vv{\mu}}-\omega_1\cos(\omega t)\hat{S}_x\]
+	\[\hat{H}_{\ce{NH3}}=E_0\sigma_z-A\sigma_x\]
+\end{multicols}
+\[\abs{\bk{-z}{\p_{mr}(t)}}^2=\frac{\omega_1^2/4}{(\omega_0-\omega)^2+\omega_1^2/4}\sin^2\frac{\sqrt{(\omega_0-\omega)^2+\omega_1^2/4}}{2}t\]
+\[\abs{\bk{I}{\p_{\ce{NH3}'}(t)}}^2=\frac{(\mu_e E_1)^2}{(2A-\hbar\omega)^2+(\mu_e E_1)^2}\sin^2\frac{\sqrt{(2A-\hbar\omega)^2+(\mu_e E_1)^2}}{2\hbar}t\]
+	
+\end{document}

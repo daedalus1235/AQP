@@ -1,0 +1,212 @@
+%! TEX root = 0-main.tex
+\chapter{Bound States of Central Potentials}
+Now that we have determined the angular component of a central potential, we will now consider the radial component of the central potential. Note, that we will only consider the \emph{bound} states, and will not examine the propagating states. The \emph{scattering} theory partially treats the propogating states, but does not give a complete tratment; bound states are much easier to study.
+
+\section{Centrifugal Barrier}
+Recall for an arbitrary central potential the hamiltonian is given
+\[\hat H = \frac{\hat p^2}{2\mu}+V(\norm{\hat r})\]
+We already know that the schr\"odinger equation can be separated to the radial component
+\[\left(-\frac{\hbar^2}{2\mu} \left(\der{}{r2}+\frac{2}{r}\der{}{r}\right)+\frac{\ell(\ell+1)\hbar^2}{2\mu r^2} + V(r)\right) R_{E,\ell}(r) = ER_{E,\ell}(r)\]
+Consider only the term \(\frac{\ell(\ell+1)\hbar^2}{2\mu r^2}\). This term is known as the centrifugal barrier. This term is important as it prevents the particle from spending too much time at the origin. Classically, as the radius grows smaller for a fixed angular momentum, you'd need a larger and larger centripetal force to constrain the motion of the particle.
+
+We consider a change of variable \(R = \frac{U}{r}\). This allows us to rewrite the schr\"odinger equation as (following product rule)
+\[\left(-\frac{\hbar^2}{2\mu}\der{}{r2} + \frac{\ell(\ell+1)\hbar^2}{2\mu r^2} + V\right)U = EU\]
+with the normalization condition
+\[\int\d{r}\abs{U}^2 = 1\]
+Recall that we have a general solution for any 1D potential---numerical integration. However, we prefer to have an analytic solution. 
+
+Consider \(u = r^s\). Then, we have
+\[-\frac{\hbar^2}{2\mu}s(s-1)r^{s-2}+\frac{\hbar^2}{2\mu}\ell(\ell+1)r^{s-2}+V(r)r^s = Er^s\]
+Assume that as \(r\to 0\), that \(V(r)\) is less singular than \(r^{-2}\). Then, we have
+\[-\frac{\hbar^2}{2\mu}[s(s+1)-\ell(\ell+1)] = 0\]
+For \(\ell\geq 1\), we obtain \(s = -\ell\), and we reject this solution due to the normalizability constraint. For \(\ell = 0\), we obtain \(u = r^0\), so \(R\propto \frac{1}{r}\). However, the kinetic term becomes dependent on
+\[\del^2\left(\frac{1}{r}\right) = -4\pi\delta^3(\vb r)\]
+However, this implies that \(V\propto \delta^3(\vb r)\) as well, but we choose not consider this further.\footnote{This is actually applicable in propagating states. If we need a source of electrons such as the probablility flux through a sphere is constant, this potential is useful. For example, this is useful in particle scattering, creation, or modelling the tip of an STM.}
+
+\begin{aside}[STM Tip]
+	Recall that we defined the probability flux as
+	\[\vb j = \frac{\hbar}{2mi}\left[\p\ast\del\p - \p(\del\p)\ast\right]\]
+	Consider only the radial component:
+	\[j_r = \frac{\hbar}{2mi}\left(\p\ast\pder{\p}{r}-\p\pder{\p\ast}{r}\right)\]
+	If we consider the flux of a light source, the flux radiates outward, spreading over spherical shells \(A=4\pi r^2\) so the intensity should fall off with \(P\propto r^{-2}\) to conserve power. We should assumee a similar relation for probability flux. Fix \(\p = f(r)e^{ikr}\) where \(f\) is real. Then, we can write the radial flux as
+	\[j = \frac{\hbar}{2mi}\left(ff'+ikf^2-[ff'-ikf^2]\right) = \frac{\hbar k}{m} \left[f(r)\right]^2\]
+	Imposing our particle-conservation, we see that 
+	\[\int_{\partial S}\d{A} j = \int\d\omega r^2f^2\frac{\hbar k}{m}=\text{const}\]
+	so we see that \(f\propto\frac{1}{r}\).
+\end{aside}
+
+Thus, our only remaining solution is \(s = \ell+1\). Examining this dependence, we see that \(R=r^\ell\) for small \(r\) (as the centrfugal barrier is overwhelm(ing?)), so \(R(0) = 0\) except for \(\ell = 0\).
+
+\section{Coulomb Potential}
+The Coulomb potential for a hydrogen-like atom is given
+\[V(r) = -\frac{Ze^2}{r}\]
+where \(Z\) is the atomic number and \(e\) is the elementary charge. Further, we introduce \(E=-\abs{E}\), \(\rho = r\sqrt{\frac{8\mu\abs{E}}{\hbar^2}}\), and \(\lambda = \frac{Ze^2}{\hbar}\sqrt{\frac{\mu}{2\abs E}}\). Thus, the schrodinger equation can be rewritten
+\[\der{u}{\rho2}-\frac{\ell(\ell+1)}{\rho^2}u+\left(\frac{\lambda}{\rho}-\frac{1}{4}\right)u=0\]
+Let us assume a power-series solution. A typical power series is actually difficult to write. As we already know the small \(r\) behaviour, let us focus on large \(r\), or large \(\rho\). Then, the differential equation becomes
+\[\der{u}{\rho2}-\frac{1}{4}u=0\then u = A_\pm e^{\pm\rho/2}\]
+For the wavefunction to be normalizable, we reject the \(+\) term. Thus,
+\[\lim_{r\to\infty} u = Ae^{\rho/2}\]
+Combining the small and large limit behaviour, we take the guess that
+\[u(\rho) = F(\rho)\rho^{\ell+1}e^{-\rho/2}\]
+for some function \(F\). Plugging this into our original differential equation, we see that
+\[\der{F}{\rho2}+\left(\frac{2\ell+2}{\rho}-1\right)\der{F}{\rho}+\left(\frac{\lambda}{\rho}-\frac{\ell+1}{\rho}\right)F=0\]
+Let \(F = \sum_k^\infty c_k \rho^k\). We know to get our desired limits, we must have that \(c_0\neq 0\). Plugging in this power series, we obtain
+\[\sum_{k=0}c_kk(k-1)\rho^{k-2}+\sum_{k=0}(2\ell)c_kk\rho^{k-2}+\sum_{k=0}[\lambda - (\ell+k+1)]c_k\rho^{k-1} = 0\]
+Rewriting the indices, we obtain
+\[\sum_{k=0}c_{k+1}k(k+1)\rho^{k-1}+\sum_{k=0}(2\ell)c_{k+1}(k+1)\rho^{k-2}+\sum_{k=0}[\lambda - (\ell+k+1)]c_k\rho^{k-1} = 0\]
+Collecting coefficients, we see that
+\begin{equation}
+	\frac{c_{k+1}}{c_k} = \frac{k+\ell+1-\lambda}{(k+1)(k+2\ell+2)}
+\end{equation}
+The limiting behaviour of this is given \(\frac{c_{k+1}}{c_k}\to\frac{1}{k}\). This implies an exponential behaviour, or  \(e^{+\rho}\). Unfortunately, this diverges, as we then have \(u = \rho^{\ell+1}e^{+\rho/2}\). We rejected this result earlier, and we will reject it again. Thus, we assume that this series terminates for some \(k\). Thus, we have
+\[k+\ell+1 = \lambda = \frac{Ze^2}{\hbar}\sqrt{\frac{\mu}{2\abs{E}}}\]
+as all of \(k,\ell,1\) are integer. Define the radial quantum number \(n_r =  k\in \N\cup \{0\}\).
+Thus, we define the \emph{principle quantum number}
+\[\lambda = n_r+\ell+1\equiv n\]
+where \(n\in\N\setminus\{0\}\). We can then use this to write
+\[n = \frac{Ze^2}{\hbar}\sqrt{\frac{\mu}{2\abs{E}}}\]
+\begin{equation}
+	E=-\abs{E} = -\frac{\mu Z^2e^4}{2\hbar^2n^2}
+\end{equation}
+For the hydrogen atom, we consider \(Z=1\) and \(\mu\sim m_e\), we obtain
+\[E_n = -\frac{\SI{13.6}{eV}}{n^2}\]
+If we draw the energy level diagram, we see that as \(n\to\infty\), \(E\up 0\) and the spacings become nearly a continuum.\footnote{These energy levels were determined using optical emission. The light from excited hydrogen was passed through a prism/diffraction grating. The optical series, \(n\dn 2\), was observed by Balmer, and is known as th Balmer series. Other series were observed, such as the Lyman series \(n\dn1\), Paschen series \(n\dn 3\), and the Brackett series \(n\dn 4\).} The 1s orbtital can be denoted \(n=1, n_r=0, \ell=0\), the 2s as \(n=2, n_r=1, \ell=0\), the 2p as \(n=2, n_r=0, \ell=1\), and so forth. The degeneracy of these orbitals is given by the possible \(m\) values---s orbitals are singly degenerate, p triply, and so forth. 
+
+We can write the wavefunctions as 
+\[u(\rho) = \sum_{k=0}^{n_r}\rho^k\rho^{\ell+1}e^{-\rho/2}\]
+Returning to our definition of \(\rho\), we can expand it with our newly found energy as
+\[\rho = \frac{2\mu Ze^2}{\hbar^2n}r\]
+We can thus see that as \(Z\) increases, the radius decreases, and when \(n\) increases, the radius increases. We define the bohr radius
+\[a_0 = \frac{\hbar^2}{e^2\mu}\]
+so we can rewrite
+\[\rho = \frac{2Z}{na_0}r\]
+For \(n=1,\ell=0\), we can write the radial wavefunction as
+\[R_{1,0} = \frac{u_{1,0}}{r} = c_0 \frac{2Z}{a_0}e^{-Zr/a_0}\]
+Normalizing\footnote{Note, that by a change of variables, we can obtain the integral in terms of \(\int_0^\infty r^2 e^r\d{r} =\Gamma(3) = 2!\ \). Similar reductions can be found for the other radial wavefunctions.}, we find \(c_0 = \sqrt{\frac{Z}{a_0}}\)
+Thus, we obtain
+\begin{subequations}
+	\begin{align}
+		R_{1,0}&=2\left(\frac{Z}{a_0}\right)^{3/2}e^{-Zr/a_0}\\
+		\intertext{Similarly, we can also find}
+		R_{2,0}&=2\left(\frac{Z}{2a_0}\right)^{3/2}\left(1-\frac{Z}{2a_0}r\right)e^{-Zr/2a_0}\\
+		R_{2,1}&=\frac{1}{\sqrt{3}}\left(\frac{Z}{2a_0}\right)^{3/2} \frac{Zr}{a_0}e^{-Zr/2a_0}
+	\end{align}
+\end{subequations}
+\begin{aside}[Important Properties]
+	\begin{itemize}
+		\item \(R_{n,\ell}(0)=0\) for \(\ell\neq 0\). The centrifugal barrier forbids \(r=0\).
+		\item The number of additional nodes other than that at the origin is \(n_r\).
+	\end{itemize}
+\end{aside}
+
+\section{Other Potentials}
+\subsection{Quantum Dots}
+Quantum dots are collections of atoms that are on the order of \SI{3}{nm} in diameter. These clusters are large enough where splittings have a significant effect but too small for band structure to dominate. The hue of a quantum dot is related to the size of the dot. 
+
+In solids, we can separate electrons into core electrons, which are localized around particular atoms, and valence electrons, which are more distributed along the different electrons; we are concerned more with the valence electrons. In a macroscopic amount of material, the energy levels in the valence band are close enough where they make almost a continuum. We define the Fermi Energy \(E_F\) to be the energy of the highest filled state\footnote{In semiconductors, the Fermi Energy is not actually at an accessible state, but it still satisfies the property that it is between the highest occupied state and the lowest unoccupied state.}; below the Fermi energy, the states are all occupied, and above the states are unoccupied.
+
+\subsubsection{Infinite Square Well}
+Take the model that the quantum dot is perfectly confined to an infinite square well. Recall that in 1D the energyies were proportional to \(\sim n^2\), or \(n\propto \sqrt{E}\). If we extend this to \(3D\), we instead take \(E\propto \vb n^2=  n_x^2+n_y^2+n_z^2\). Consider the proportionality constant to be \(E = \Delta E n^2\). We can calculate this splitting as
+\[\Delta E = \frac{\hbar^2\pi^2}{2a^2m_e^2} = \frac{(\hbar c)^2 \pi^2}{2a^2(m_ec^2)} \approx \frac{(\SI{1973}{eV.\angstrom})^2*10}{2*\SI{1000}{\angstrom^2}*\SI{0.511e6}{eV}}\approx \SI{40}{meV}\]
+for \(a=\SI{3}{nm}\) particle size. To obtain the splitting on order of \SI{1}{eV} for visible light, we need a significantly smaller particle.
+
+The materials we consider for quantum dots are semi-conductors. These materials have an energy gap \(E_g\) between the valence and conduction bands, the former of which are made of bonding orbitals and the latter of antibonding orbitals. Let \(E_C\) be the lowest unoccupied state and \(E_V\) be the highest occupied state. The \(\Delta E\) we have calculated is the amount that these two levels are shifted. In fact, \(E_C\to E_C+\Delta E\) and \(E_V\to E_V-\Delta E\) so \(E_g\to E_g+2\Delta E\).
+
+\subsection{Infinite Spherical Well}
+Our potential is given
+\begin{equation}
+	V(r)= \begin{cases}
+		0 & r<a\\
+		\infty &r>a
+	\end{cases}
+\end{equation}
+and so we obtain the boundary condition \(R(a),u(a)=0\). For \(\ell=0\), we have trivially that \(u = e^{\pm ikr}\) as before. Thus, \(R = \frac{e^{\pm ikr}}{r}\). Matching boundary conditions, we see that we should rewrite \(u = \sin kr, \cos kr\). However, \(R=\frac{\cos kr}{r}\) diverges at \(r=0\) so we choose
+\[R = c_n\frac{\sin k_nr}{r}\]
+where \(k_n = \frac{n\pi}{a}\). For \(\ell\neq 0\), we gain the centrifugal barrier in the shr\"odinger equation:
+\[-\frac{\hbar^2}{2\mu}\der{u}{r2}+\frac{\ell(\ell+1)\hbar^2}{2\mu r^2}u = Eu\]
+we could, perhaps, take a power series solution \(u = F(r)\sin kr + G(r)\cos kr\). However, we can rewrite this equaiton in terms of \(R\) so
+\begin{equation}
+	\der{R}{\rho2} + \frac{2}{\rho}\der{R}{\rho} + \left[1-\frac{\ell(\ell+1)}{\rho^2}\right]R=0
+\end{equation}
+This equation is known as the \emph{Spherical Bessel Equation}, whose solutions are known as \emph{Spherical Bessel Functions}, which are regular at \(r=0\) (they do not diverge).\footnote{For cylindrical wells, we have the solutions to be ordinary \emph{Bessel functions}.}
+\begin{equation}
+	j_\ell = (-\rho)^\ell \left(\frac{1}{\rho}\der{}{\rho}\right)^\ell\frac{\sin\rho}{\rho}
+\end{equation}
+There are another set of solutions, the \emph{spherical Neumann functions} which are irregular at \(r=0\), which we discard for obvious reasons:
+\begin{equation}
+	\eta_\ell = -(-\rho)^\ell\left(\frac{1}{\rho}\der{}{\rho}\right)^\ell \frac{\cos\rho}{\rho}
+\end{equation}
+If, however, we consider the potential of a infinite thick spherical shell, we would have to use linear combinations of both functions.
+
+Examining specific cases of this equation, we see that our solution for \(\ell=0\) matches the zeroeth bessel function:
+\[j_0 = \frac{\sin\rho}{\rho}\]
+For \(\ell=1\), we see
+\[j_1(\rho) = \frac{\sin\rho}{\rho^2}-\frac{\cos\rho}{\rho}\]
+Just like for the hydrogen radial wavefunction, we see that for \(\ell\geq1\) the spherical bessel function goes to zero as \(r\to 0\). In general, for \(r\ll1\) we have \(j_\ell\propto x^\ell\) while for \(r\gg1\) we have \(j_\ell\sim\frac{1}{x}\cos\left(x-(\ell+1)\frac{\pi}{2}\right)\).
+
+\subsection{Finite Spherical Well}
+Take instead a finite spherical potential well given
+\[V = \begin{cases}
+	-V_0 & r<a\\
+	0 & r\geq a
+\end{cases}\]
+For \(\ell=0\), our equations become
+\[-\frac{\hbar^2}{2\mu}\der{u}{r2} = (E+V_0)u\qquad\qquad r<a\]
+\[-\frac{\hbar^2}{2\mu}\der{u}{r2} = Eu\qquad\qquad r>a\]
+Note that \(E<0\). Thus, inside the well, we have
+\[u = A\sin Qr + B\cos Qr \qquad r<a \quad Q = \sqrt{\frac{2\mu(V_0+E)}{\hbar^2}}\]
+and outside we have
+\[u = Ce^{-qr}+De^{-qr} \quad r>a \quad q = \sqrt{-\frac{2\mu E}{\hbar^2}}\]
+We have the following boundary conditions. Continuity creates two constraints, while normalizability provides another two (limiting behaviour). Finally we must also have \(u(0)=0\). These 5 constraints allow us to find the 5 unknowns \(A,B,C,D,E\). We obtain the constraint equations
+\[u(0)=0\then B=0\]
+\[\norm{u}^2=1\then D=0\]
+\[A\sin Qa = Ce^{-qa}\]
+\[AQ\cos Qa = -qCe^{-qa}\]
+Dividing the last two equations, we obtain
+\[\tan Qa = -\frac{Q}{q}\]
+This gives us a transcendental equation:
+\[\tan \xi = -\frac{\xi}{\eta}\then \xi\cot\xi = -\eta\]
+where, from the definition that \(\xi = Qa\) and \(\eta = qa\), we have
+\[\xi^2+\eta^2 = \frac{2\mu V_0 a^2}{\hbar^2}\]
+We can plot these equations as \(\eta = -\xi\cot\xi\) and \(\eta = \sqrt{\frac{2\mu V_0a^2}{\hbar^2}-\xi^2}\), where intersections between the two plots gives us solutions. Note, as we define \(Q,q,a\geq 0\), we care only about the solutions in the first quadrant. The deeper the well, we see the more bound states there are. Thus, we have one bound state for 
+\[\frac{\pi}{2}<\sqrt{\frac{2\mu V_0a^2}{\hbar^2}}<\frac{3\pi}{2}\]
+and so forth. We can devise a fixed point iteration scheme \(x'=f(x)\) to solve for the energy. So long as \(\abs{f'(x)}<1\), this iteration will converge to a stable solution. If we try
+\[\xi' = -\eta(\xi)\tan \xi\]
+we see that this equation does not satisfy the stability criterion. However, if we choose
+\[\xi' = \arctan\left[-\frac{\xi}{\eta(\xi)}\right] = \arctan\left[\frac{-1}{\sqrt{\frac{2\mu V_0a^2}{\hbar^2\xi^2}-1}}\right]\]
+the iteration does converge.
+
+\subsection{3D Harmonic Oscillator}
+\subsubsection{Cartesian Solution}
+The potential of a 3D harmonic oscillator is,
+\[V(r) = \frac{1}{2}\mu \omega^2 (x^2+y^2+z^2)\]
+If we try to solve this equation in cartesian coordinates, we could, of course, try separation of variables and substitute into the Schr\"odinger equation. When we do this, we obtain the sum of three different harmonic oscillators:
+\[\sum_i -\frac{1}{X_i}\frac{\hbar^2}{2\mu}\frac{\d[2]{X_i}}{\d{x_i^2}} + \frac{1}{2}\mu \omega^2 x_i^2 = E\]
+or,
+\[\left[-\frac{\hbar^2}{2\mu}\frac{\d[2]{}}{\d{x_i^2}}+\frac{1}{2}\mu\omega^2x_i^2\right]X_i = E_i\]
+where \(\sum_i E_i = E\). We know from our treatment of the 1D oscillator that \(E_i = \hbar\omega \left(n_i+\frac{1}{2}\right)\), so \(E = \hbar\omega\left(n_x+n_y+n_z+\frac{3}{2}\right)\).
+
+This result comes from the fact that \(H = \sum_i H_i\). If we instead consider a symmetry argument, we see trivially that \([H_i, H_j] = 0\), so \([H,H_i] = 0\). Thus, we claim we can write \(\k{E} = \k{n_x,n_y,n_z}\). Using our raising and lowering operators, we can obtain the energy spectrum, and using our position-space representation, we obtain the same values.
+
+\subsubsection{Spherical Solution}
+As per usual, we guess
+\[\p = \frac{u}{r} Y_{\ell,m}\]
+so we obtain
+\[-\frac{\hbar^2}{2\mu}\der{u}{r2}+\frac{\ell(\ell+1)\hbar^2}{2\mu r^2} u + \frac{1}{2}\mu \omega^2 r^2 u = Eu\]
+Substituting  \(\rho = r\sqrt{\frac{\mu\omega}{\hbar}}\) and \(\lambda = \frac{2E}{\hbar\omega}\), we can rewrite the equation as
+\[\der{u}{\rho2} - \frac{\ell(\ell+1)}{\rho^2}u-\rho^2u=-\lambda u\]
+We see that as \(\rho\to\infty\), we obtain \(\der{u}{\rho2} = \rho^2u\), which has an exponential solution. On the other hand, as \(\rho\to0\), we instead obtain \(\der{u}{\rho2} = \frac{\ell(\ell+1)}{\rho^2}u\). We then guess
+\[u = \rho^{\ell+1}e^{-\rho^2/2}f(\rho)\]
+where the first term is the small contribution, the second term is the large contribution, and \(f\) is the ``correction'' term. Using a power series,
+\[f(\rho) = \sum_{k=0}^\infty c_k \rho^k\]
+Unless \(f\) terminates, we see that \(f\sim e^{+\rho^2}\) and the wavefunction terminates. Thus, we obtain
+\[E = \left(2n_r+\ell+\frac{3}{2}\right)\hbar\omega\]
+where \(n_r=k\) determines the point where the power series terminates, and is also the number of nodes in \(f(\rho)\). Thus, we have \(n = n_r+\ell\) so \(E = \left(n+\frac{3}{2}\right)\hbar\omega\).
+
+
+\subsubsection{Degeneracies}
+Unlike the cartesian case, we see that there are degeneracies within \(n\) to account for the three cartesian degrees of freedom. For \(n=1\), we have two-fold degeneracy---one for each spin state. Similarly, for \(n=2\) we have 12-fold degeneracy. Ignoring spin, we reduce this to 6. In spherical coordinates, this is because there is one contribution from the \(\ell = 0\) state, but 5 \(m\) states from the \(\ell=2\) angular momentum. We can see this in the cartesian coordinates as permutations of the states \((2,0,0)\) and \((1,1,0)\). The \(\ell=0\) states are \emph{totally symmetric} representations; we can write them as a symmetric sum of the various states. If we consider the \(n=2\) state, this is an equally weighted sum of all of the \((n_x,n_y, n_z)\) states with \(\sum_i n_i=2\),
+
+Although the states with equal energy may not seem like they have anything in common, degeneracy is an indicator of a ``hidden symmetry.'' For example, for \(n=2\), we have a hidden symmetry between the \(n_r=0, \ell=2\) states and the \(n_r=1,\ell=0\) state. Similarly, for the hydrogen atom, we have a hidden symmetry between the 2s and 2p orbitals. This is because for \(\frac{1}{r}\) and \(r^2\) potentials, the orbitals don't precess; any other power dependence precesses, and breaks this symmetry.
+
+An additional symmetry that the classical harmonic oscillator has is that no matter where a mass starts on the potential, it has the same potential, and Prof.\ Feenstra speculates that this symmetry is what leads to the constant spacing between quantum energy levels.

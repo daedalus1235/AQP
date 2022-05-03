@@ -1,0 +1,225 @@
+%! TEX root = 0-main.tex
+\chapter{Indistinguishable Particles}
+All particles of a single type are indistinguishable; if you turned around, and two particles in a system were swapped, you wouldn't be able to notice. This gives us a symmetry that must have a definite result under particle exchange.
+
+Consider the two particle state
+\[\k{ab} = \k{a}\tp\k{b}\]
+We define a ``exchange'' operator
+\[P\k{a}\tp\k{b} = \k{b}\tp\k{a}\]
+Because these particles are indistinguishable, the wavefunction can only change to an overall phase factor
+\[P\k{\p} = e^{i\delta}\k{\p} = \lambda\p\]
+If we repeat this operation,  we necessarily return to the initial state
+\[\k\p = P^2\k{\p} = \lambda^2k\p\]
+Thus, we can only have \(\lambda = \pm 1\). However, in 2D, this argument fails; we can view a particle as a pole, and thus the \(P^2\) operator can gain a residue and thus any phase \(e^{i\delta}\) is valid.\footnote{This is a very hand-wavy and metaphorical argument.}
+
+Because we know the action of the exchange operator, we can write a representation as
+\[P \simeq \begin{bmatrix}
+	0 & 1 \\ 1 & 0
+\end{bmatrix}\]
+We see for the basis \(\k{ab},\k{ba}\), we have the symmetric state \(\frac{1}{\sqrt{2}}(\k{ab}+\k{ba})\) with eigenvalue \(\lambda = +1\) and the antisymmetric state \(\frac{1}{\sqrt{2}}(\k{ab}-\k{ba})\) with eigenvalue \(\lambda = -1\). We call the symmetric case \emph{bosons}, which obey \emph{Bose-Einstein Statistic}, while the antisymmetric case are \emph{fermions} and obey \emph{Fermi-Dirac Statistics}, as well as the \emph{Pauli Exclusion Principle}. Through relativistic quantum mechanics, we can show that the property that determines whether a particle is a boson or fermion is its spin---this is the \emph{spin-statistics theorem}\footnote{Anyons need not obey these two statistics. }.
+
+\section{Helium Atom}
+The helium atom is a two-electron system (fixing the nucleus) with the hamiltonian
+\begin{equation}
+	H = \frac{p_1^2}{2m_e}+\frac{p_1^2}{2m_2}-\frac{Ze^2}{\abs{r_1}} - \frac{Ze^2}{\abs{r_2}}+\ farc{e^2}{\abs{r_2-r_1}}
+\end{equation}
+However, the final term makes this a three-body problem, and thus cannot be solved exactly. We will consider this term as a perturbation. Trivially, for \(H_0\) our eigenstates are tensor-products of two hydrogen-like wavefunctions and the two spin-\(\frac{1}{2}\) wavefunctions. Because electrons are fermions, we must make anti-symmetric states. We can do this by either having a symmetric position wavefunction and anti-symmetric spin wavefunction, or vice-versa. 
+
+\subsection{Ground State Helium}
+If we consider the ground state, we see that the only non-trivial position wavefunction is the symmetric case; as such, we must have the anti-symmetric spin wavefunction:
+\[\k R = \k{1,0,0}_1\k{1,0,0}_2\]
+\[\k \chi = \frac{1}{\sqrt{2}}(\k{\up\dn}-\k{\dn\up})\]
+Thus, our total state is given
+\begin{equation}
+	\k{1s,1s} =\k R\tp\k\chi = \k{1,0,0}_1\k{1,0,0}_2\frac{1}{\sqrt{2}}(\k{\up\dn}-\k{\dn\up})
+\end{equation}
+We denote this state as \(\ce{^{1}S_0}\) where the superscript is \(2s+1\) with total spin \(s\), the letter denotes the total \(L\), and the subscript denotes \(J\). 
+
+Our zeroeth order energy for the ground state relies only on the spatial terms. Thus, 
+\[E^{(0)}_{1s,1s} = 2\left(-\frac{1}{2}m_ec^2Z^2\alpha^2\right) = \SI{-8}{Ryd} = \SI{-108.8}{eV}\]
+Our first-order correction is correspondingly given
+\[E_{1s,1s}^{(1)} = \b{1s,1s}\frac{e^2}{\abs{r_2-r_1}}\k{1s,1s}\]
+However, how do we evaluate this expectation with a two particle state? we can consider (for a symmetric state) that we can write
+\begin{equation}
+	I = \frac{1}{2}\iint\d[3]{r_1}\d[3]{r_2}\frac{1}{\sqrt{2}}\left(\k{r_1,r_2}+\k{r_2,r_1}\right)\frac{1}{\sqrt{2}}\left(\b{r_1,r_2}+\b{r_2,r_1}\right)
+\end{equation}
+Recognizing the symmetry that \(\bk{r_1,r_2}{\p_s} =\bk{r_2,r_1}{\p_s}\), separating into two integrals and swapping the labels of the integrals, we see that we can write
+\begin{align*}
+	\k{\p_s} &=\iint\d[3]{r_1}\k{r_1,r_2}\bk{r_1,r_2}{\p_2}
+\end{align*}
+so, we can compute our first-order correction as
+\[E^{(1)}_{1s,1s} = \iint\d[3]{r_1}\d[3]{r_2} \abs{\bk{r_1}{1,0,0}}^2\abs{\bk{r_2}{1,0,0}}^2\frac{e^2}{\abs{\vb r_1-\vb r_2}}\]
+Note that we can interpret
+\begin{equation}
+	\rho(\vb r_1) = e\abs{\bk{\vb r_1}{1,0,0}}^2
+\end{equation}
+so our integral is the interaction between two charge densities:
+\[E^{(1)}_{1s,1s} = \iint\d[3]{r_1}\d[3]{r_2} \frac{\rho_1(\vb r_1)\rho_2(\vb r_2)}{\abs{\vb r_1-\vb r_2}}\]
+which gives us a convenient way to interpret our first order correction. Evaluating this (very tedious) integral, we substitute
+\[\bk{\vb r}{1,0,0} = \frac{1}{\sqrt\pi}\left(\frac{Z}{a_0}\right)^{3/2}e^{-zr/a_0}\]
+to obtain 
+\begin{align}
+	E^{(1)}_{1s,1s} &= \left[\frac{1}{\pi}\left(\frac{Z}{a_0}\right)^3\right]^2e^2\int r_1^2\d{r_1} e^{-2Zr_1/a_0}\int r_2^2\d{r_2}e^{-2Zr_2/a_0}\int\d{\Omega_2}\int\d\Omega_1\frac{1}{\abs{\vb r_1-\vb r_2}}\nonumber\\
+			&= \left[\frac{1}{\pi}\left(\frac{Z}{a_0}\right)^3\right]^2e^2\int r_1^2\d{r_1} e^{-2Zr_1/a_0}\int r_2^2\d{r_2}e^{-2Zr_2/a_0}\nonumber\\
+			&\hphantom{===}\times\int\d{\Omega_2}\int\d\Omega_1\frac{1}{\sqrt{r_1^2+r_2^2-2r_1r_2\cos\theta}}\nonumber\\
+			&= \left[\frac{1}{\pi}\left(\frac{Z}{a_0}\right)^3\right]^2e^2\int r_1^2\d{r_1} e^{-2Zr_1/a_0}\int r_2^2\d{r_2}e^{-2Zr_2/a_0}\nonumber\\
+			&\hphantom{===}\times\int\d{\Omega_2}\eval{\frac{2\pi 2}{-2r_1r_2}\sqrt{r_1^2+r_2^2-2r_2r_2\cos\theta}}{\cos\theta=1}{\cos\theta=-1}\nonumber\\
+			&= \left[\frac{1}{\pi}\left(\frac{Z}{a_0}\right)^3\right]^2e^2\int r_1^2\d{r_1} e^{-2Zr_1/a_0}\int r_2^2\d{r_2}e^{-2Zr_2/a_0}\nonumber\\
+			&\hphantom{===}\times4\pi * \frac{2\pi}{r_1r_2}[(r_1+r_2)-\abs{r_1-r_2}]\nonumber\\
+			\intertext{depending on whether \(r_1<r_2\) (or, whether \(\abs{r_1-r_2}=r_1-r_2\) or \(-r_1+r_2\)), we split the \(r_2\) integral}
+			&=\left(\frac{Z}{a_0}\right)^6 8e^2\int_0^\infty \d{r_1}r_r e^{-2Zr_1/a_0} \left[2\int_0^{r_1}\d{r_2}r_2^3e^{-2Zr_2/a_0} + 2r_1\int_{r_1}^\infty \d{r_2}r_2 e^{-2Zr_2/a_0}\right]\nonumber\\
+			&=\left(\frac{Z}{a_0}\right)^6 8e^2 2 \left(\frac{a_0}{2Z}\right)^3\int_0^\infty\d{r_1}e^{-2Zr_1/a_0}\left[-\frac{2Zr_1}{a_0}e^{-2Zr_1}{a_0} - 2 e^{-Zr_1/a_0} + 2\right]r_1\nonumber\\
+			&=\frac{5}{8}\frac{Ze^2}{a_0} = \frac{5}{8}Zm_ec^2\alpha^2 \approx \SI{34.0}{eV}\label{eq12:HePert}
+\end{align}
+Combining this with the unperturbed energy \(E^{(0)}_{1s,1s} = -\SI{108.8}{eV}\), we obtain
+\[E_{1s,1s} \approx -\SI{74.8}{eV}\]
+which is very close to the experimental value of \(-\SI{79.0}{eV}\).
+
+\subsection{Excited Helium}
+Consider one electron in the \(\k{1,0,0}\) state, and the other in an excited \(\k{2,\ell,m}\) state.
+Now, we can have symmetric and antisymmetric position wavefunctions, and thus, symmetric and antisymmetric spin wavefunctions. However, the wavefunctions do not necessarily factorize anymore. For example, while
+\begin{align*}
+	\k{R_-}\k{1,\pm1}&=\frac{1}{\sqrt{2}}\left[\k{1,0,0,\pm z}\k{2,\ell,m\pm z} - \k{2,\ell,m,\pm z}\k{1,0.0.\pm z}\right]\\
+	    &=\frac{1}{\sqrt{2}}\left[\k{1,0,0}\k{2,\ell,m} - \k{2,\ell,m}\k{1,0,0}\right]\k{\pm z}\k{\pm z}
+\end{align*}
+\[\k{\p_\pm}= \frac{1}{\sqrt{2}} \left[\k{1,0,0,\pm z}\k{2,\ell,m,\mp z}-\k{2,\ell, m, \mp z}\k{1,0,0,\pm z}\right]\]
+is properly antisymmetric, but cannot be factorized into the product of a position part and spin part.
+The unperturbed energy is given
+\[E_{1s,2(s,p)}^{(0)} = \frac{1}{2}m_e c^2 \alpha^2 Z^2 \left(1+\frac{1}{2^2}\right) = -\SI{68.0}{eV}\]
+
+Note, that while our first states are an eigenstates of total spin, \(\k{1,\pm 1}\), the second states are not. While we could take linear combinations to obtain the eigenstates \(\k{0,0},\k{1,0}\), we can equivalently consider
+\[P = P_RP_\chi\]
+because
+\[[H_0,P_i] = [H_1, P_i] = [H,P_i]=0\]
+If we take the sum 
+\[\k{R_-}\k{1,0} = \frac{1}{\sqrt{2}}[\k{\p_+}+\k{\p_-}]\]
+\[\k{R_+}\k{0,0} = \frac{1}{\sqrt{2}}[\k{\p_+}-\k{\p_-}]\]
+where \(R_\pm\) gives \(P\k{R_\pm} = \pm\k{R\pm}\). Thus, our triplet states, \(\k\chi=\k{1,m_s}\) have the antisymmetric position wavefunction \(\k{R_-}\), while our singlet state has the symmetric position wavefunction \(\k{R_+}\).
+
+Because our perturbing hamiltonian doesn't depend on spin. Fortunately, because the \(1s\) orbital has no angular momentum, the total orbital angular momentum trivially reduces to the angular momentum of the \(n=2\) orbital and remains an eigenstate of total orbital angular momentum. Further, because our perturbing hamiltonian is invariant under a rotation,
+\[[H_1,L] = [H_1,L_z] = 0\]
+we see that we must have total angular momentum eigenstates are eigenstates of the perturbing hamiltonian, and thus there are no off-diagonal matrix elements. Thus, our first-order perturbation are just the diagonal elements
+\begin{align*}
+	E^{(1)} &= \b{R_\pm}\frac{e^2}{\abs{\vb r_1-\vb r_2}}\k{\R_\pm}\\
+		&= \iint\d[3]{r_1}\d[3]{r_2}\abs{\bk{r_1,r_2}{R_\pm}}^2\frac{e^2}{\abs{\vb r_1-\vb r_2}}
+\end{align*}
+This is typically written in the form
+\begin{equation}
+	E^{(1)}= J\pm K
+\end{equation}
+where we have expanded \(\abs{\bk{r_1,r_2}{R_\pm}}^2\) and separated into the two integrals
+\begin{subequations}
+	\begin{align}
+		J&=\iint\d[3]{r_1}\d[3]{r_2} \abs{\bk{r_1}{1,0,0}}^2\abs{\bk{r_2}{2.\ell,m}}^2 \frac{e^2}{\abs{\vb r_1-\vb r_2}}\\
+		K&=\iint\d[3]{r_1}\d[3]{r_2} \bk{r_1}{1,0,0}\bk{r_2}{2.\ell,m} \frac{e^2}{\abs{\vb r_1-\vb r_2}}\bk{r_2}{1,0,0}\bk{r_1}{2,\ell,m}
+	\end{align}
+\end{subequations}
+The term \(J\) is similar to the electrostatic term for the ground state, while the term \(K\) is known as the \emph{exchange interaction}. It arises due to the indistinguishablility of the particles and is an energy associated with swapping the two electrons. We typically expect the exchange interaction to be \(K>0\), so the lower energy \(E^{(1)}= J-K\) impies we have the \(\k{R_-}\) position wave function and thus the \(\k{1,0}\) triplet state. Recall that in one basis, the spins on the triplet state are aligned, and thus we expect to observe parallel spins---this gives rise to magnetism. However, an additional \(-S_1*S_2\) term, known as the \emph{dipolar term}, favours anti-parallel spins. The competition between the exchange and dipolar terms determines whether a given material is magnetic.
+
+Our perturbation method predicts the splittings
+\[E_{1s,2s}^{(1)} = 11.4\pm\SI{1.2}{eV}\]
+\[E_{1s,2p}^{(1)} = 13.2\pm\SI{0.9}{eV}\]
+so our naive perturbation technique shows us from lowest to highest, the states are ordered \(\ce{^{3}S_1}\), \(\ce{^3P_{0,1,2}}\), \(\ce{^{1}S0}\), and \(\ce{^1P1}\). Experimentally, however, we see that the middle two states are actually flipped.
+
+\section{Variational Method}
+An alternative (and very general) method of obtaining approximate wavefunctions and energy is by applying variational methods. We know that 
+\[\vect{E} = \b{\p}H\k\p\]
+and any arbitrary state can be written as an expansion
+\[\k\p = \sum_n c_n\k{E_n}\]
+we need not know what this normalized eigenbasis \(\k{E_n}\) is, just that it exists. Thus, we have that any state will have an expectation value
+\[\vect{E} = \sum_n \abs{c_n}^2E_n\]
+We can rewrite this as an inequality with the ground state energy
+\[\vect{E}\geq \sum_n\abs{c_n}E_0 = E_0\]
+or, 
+\begin{equation}
+	E_0\leq \b\p H \k\p
+\end{equation}
+Thus, we can vary parameters in \(\k\p\) to minimize \(\vect{E}\), and take the lowest \(\vect{E}\) to be the state ``closest'' to \(\k{\p_0}\).
+
+If we wish to compute excited states, there is no issue if the symmetry is different from the ground state. However, if this is not the case, we can use Grah-Schmidt to ``subtract off'' the ground state. Our considerations, will largely be of the ground state, so we will not go further in depth.
+
+\subsection{Helium Atom Variation}
+Let us return to the ground state helium atom. Rather than using the full nuclear charge, we know that the charge density of one electron cloud will shield the other electron. Thus, we consider instead an \emph{effective charge}, \(Z_{eff}<2\) that results from this shielding effect. We thus write our wavefunction
+\[\k\p = \k{1,0,0(\tilde Z)}\k{1,0,0(\tilde Z)}\]
+where
+\[\bk{\vb r}{1,0,0(\tilde Z)} = \frac{1}{\sqrt{\pi}}\left(\frac{\tilde Z}{a_0}\right)^{3/2}e^{-\tilde Z r/a_0}\]
+Note that the charge in our original hamiltonian \emph{does not} change. However, this allows us to rewrite it in terms of the \(\tilde Z\) parameter as
+\begin{align*}
+	H &= \frac{p_1^2}{2m_e}+\frac{p_2^2}{2m_e} - \frac{\tilde Ze^2}{\abs{\vb r_1}}-\frac{\tilde Ze^2}{\abs{\vb r_2}} + \frac{e^2}{\abs{\vb r_1-\vb r_2}}\\
+	  &=\left[\frac{p_1^2}{2m_e}-\frac{\tilde Z e^2}{\abs{\vb r_1}}\right]+\left[\frac{p_2^2}{2m_e}-\frac{\tilde Z e^2}{\abs{\vb r_2}}\right] +\left[\frac{(\tilde Z-Z)e^2}{\abs{\vb r_1}}+\frac{(\tilde Z-Z)e^2}{\abs{\vb r_2}}\right] + \frac{e^2}{\abs{\vb r_1-\vb r_2}}
+\end{align*}
+Because we know all of these matrix elements, we can show
+\[\vect{E} = \frac{1}{2}m_ec^2\alpha\left(-2\tilde Z + \underbrace{4\tilde Z(\tilde Z-Z)}_{\text{from }\vect{\gamma/r}_{\tilde Z}} + \underbrace{\frac{5}{4}\tilde Z}_{\text{from Eq~\ref{eq12:HePert}}}\right) = \frac{1}{2}m_ec^2\alpha^2\left(2\tilde Z^2-4\tilde ZZ+\frac{5}{4}\tilde Z\right)\]
+Minimizing this energy wrt \(\tilde Z\), we see that this occurs at
+\[\tilde Z = Z-\frac{5}{16}\]
+and
+\[\vect{E} = -\frac{1}{2}m_e c^2 \alpha^2\left[2\left(Z-\frac{5}{16}\right)^2\right]\approx \SI{-77.4}{eV}\]
+which is even closer to the experimental value.
+
+\section{Multi-electron Atoms}
+We can extend our results from the Helium atom to multi-electron atoms (i.e.\ the rest of the periodic table). As before, we must have the wavefunction to be antisymmetrized wrt all electrons. This can be accomplished using the \emph{Slater Determinant}
+\begin{equation}
+	\k\p = \frac{1}{\sqrt{N!}} \begin{vmatrix}
+		\k a_1 & \k b_1 &\cdots\\
+		\k a_2 & \k b_2 &\cdots\\
+		\vdots & \vdots & \ddots
+	\end{vmatrix}
+\end{equation}
+where the arabic numeral signifies the electron, and the roman letter the state that electron is in.
+If we include spin-orbit coupling, then we need linear combinations of these Slater determinants as the eigenstates.
+We can then write down our hamiltonian
+\begin{equation}
+	\hat H = \sum_{i=1}^Z\frac{p_i^2}{2m_e}-\frac{Ze^2}{\abs{\vb r_i}}+\sum_{i<j}\frac{e^2}{\abs{\vb r_i-\vb r_j}}
+\end{equation}
+The final coupling term is, as always, what makes the problem very difficult. In particular, for solids, we use Density Functional Theory to approximate the final term. Neglecting the electron-electron repulsion, we are left with \(Z\) uncoupled equations of an atom with nuclear charge \(Z\). We can fill the spectrum as we would in freshman chemistry---we need not consider the antisymmetry as the coupling term goes to zero and the energy is unaffected.
+
+A slightly better approximation is to use a variational calculation, where we allow each electron to move in an spherical ``effective'' potential due to the other \(Z-1\) electrons. Cycling through the electrons, we can make iterate to make better and better approximations for the effective potential. This is known as the \emph{Hartree} method. If we include the antisymmetrization of the wavefunction, this is known as the \emph{Hartree-Fock} method.
+
+The effective potential experienced by the \(i\)th electron from the other electrons can be written
+\begin{equation}
+	V_i(\abs{\vb r_i}) = \sum_{j\neq i}\int\d[3]{r}\frac{e\vect{\rho_j(\vb r')}_{\Omega'}}{\abs{\vb r_i-\vb r'}}
+\end{equation}
+where of course \(\rho_j = e\abs{\p_i}^2\). Upon iteration, we see that the energies shift, as the \(Z_{eff}\) may be different for each level (for the valence shell, we expect \(Z_{eff}\sim 1\)) Further, we see that the angular momentum suborbitals are no longer degenerate---
+
+When we plot the first ionization energy across the periodic table, we can observe the effect of this screening---the elements furthest left experience the most shielding, as all of the electrons are below the valence shell, while the rightmost elements have more electrons in the valence shell and fewer in the core, so the shielding is less. 
+
+For alkali metals (first column) we can approximate the first ionization energy using
+\[E = -\SI{13.6}{eV}\frac{Z_{eff}^2}{n^2}\]
+where \(n\) is the level of the outermost electron. For all, \(Z_{eff}\sim n\) with hydrogen trhough potassium ahve \(Z_{eff}\) from 1, 1.3, 1.9,and 2.2.
+
+\section{Covalent Bonding}
+When we bring two identical atoms together, we take linear combination of their spatial states to obtain bonding an antibonding molecular orbitals. First, consider the \ce{H2+} ion. Our hamiltonian is given
+\[H = \frac{p^2}{2m_e}-\frac{e^2}{\abs {r-R/2}}-\frac{e^2}{\abs{r+R/2}} + \frac{e^2}{R}\]
+where \(R\) will be used as a variational parameter. In particular, we will consider the two basis states
+\[\k{r}{1} = \frac{1}{\sqrt{\pi a_0^3}}e^{-\abs{r-R/2}/a_0}\]
+\[\k{r}{2} = \frac{1}{\sqrt{\pi a_0^3}}e^{-\abs{r+R/2}/a_0}\]
+We will find that the two linear combinations are the symmetric and antisymmetric combinations. The symmetric combination has a depressed energy and is known as a \emph{bonding orbital}. The antisymmetric will have an elevated energy, and is known as an \emph{antibonding orbital}. 
+
+First, we must diagonalize the hamiltonian in the \emph{non-orthogonal} basis given by \(\k1,\k2\). We now see that
+\[\sum_j c_j \b i H\k j = E\sum_j c_j \bk j i\]
+which we can write as
+\[Hc = ERc\]
+where \(R_{ij} = \bk ij\)
+Inverting \(R\), which is a unitary matrix, we see that 
+\[R^{-1}H c = Ec\]
+but \(R^{-1}H\) is \emph{non-hermitian}. Finding the eigenvalues is still routine, however, but can now contain complex eigenvalues.
+
+We can work out the the matrix elements.
+\begin{align*}
+	H_{11} = H_{22} &= \b 1 \frac{p^2}{2m_2}-\frac{e^2}{\abs {r- R/2}}\k1 - \b{1}\frac{e^2}{\abs{r + R/2}} + \frac{e^2}{R}\bk11\\
+			&=E_1+ \frac{e^2}{R} - \int\d[3]{r}\frac{e^2}{\abs{r+R/2}}\frac{1}{\pi a_0^3}e^{-2\abs{r-R/2}/a_0}\\
+	H_{12}=H_{21}&= \b 1 \frac{p^2}{2m_2}-\frac{e^2}{\abs {r- R/2}}\k2 - \b{1}\frac{e^2}{\abs{r + R/2}} + \frac{e^2}{R}\bk12\\
+		     &=\left(E_1+\frac{e^2}{R}\right)\bk12 - \int\d[3]{r}\frac{e^2}{\abs{r-R/2}}\frac{1}{\pi a_0} e^{-\abs{r-R/2}/a_0}e^{-\abs{r+R/2}/2}
+\end{align*}
+The term \(\bk12\) is known as an \emph{overlap integral} We can then find the eigenstates as
+\begin{equation}
+	\k\pm = \frac{\k1\pm\k2}{\sqrt{2\pm2\bk12}}
+\end{equation}
+and energies
+\begin{equation}
+	E_\pm = \frac{1}{1\pm \bk12}(H_{11}\pm H_{12})
+\end{equation}
+
+As we vary \(R\), we see that \(E_-\) monotonically increases with decreasing distance, while \(E_+\) has a minimum. The binding energy, \(\Delta E\) is given by how much \(E_+\) is depressed from \(E_1\). For our model, we see that the bond length is given \(R\ast = \SI{1.3}{\angstrom}\) with \(\Delta E = \SI{1.8}{eV}\). This is not a great approximation, as experiment shows \(R\ast = \SI{1.06}{\angstrom}\) and \(\Delta E = \SI{2.8}{eV}\). We can improve this approximation with additional variational parameters. For example, we can vary \(a_0\), or include other states to account for the new cylindrical symmetry. If we consider more electrons, then we need to consider even more effects, but in principle each term can ba calculated and used to approximate the molecule.
+
+

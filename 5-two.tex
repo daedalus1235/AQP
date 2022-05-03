@@ -1,0 +1,307 @@
+%! TEX root = 0-main.texj
+\chapter{Two Spin-\texorpdfstring{\(\frac{1}{2}\)}{1/2} Particles}
+For a two particle system, such as a proton and an electron in a hydrogen atom, the combined state of the two particles is given by the \emph{tensor product} of the two individual states:
+\begin{equation}
+	\k{i,j}=\k{i}\otimes\k{j}
+\end{equation}
+Sometimes, this is simply written:
+\[\k{i}\k{j}\equiv\k{i}\otimes\k{j}\]
+The spins of these two particles are coupled to each other; the magnetic field of one causes the other to precess and vice-versa.
+
+\section{Interacting Spins}
+Consider the system given \((\vv\mu_1, \vv\mu_2)\), If we take the operator
+\begin{equation}
+	\frac{2A}{\hbar^2}\hat{\vv{S}}_1*\hat{\vv{S}}_2
+\end{equation}
+where \(A\) has units of energy, we can obtain properties of such a system.
+
+The two angular momentum operators are the generators of rotation, where \(S_1\) generates rotation in vector space 1, and \(S_2\) in vector space 2. Because they act on different vector spaces, they commute:
+\begin{equation}
+[S_1,S_2]=0
+\end{equation}
+However,
+\[[S_1, S_1*S_2]\neq0 \qquad \qquad [S_2, S_1*S_2]\neq 0\]
+Hence, \(S_{1,z}\) and \(S_{2,z}\) are not conserved quantities. However, \(S_1^2\) and \(S_2^2\) are. Thus, we need to find 2 other conserved quantities. This is because we begin with 4 conserved quantities and lose two due to interactions; there must exist two new conserved quantities that replace the lost ones. With these new conserved quantities, we can diagonalize the introduced operator.
+
+We can expand a portion of the introduced operator as
+\begin{align*}
+	2S_1*S_2 &= 2\sum S_{1i}S_{2i}
+	\intertext{substituting in the rasing and lowering operators,}
+		 &=S_{1+}S_{2-}+S_{1-}S_{2+}+2S_{1z}S_{2z}
+\end{align*}
+Using the basis \(\k1,\ldots,\k4\equiv\k{+z,+z},\k{+z,-z},\k{-z,+z},\k{-z,-z}\), we can write the representation of this operator as:
+\[	2\hat{\vv{S}}_1*\hat{\vv{S}}_2 \simeq \frac{\hbar^2}{2} \begin{pmatrix}
+		1 & 0 & 0 & 0 \\
+		0 &-1 & 2 & 0 \\
+		0 & 2 &-1 & 0 \\
+		0 & 0 & 0 & 1
+	\end{pmatrix}
+\]
+Or, in the context of our problem
+\begin{equation}
+	\frac{2A}{\hbar^2}\hat{\vv{S}}_1*\hat{\vv{S}}_2 \simeq \frac{A}{2} \begin{pmatrix}
+		1 & 0 & 0 & 0 \\
+		0 &-1 & 2 & 0 \\
+		0 & 2 &-1 & 0 \\
+		0 & 0 & 0 & 1
+	\end{pmatrix}
+\end{equation}
+By inspection, we can easily see the eigenvectors are given \[\k1,\quad \frac{1}{\sqrt{2}}\left(\k2+\k3\right),\quad \k{4}\]
+\[\frac{1}{\sqrt{2}}\left(\k{2}-\k{3}\right)\]
+The first three eigenvectors share the eigenvalue of \(E=A/2\); this triply degenerate state is a \emph{triplet} state. The fourth eigenvector has eigenvalue of \(E=-3A/2\), and is the \emph{singlet} state. Notice that the triplet states are \emph{symmetric} states (where swaping the two particles yields the same state) and the singlet state is \emph{antisymmetric},.
+\begin{aside}[Alternate Notation]
+	The eigenkets can also be written
+	\[\k{1}=\k{\up\up}\]	
+	\[\frac{1}{\sqrt{2}}\left(\k{2}+\k{3}\right)=\frac{1}{2}\left(\k{\up\dn}+\k{\dn\up}\right)\]
+	\[\k{4}=\k{\dn\dn}\]
+	\[\frac{1}{\sqrt{2}}\left(\k{2}-\k{3}\right)=\frac{1}{2}\left(\k{\up\dn}-\k{\dn\up}\right)\]
+\end{aside}
+
+The operator we just diagonalized is known as the \emph{hyperfine} interaction. For a hydrogen atom, the hyperfine interaction is very small compared to other interactions---the 1s orbital has a splitting of order \(\lambda=\SI{21}{cm}\), or of order \SI{5.8}{\micro\eV}.
+
+By computing the eigenstates of \(S_1*S_2\), we additionally have the eigenstates of \(S=S_1+S_2\).
+\begin{align}
+	R(\d\theta\vv{n}) &= 1-\frac{i}{\hbar}S*n\d\theta\nonumber\\
+			  &= \left(1-\frac{i}{\hbar}S_1*n\d\theta\right)\otimes\left(1-\frac{i}{\hbar}S_2*n\d\theta\right)\nonumber\\
+			  &=1-\frac{i}{\hbar}(S_1\otimes \mathbbm 1 + \mathbbm1\otimes S_2)*n\d\theta-\frac{1}{\hbar}S_1*n\otimes S_2*n\d{\theta^2}
+			  \intertext{Throwing away second order terms, we see that}
+			S &=S_1\otimes\mathbbm1 + \mathbbm1\otimes S_2
+\end{align}
+
+Then, using the fact that
+\[S^2=(S_1+S_2)^2\]
+we calculate
+\[\vect{S^2}=\vect{S_1^2}+\vect{S_2^2}+2\vect{S_1*S_2}= \begin{cases}
+	2\hbar^2 & \text{triplet}\\
+	0 & \text{singlet}
+\end{cases}\]
+Thus, we have
+\begin{equation}
+	\vect{s^2}=s(s+1)\hbar^2
+\end{equation}
+where \(s=1\) for the triplet state and \(s=0\) for the singlet state. 
+
+The final constant of the motion is \(S_z=S_{1z}+S_{2z}\). This has quantum number \(m\), where \(m\) is the sum of the spins of the two particles. Thus, we can relabel the states as \(\k{s_1,m_1,s_2,m_2}\to\k{s_1,s_2,s,m}\) where \(s_1,s_2\) are often dropped.
+\begin{subequations}
+	\begin{align}
+		&\k{\tfrac{1}{2},\tfrac{1}{2},1,1}=\k{1,1}=\k{\up\up}\\
+		&\k{\tfrac12,\tfrac12,1,0}=\k{1,0}=\frac{1}{\sqrt{2}}\left(\k{\up\dn}+\k{\dn\up}\right)\\
+		&\k{\tfrac12,\tfrac12,1,-1}=\k{1,-1}=\k{\dn\dn}\\
+		&\k{\tfrac12,\tfrac12,0,0}=\k{0,0}=\frac{1}{\sqrt{2}}\left(\k{\up\dn}-\k{\dn\up}\right)
+	\end{align}
+\end{subequations}
+
+If we rewrite the \(m=0\) states in terms of the \(\k{\pm x}\) basis, we see that they become
+\begin{align*}
+	\k{1,0}&=\frac{1}{\sqrt{2}}\left(\k{+z,-z}+\k{-z,+z}\right)\\
+	       &=\frac{1}{2\sqrt{2}}\left[(\k{+x_1}+\k{-x_1})\otimes(\k{+x_2}-\k{-x_2})+(\k{+x_1}-\k{-x_2})\otimes(\k{+x_2}+\k{-x_2})\right]\\
+	       &=\frac{1}{\sqrt{2}}(\k{+x,+x}-\k{-x,-x})\\
+	\k{0,0}&=\frac{1}{\sqrt{2}}(\k{+x,-x}-\k{-x,+x})
+\end{align*}
+or, \(\k{1,0}\) consists of ``parallel spins,'' as each spin is parallel in each term of the \(x\) basis, while \(\k{0,0}\) consists of ``anti-parallel spins,'' as each spin is anti-parallel in each term.
+
+\section{Einstein-Podolsky-Rosen Paradox}
+A spin-0 particle decays to form two spin-\(\frac{1}{2}\) particles. By conservation of linear momentum, the two particles shoot off in opposite directions, and by conservation of angular momentum, the particles are in the state \(\k{0,0}\). To within a phase, this state can be written as\footnote{this is shown in homework 8?}
+\begin{equation}
+	\k{0,0}=\frac{e^{i\phi}}{\sqrt{2}}\left(\k{+n,-n}-\k{-n,+n}\right)
+\end{equation}
+Thus, if we measure \(S_{n,1}\) to be \(\hbar/2\), we immediately know that \(S_{n,2}\) would be \(-\hbar/2\). Does the first measurement determine the orientation of the spin of the second? 
+
+The two particles form an \emph{entangled state}---the state cannot be factored into the tensor product of single particle states. This discussion of the EPR paradox thus applies to any entangled state.
+
+Recall a single SGx experiment. If we measure the \(\k{+x}\) path, the electron can only have gone on the path that leads to the measurement; the electrons that are measured ``know'' that they are going to be measured as they enter the device and take the corresponding path. In the language of many-universes, the electron takes both paths, but interaction with the measurement devices causes the path of the electron \(\k{-x}\) to be removed through decoherence. Similarly, for the EPR experiment, only the path consistent with the final measurement remains.
+
+If we take a decaying particle, and measure one with SGn with \(n\) in the \(x-z\) plane then the other with SGz, the number of particles that are measured \(\k{+z}\) is:
+\begin{align*}
+	P(+z)&=\abs{\bk{+n,+z}{0,0}}^2+\abs{\bk{-n,+z}{0,0}}^2\\
+	     &=\abs{-\frac{1}{\sqrt{2}}\bk{+n}{-z}}^2+\abs{\frac{1}{\sqrt{2}}\bk{-n}{-z}}^2\\
+	     &=\abs{-\frac{1}{\sqrt{2}}\sin\frac\theta2}^2+\abs{\frac{1}{\sqrt{2}}\cos\frac\theta2}^2\\
+	     &=\frac{1}{2}
+\end{align*}
+and so, measurements of one state do not affect the outcome of measurements of the other state.
+
+\begin{aside}[Bell Inequalities]
+If we generalize with measurements with multiple \(\theta\) values for both particles, we obtain Bell's Inequalities. In general, the state \(\k{0,0}\) state yields different results than a classical 50/50 mix of \(\k{+n,-n}\) and \(\k{-n,+n}\). We will go in more depth at a later time
+\end{aside}
+
+\section{Density Operator}
+We have primarily been working with the entangled states:
+\begin{equation}
+	\k{\P_{12}^{(\pm)}}=\frac{1}{\sqrt{2}}\left(\k{+z,-z}\pm \k{-z,+z}\right)
+\end{equation}
+These states are considered entangled, because they cannot be written in terms of a tensor product of 2 single particle states. Another pair of entangled states is given:
+\begin{equation}
+	\k{\F_{12}^{(\pm)}}=\frac{1}{\sqrt{2}}\left(\k{+z,+z}\pm\k{-z,-z}\right)
+\end{equation}
+Note that the \(\k\F\) states are not spin eigenstates. These four states are known as \emph{Bell States}; they are of importance becuase they are \emph{maximally entangled} states.
+
+We can distinguish between entangled states and not entangled states, as well as \emph{pure} and \emph{mixed} states using the \emph{density operator}. A pure state is any state that a single particle is in; we know the state of the particle. A mixed state is if we have some probability \(P_k\) to find the particle in a state \(\k{\p_k}\); we cannot precisely determine the state as a linear combination, as we only know the probability of a given state and not the relative phases.
+In other words, a pure state is a specific vector in the Hilbert space, while a mixed state is a distribution of vectors.
+
+\subsection{Pure State}
+The density operator, for a pure state \(\k\p\) is defined as:
+\begin{equation}
+	\hat\rho \equiv \k\p\b\p
+\end{equation}
+Notice that this is a projection operator. It can easily be seen that \(\hat\rho\) is a hermitian operator that can be diagonalized in a very obvious way.  Its trace is \(1\)
+\begin{align}
+	\tr(\hat\rho)&=\sum_i\bk{i}{\p}\bk{\p}{i}\\
+		     &=\sum_i\bk{i}{\p}\bk{\p}{i}\\
+		     &=\bk{\p}{\p}\\
+		     &=1
+\end{align}
+Similarly, using the fact that \(\rho^2=\rho\),
+\begin{equation}
+	\tr(\hat\rho^2)=1
+\end{equation}
+This is a fact that we will use to characterize a pure state. Interestingly, if we take \(P_\f\), 
+\begin{align}
+	\tr(\hat P_\f\hat \rho)&=\sum_i\bk i\f\bk \f\p \bk\p i\nonumber\\
+			       &=\sum_i \bk\f\p \bk\p i\bk i\f\nonumber\\
+			       &=\bk \f\p \bk \p\f\nonumber\\
+			       &=\abs{\bk\f\p}^2
+\end{align}
+Similarly, we can find the expectation value of an operator
+\begin{align}
+	\vect{A}&=\sum_{ij}\bk\p i \b i A \k j \bk j \p\nonumber\\
+		&=\sum_{ij}\b i A\k j \bk j \p \bk \p i\nonumber\\
+		&=\sum_ij A_{ij} \rho_{ji}\nonumber\\
+		&=\tr(A\rho)=\tr(\rho A)
+\end{align}
+Finally, the time depenence of the density operator is given:
+\begin{align}
+	\der{}{t}\rho&=\der{\k\p}{t}\b\p + \k\p\der{\b\p}{t}\nonumber\\
+		     &=\frac{1}{i\hbar}H\k\p\b\p + \frac{1}{-i\hbar}\k\p\b\p H\nonumber\\
+		     &=\frac{1}{i\hbar}(H\rho - \rho H)\nonumber\\
+		     &=\frac{1}{i\hbar}[H,rho]\nonumber\\
+	i\hbar\der{}{t}\hat\rho(t)&=\left[\hat H, \hat\rho\right]
+\end{align}
+
+\subsection{Mixed State}
+For a mixed state, the density operator is the sum of the density operators for the pure states, weighted by the probability of that state:
+\begin{equation}
+	\hat \rho = \sum_k P_k\k{\p^{(k)}}\b{\p^{(k)}}
+\end{equation}
+The trace is given:
+\begin{align*}
+	\tr(\rho)&=\sum_{ik}P_k\bk i{\p^{(k)}}\bk{\p^{(k)}}i\\
+		 &=\sum_k P_k\sum_i\bk{\p^{(k)}} i \bk i {\p^{(k)}}\\
+		 &=1
+\end{align*}
+
+Because \(\rho_k\) are hermitian, \(\rho\) itself is also hermitian. Thus, by spectral theorem, we can diagonalize \(\rho\) with eigenvalues \(\tilde p_k\), and thus \(\rho^2\) with eigenvalues of \(\tilde p_k^2\). Because the trace is conserved under change of basis, we have
+\[\tr(\rho)=\sum_k \tilde p_k=1\]
+\begin{equation}
+	\tr(\hat\rho^2)=\sum_k\tilde{p}_k^2\leq 1
+\end{equation}
+There is equality iff the state is a pure state. The other properties of the density operator remain the same.
+
+For example, take the ensemble given:
+\[\rho = \frac{1}{2}\k{+z}\b{+z}+\frac{1}{2}\k{-z}\b{-z}\]
+If we take the expectation values,
+\[\vect{S_x} = \tr(S_x\rho)=0 \qquad \vect{S_y}=\tr(S_y\rho)=0 \qquad \vect{S_z}=\tr(S_z\rho)\]
+Note that this ensemble is the same as half \(\k{+n}\) and \(\k{-n}\), for any choice of \(n\)! THis is called an \emph{unpolarized state} because it doesn't have a direction. This ensemble has \(\tr(\rho^2)=\frac{1}{2}\). 
+
+In contrast, the ensemble given
+\[\rho = \frac{1}{2}\k{+z}\b{+z}+\frac{1}{2}\k{-x}\b{-x}\]
+has \(\tr(\rho^2)=\frac{3}{4}\); it is closer to \(1\) than the previous ensemble, and thus is less mixed than the first example.
+
+Say we have a spin-\(\frac{1}{2}\) particle in a magnetic field \(B=B\kh\). The hamiltonian gives
+\[H\k{\pm z} =-\mu_z B\k{\pm z}= \mp\mu_B B\k{\pm z}\]
+where the bohr magneton \(\mu_B\) is defined
+\[\mu_B=\frac{gq}{4mc}*\frac{\hbar}{2}=\frac{e\hbar}{2mc}\]
+At thermal equilibrium, the states are given (in terms of the boltzmann factor and the partition function)
+\[\rho = \frac{e^{-\mu B/kT}}{Z}\k{+z}\b{-z}+\frac{e^{\mu B/k_T}}{Z}\k{-z}\b{-z}\]
+The magnetization is defined
+\begin{align*}
+	M&=N\vect{\mu_z}\\
+	\intertext{which can be computed}
+	 &=N\tr(\mu_z \rho)\\
+	 &=-N\mu_B\frac{1}{Z}\tr\left[ \begin{pmatrix}
+			 1 & 0 \\ 0 & -1
+	 \end{pmatrix} \begin{pmatrix}
+			 e^{-\mu B}{kT} & 0 \\ 0 & e^{\mu B/kT}
+	 \end{pmatrix} \right]\\
+	 &=N\mu \frac{e^{\mu B /kT}-e^{-\mu B/kT}}{e^{\mu B/kT}+e^{-\mu B/kT}}\\
+	 &=N\mu\tanh\left(\frac{\mu B}{kT}\right)
+	 \intertext{For \(\frac{\mu B}{kT}\ll1\), this is known as Curie's law, which applies to paramagnetic materials:}
+	 &\approx \frac{N\mu^2B}{kT}
+\end{align*}
+
+\section{Bell Inequallity}
+Taking the bell state \(\k{\P_{12}}\), the density matrix can be written in terms of the \(\k{1-4}\) basis as
+\[\rho = \frac{1}{2} \begin{pmatrix}
+	0 & 0 & 0 & 0 \\
+	0 & 1 & -1 & 0\\
+	0 & -1 & 1 & 0\\
+	0 & 0 & 0 & 0\\
+\end{pmatrix}\]
+This is to be contrasted with an ensemble of 50/50 \(\k{+z-z}\) and \(\k{-z+z}\), which has the density matrix
+\[\rho = \frac{1}{2} \begin{pmatrix}
+	0 & 0 & 0 & 0 \\
+	0 & 1 & 0 & 0\\
+	0 & 0 & 1 & 0\\
+	0 & 0 & 0 & 0\\
+\end{pmatrix}\]
+
+Using these density matrix, we will see that the spin expectation values \(\vect{S_n}\) will, in general, differ. While a ``local realist'' would believe that the bell state is represented by the second density matrix, the fact that these expectation values differ (Bell's inequalities) shows that they \emph{must} be wrong.
+
+However what if we only measured one particle, rather than both? We can use the \emph{reduced density operator} defined as
+\begin{equation}
+	\hat{\rho}^{(1)}=\tr_{(2)}\rho
+\end{equation}
+
+as an example, for the bell state given above,
+\[\hat\rho^{(1)}= \frac{1}{2}\begin{pmatrix}
+	\tr \begin{pmatrix}
+		0 & 0 \\ 0 & 1
+	\end{pmatrix} & \begin{pmatrix}
+	0 & 0 \\ -1 & 0
+	\end{pmatrix} \\ \begin{pmatrix}
+	0 & -1 \\ 0 & 0
+\end{pmatrix} & \tr \begin{pmatrix}
+1 & 0 \\ 0 & 0
+\end{pmatrix}
+\end{pmatrix}= \frac{1}{2} \begin{pmatrix}
+1 & 0 \\ 0 & 1
+\end{pmatrix} = \rho^{(1)}\]
+Note that this reduced density operator is actually that of a mixed state. Thus, measuring one particle in an entangled state results in the other becoming a mixed state; this is a limitation in quantum computation.
+
+\section{Additional Example}
+Returning to comparison of the singlet state
+\[\k{00} = \frac{1}{\sqrt{2}}\left(\k{+z,-z}-\k{-z,+z}\right)\]
+and the corresponding mixed state
+\[50\%\k{+z,-z}+50\%\k{-z,+z}\]
+The density matrices can be written
+\[\hat \rho_p \simeq \frac{1}{2} \begin{pmatrix}
+	0 & 0 & 0 & 0 \\ 0 & 1 & -1 & 0 \\ 0 & -1 & 1 & 0 \\ 0 & 0 & 0 & 0 
+\end{pmatrix}\]
+\[\hat \rho_m \simeq \frac{1}{2} \begin{pmatrix}
+	0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 
+\end{pmatrix}\]
+Being a singlet state, the total angular momentum of \(\rho_p\) is zero. However, this need not be true of \(\rho_m\)---the two components are linear combination of the singlet state and zero-spin triplet state. For example, if we take measurements along the \(x\) axis, there is a chance that the two spins are aligned.
+
+Taking a more complex experiment, we measure particle 1 with an SGn1 apparatus and particle 2 with an SGn2. The corresponding measurement basis set would be given \(\k{\pm n_1}\otimes\k{\pm n_2}\), as represented in the \(z\) basis. We can then compute the probability for observing \(\k{+n_1,-n_2}\) and \(\k{-n_1, +n_2}\) using the density matrices and projection operators.
+\[\k{+n_1.-n_2}\simeq \begin{pmatrix}
+	\cos\frac{\theta_1}{2}\sin\frac{\theta_2}{2}\\
+	-\cos\frac{\theta_1}{2}\cos\frac{\theta_2}{2}e^{i\phi_2}\\
+	\sin\frac{\theta_1}{2}\sin\frac{\theta_2}{2}e^{i\phi_1}\\
+	-\sin\frac{\theta_1}{2}\cos\frac{\theta_2}{2}e^{i(\phi_1+\phi_2)}
+\end{pmatrix}\]
+Thus, the projection matrix for the measurement may be written
+\[\begin{pmatrix}
+	\left(\cos\frac{\theta_1}{2}\sin\frac{\theta_2}{2}\right)^2 & \cdots & \cdots & \cdots \\
+	\vdots & \left(\cos\frac{\theta_1}{2}\cos\frac{\theta_2}{2}\right)^2 & -\sin\frac{\theta}{2}\sin\frac{\theta_2}{2}\cos\frac{\theta_1}{2}\cos\frac{\theta_2}{2}e^{i(\phi_2-\phi_1)} & \cdots \\
+	\vdots &-\sin\frac{\theta}{2}\sin\frac{\theta_2}{2}\cos\frac{\theta_1}{2}\cos\frac{\theta_2}{2}e^{i(\phi_2-\phi_1)} & \left(\sin\frac{\theta_1}{2}\sin\frac{\theta_2}{2}\right)^2& \cdots \\
+		\vdots &\vdots & \vdots & \ddots
+\end{pmatrix}\]
+where the omitted terms are unnecessary for computation. Computing probabilities,
+\[\tr(P_{+-}\rho_m)=\frac{1}{2}\cos^2\frac{\alpha_12}{2}\]
+where \(\cos\alpha_{12} = n_1*n_2\) is the angle between the two vectors. However, the same probability for the mixed state is
+\[\tr(P_{+-}\rho_p)=\cos^2\frac{\alpha_{12}}{2}-\frac{1}{2}\sin\theta_1\sin\theta_2\cos(\phi_1-\phi_2)\]
+
+In general, using the knowledge of the angle \(\alpha_{12}\) we can distinguish between the pure and mixed states, \emph{unless} we have \(\theta_1,\theta_2=n\pi\) or \(\Delta\phi = \frac{(2n+1)\pi}{2}\). We can circumvent this by considering three coplanar measurement axes, spaced \SI{120}{\degree} apart. Comparing \(P(\pm a,\pm b)\) with \(P(\pm b,\pm c)\) and \(P(\pm a, \pm c)\) we can disyinguish between the mixed and pure states, for example by taking their sums. Certain inequalities may also be interesting, such as the Bell inequality
+\begin{equation}
+	P(+a,+b) \geq P(+a,+c) + P(+c,+b)
+\end{equation}
+which is not satisfied by the pure singlet state, but is satisfied by a ``local'' state defined by Bell, for certain choices of measurement axes.

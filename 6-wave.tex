@@ -1,0 +1,468 @@
+%! TEX root = 0-main.tex
+\chapter{1D Wave Mechanics}
+\section{Position Space}
+In contrast to spin, where we have a finite-dimensioned space of possible spins, position can be a continious set of values. We define the position ket
+\[\k{x}\]
+to denote the particle is at \(x\), we can then define the position operator as
+\[\hat x \k{x}=x\k{x}\]
+If we assume the position kets form a spanning set, we can then reintroduce the completeness relation as
+\begin{equation}
+	\mathbbm1=\int\d{x}\k{x}\b{x}
+\end{equation}
+when we apply this to an arbitrary position ket, we have
+\begin{equation}
+	\k{x} = \int\d{x}\k{x'}\bk{x'}{x}
+\end{equation}
+so that 
+\begin{equation}
+	\bk{x'}{x}=\delta(x'-x)
+\end{equation}
+similarly, we have that
+\begin{subequations}
+	\begin{align}
+		\k{\p}&=\int\d{x}\k{x}\bk{x}{\p}\\
+		\b{\p}&=\int\d{x}\bk{\p}{x}\b{x}
+	\end{align}
+\end{subequations}
+Thus,
+\[\bk{\p}{\p}=\b\p\mathbbm1_{x}\mathbbm1_{x'}\k\p=\iint\d{x}\d{x'}\bk\p{x}\bk{x}{x'}\bk{x'}{\p}\]
+Applying the dirac delta function, we then have
+\begin{equation}
+	\bk\p\p=\int\d{x}\abs{\bk{x}{p}}^2
+\end{equation}
+or
+\begin{equation}
+	P(x)\d{x}=\abs{\bk{x}{p}}^2
+\end{equation}
+recalling introductory wave mechanics, we then define the wavefunction as:
+\begin{equation}
+	\p(x) = \bk{x}{\p}
+\end{equation}
+where \(\p(x)\) specifically denotes the value of \(\p\) at \(x\), not the function \(\p\) itself. Using this, we can determine the expectation value of an operator \(\hat{A}(\hat{x})\) 
+\begin{align}
+	\vect{A}&=\int\d{x}\b\p A(\hat x)\k{x}\bk{x}{\p}\nonumber\\
+		&=\int\d{x}\b\p A(x)\k{x}\bk{x}{\p}\nonumber\\
+		&=\int\d{x}\bk{\p}{x}A(x)\bk{x}{\p}\nonumber\\
+		&=\int\d{x}\p\ast(x)A(x)\p(x)
+\end{align}
+
+\section{Translation and Momentum}
+Recall that angular momentum served as the generator for rotation. Similarly, we will see the momentum operator is the generator of translation. Define the translation operator
+\begin{equation}
+	\hat{T}(z)\k{x}=\k{x+a}
+\end{equation}
+We can then see that the translation of a waveket is given
+\begin{align*}
+	\k{\p'}&=\hat T(a)\k\p\\
+	       &=\int\d{x}\hat T(a)\k{x}\bk{x}{\p}\\
+	       &=\int\d{x}\k{x+a}\bk{x}{\p}\\
+	\p'(x)&=\bk{x}{\p'}\\
+	      &=\int\d{x'}\bk{x}{x'+a}\bk{x'}{\p}\\
+	      &=\int\d{x'}\delta[x-(x'+a)]\bk{x'}{\p}\\
+	      &=\k{x-a}{\p}\\
+	      &=\p(x-a)
+\end{align*}
+which translates the wavefunction to the right by \(a\). Further, the fact that
+\[\bk{\p'}{\p'}=\b{\p}\hat T\adj(a)\hat T(a)\k{\p}=\bk{\p}{\p}\]
+shows that translations are unitary:
+\begin{equation}
+	\hat T\adj{a}=\hat{T}^{-1}(a)
+\end{equation}
+
+A small translation will be given
+\begin{equation}
+	\hat T(\d{x}) = 1 - \frac{i}{\hbar}\hat p_x \d{x}
+\end{equation}
+Finite translations would then become
+\begin{equation}
+	\hat T(a) = \exp\left[-\frac{i p_x a}{\hbar}\right]
+\end{equation}
+The unitarity of the translation operator implies that the linear momentum is hermitian. Additionally, the commutator
+\begin{align}
+	\left[\hat x, \hat T(\delta x)\right] & = \hat x \left(1-\frac{i}{\hbar} \hat p_x \delta x \right)-\left(1-\frac{i}{\hbar} \hat p_x \delta x \right)\hat{x} \nonumber\\
+					      &= \left(-\frac{i\delta x}{\hbar}\right)\left[\hat x, \hat p_x\right]
+\end{align}
+Thus,
+\begin{align}
+	\left[\hat x, \hat T (\delta x)\right]\k\p&=\int\d{x}\left(\hat x \hat T(\delta x)-\hat T(\delta x)\hat x\right)\k{x}\bk{x}{\p}\nonumber\\
+						  &=\int\d{x}\hat x  \k{x+\delta x}\bk{x}{\p}-\hat T(\delta x)x\k{x}\bk{x}{\p}\nonumber\\
+						  &=\int\d{x}(x+\delta x)\k{x+\delta}\bk{x}{\p}-x\k{x+\delta x}\bk{x}{p}\nonumber\\
+						  &=\delta x \int \d{x}\k{x+\delta x}\bk{x}{\p}\nonumber\\
+						  &\approx\delta x \int\d{x}\k{x}\bk{x}{\p}\nonumber\\
+	\left(\frac{i\delta x}{\hbar}\right)\left[\hat x, \hat p_x\right]\k{p}&=\delta{x}\k{\p}\nonumber\\
+		\left[\hat x, \hat p_x\right]&=i\hbar\label{eq6:cancom}
+\end{align}
+Finally, we determine the time evolution of the generator. The hamiltonian can be written:
+\[\hat H = \frac{p_x^2}{2m}+V(x)\]
+thus,
+\begin{align}
+	\der{\vect{x}}{t}&=\frac{i}{\hbar}\b{\p}\left[\hat H , \hat x\right]\k{\p}\nonumber\\
+			 &=\frac{i}{2m\hbar}\b\p\left[\hat p^2_x,\hat x\right]\k\p\nonumber\\
+			 &=\frac{i}{2m\hbar}\b\p \hat p_x \left[\hat p_x, \hat x\right] + \left[\hat p_x , \hat x \right] \hat p_x \k{\p}\nonumber\\
+			 &=\frac{i}{2m\hbar}\b\p (-2i\hbar)\hat p_x\k\p\nonumber\\
+			 &=\frac{\vect{p_x}}{m}
+\end{align}
+Similarly,
+\begin{equation}
+	\der{\vect{p_x}}{t}=\left\langle -\der{V}{x}\right\rangle
+\end{equation}
+Thus, we identify \(\hat p_x\) to be the momentum operator.
+
+A result of the cannonical commutation relation, Equation~\ref{eq6:cancom} is that when combined with Equation~\ref{eq3:uncertaintyprinciple}, it results in the Heisenberg Uncertainty Principle:
+\begin{equation}
+	\Delta x \Delta p \geq \frac{\hbar}{2}
+\end{equation}
+
+Finally, to evaluate the representation of the momentum operator,
+\begin{align*}
+	\hat T(\delta x)\k\p&=\hat T\delta(x)\int\d{x}\k{x}\bk{x}{\p}\\
+			&=\int\d{x}\k{x+\delta x}\bk{x}{\p}\\
+			&=\int\d{x'}\k{x'}\bk{x'-\delta x}{\p}
+\end{align*}
+Taylor expanding the wavefunction,
+\begin{align*}
+	\p(x'-\delta x)&\approx\p(x')-\delta x \pder{}{x'}\p(x')
+\end{align*}
+\begin{align*}
+	\hat T(\delta x)\k\p&=\int\d{x}\k{x'}\left[\bk{x'}{\p}-\delta x \pder{}{x'}\bk{x'}{\p}\right]\\
+	\left(\mathbbm 1 - \frac{i \hat p_x \delta x}{\hbar}\right)\k\p&=\left(1-\delta x \int\d{x'}\k{x'}\pder{}{x'}\b{x'}\right)\k{\p}\\
+		\hat p_x\k{\p}&=\frac{\hbar}{i}\int\d{x'}\k{x'}\pder{}{x'}\bk{x'}{\p}\\
+		\b{x}\hat p_x\k{\p}&=\frac{\hbar}{i}\int\d{x'}\bk{x}{x'}\pder{}{x'}\bk{x'}{\p}\\
+				   &=\frac{\hbar}{i}\int\d{x}\delta(x-x')\pder{}{x'}\bk{x'}{\p}\\
+				   &=\frac{\hbar}{i}\pder{}{x}\bk{x}{\p}
+\end{align*}
+Thus,
+\begin{equation}
+	\hat p_x \underset{x}{\simeq} \frac{\hbar}{i}\pder{}{x}
+\end{equation}
+
+The expectation of momentum is correspondingly
+\begin{align}
+	\vect{p_x}&=\b\p \hat p_x \k\p\nonumber\\
+		  &=\b\p\mathbbm1\hat p_x\mathbbm1\k\p\nonumber\\
+		  &=\int\d{x}\p\ast(x)\frac{\hbar}{i}\pder{}{x}\p(x)
+\end{align}
+Similarly,
+\begin{equation}
+	\b{x}\hat p_x\k{x}=\frac{\hbar}{i}\pder{}{x}\delta(x-x')
+\end{equation}
+This may be used as:
+\begin{align*}
+	\int_{-\infty}^\infty f(x)\der{}{x}\delta(x)\d{x} &= \eval{f(x)\delta(x)}{-\infty}{\infty}-\int_{-\infty}^\infty\der{f}{x}\delta(x)\d{x}\\
+							  &=-\at{\der{f}{x}}{x=0}
+\end{align*}
+If ever an equation contains
+\[\delta^2(x)\]
+then most likely it was computed incorrectly.
+
+\section{Momentum Space}
+Using the eigenstates of the momentum operator, we may build a new representation
+\[\hat p_x\k{p}=p\k{p}\]
+\[\bk{p'}{p}=\delta(p-p')\]
+Using the representation of momentum in the position basis, we can write
+\begin{equation}
+	\frac{\hbar}{i}\pder{}{x}\bk{x}{p}=p\bk{x}{p}
+\end{equation}
+which gives the solution
+\[\bk{x}{p}=Ne^{ipx}{\hbar}\]
+Normalizing, we see then that
+\[\bk{p'}{p}={N'} \ast N \int\d{x} e^{i(p-p')x/\hbar}=2\pi\hbar {N'} \ast N\delta(p-p')\]
+This uses the identity
+\begin{equation}
+	\int_{-\infty}^\infty\d{k}e^{ikx}=2\pi \delta (k)
+\end{equation}
+Thus, we have the normalization as
+\[\abs{N}=\frac{1}{\sqrt{2\pi\hbar}}\]
+and so, momentum states can be given
+\begin{equation}
+	\bk{x}{p}=\frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}
+\end{equation}
+
+Notice that this shows that momentum and position are Fourier duals of each other:
+\begin{subequations}
+	\begin{align}
+		\k{p}&=\int_{-\infty}^\infty\d{x}\k{x}e^{ipx/\hbar}\\
+		\k{x}&=\int_{-\infty}^\infty\d{p}\k{p}e^{-ipx/\hbar}
+	\end{align}
+\end{subequations}
+
+\section{Gaussian Wavepacket}
+The gaussian wavepacket can be represented as
+\begin{equation}
+	\bk{x}{\p}=\frac{1}{\left(a^2\pi\right)^{1/4} }e^{-x^2/2a^2}
+\end{equation}
+Clearly we have the probability of the wavefunction to be
+\[\p\ast\p = \frac{1}{a\sqrt{\pi}}e^{-x^2/a^2}\]
+which has width
+\[\text{FWHM}=2\sqrt{\ln(2)}a\]
+
+The expectation value can be computed as the symmetric integral over an odd fucntion and is thus zero
+\[\vect{x}=\int_{-\infty}^\infty\d{x}\frac{1}{a\sqrt{\pi}}xe^{-x^2/a^2}=0\]
+using the gamma function, we can simplify the expression
+\[\vect{x^2}=\int_{-\infty}^\infty\d{x}\frac{1}{a\sqrt{\pi}}x^2e^{-x^2/a^2}=\frac{a^2}{2}\]
+thus,
+\[\sigma_x = \frac{a}{\sqrt{2}}\]
+
+With more difficulty, we can compute the same values for momentum space. Changing bases,
+\begin{align*}
+	\bk{p}{\p}&=\int_{-\infty}^\infty\d{x}\bk{p}{x}\bk{x}{p}\\
+		  &=\frac{1}{\left(4a^2\pi^3\hbar^2\right)^{1/4}}\int_{-\infty}^\infty\d{x}\exp\left[-\frac{x^2}{2a^2}-i\frac{px}{\hbar}\right]\\
+		  \intertext{changing variables,}
+		  &=\frac{\sqrt{a}}{h^{1/2}\pi^{3/4}}\int_{-\infty}^\infty\d{x}\exp\left[-x^2-i\frac{apx'\sqrt{2}}{\hbar}\right]\d{x'}\\
+		  \intertext{and completing the square,}
+		  &=\frac{\sqrt{a}}{\hbar^{1/2}\pi^{3/4}}e^{-p^2a^2/2\hbar^2}\int_{-\infty}^\infty\d{x}\exp\left[-\left(x+i\frac{pa}{\hbar\sqrt{2}}\right)^2\right]\\
+		  &=\frac{1}{\sqrt{\frac{\hbar}{a}\sqrt{\pi}}}e^{-p^2/2(\hbar/a)^2}
+\end{align*}
+Thus, the expectation values are as follows:
+\begin{align*}
+	\vect{p_x}&=0\\
+	\vect{p_x^2}&=\frac{\hbar^2}{a\sqrt{2}}\\
+	\Delta p_x &= \frac{\hbar}{a\sqrt{2}}
+\end{align*}
+Note that we additionally have
+\[\Delta x \Delta p = \frac{a}{\sqrt{2}}*\frac{\hbar}{a\sqrt{2}} = \frac{\hbar}{2}\]
+which is equality in the uncertainty relation, and is thus a \emph{minimum uncertainty state}.
+
+\section{Time Evolution of Free Particles}
+Recall we have
+\[\k{\p(t)}=e^{-i\hat H t/\hbar}\k{\p(0)}\]
+with 
+\[\hat H = \frac{\hat p_x^2}{2m}\]
+Plugging in the completeness relation for momentum,
+\[\k{\p(t)}=\int\d{p}e^{-i p^2 t/2m}\k{p}\bk{p}{\p(0)}\]
+As calculated in HW 9, the time dependent wavefunction for the gaussian becomes
+\begin{equation}
+	\bk{x}{\p(t)} = \frac{1}{\sqrt{a\left(1+\frac{i\hbar t}{ma^2}\right)^{1/2}\sqrt{\pi}}}e^{-x^2/2a^2(1+\frac{i\hbar t}{ma^2})}
+\end{equation}
+with corresponding uncertainty
+\begin{equation}
+	\Delta x = \frac{a}{\sqrt{2}}\left(1+\left(\frac{ht}{ma^2}\right)^2\right)^{1/2}
+\end{equation}
+
+If instead we had a gaussian with \(\vect{p}=p_0\), the position wavefunction will look like a gaussian with a wave superimposed on it. The time dependence would then be a rightward travelling gaussian packet that is slowly spreading out.
+
+\section{Schr\"odinger Equation}
+We can use this time-dependence to derive the Schr\"odinger equation in position space:
+\begin{align*}
+	\b{x}i\hbar\der{}{t}\k{\p(t)}&=\b{x}\hat H \k{\p(t)}\\
+				     &=\b{x}\frac{\hat p^2}{2m}+V(\hat x)\k{\p(t)}\\
+				     &=\left(-\frac{\hbar^2}{2m}\pder{^2}{x^2}+V(x)\right)\bk{x}{\p(t)}
+\end{align*}
+thus yielding
+\begin{equation}
+	\left(-\frac{\hbar^2}{2m}\pder{^2}{x^2}+V(x)\right)\p(x,t)=i\hbar\pder{}{t}\p(x,t)
+\end{equation}
+For energy eigenstates, we have that
+\[\b{x}\pder{}{t}\k{E}=\frac{-iE}{\hbar}\bk{x}{E}\]
+and so we obtain the time-independent Schr\"odinger equation
+\begin{equation}
+	\left(-\frac{\hbar}{2m}\der{}{x2}+V(x)\right)\p(x)=E\p(x)
+\end{equation}
+
+Using these equations, we can consider the systems of introductory quantum.
+\subsection{Finite Square Well}
+The potential of a square well is given:
+\begin{equation}
+	V(x)= \begin{cases}
+		0 & \abs{x}<\frac{a}{2}\\
+		V_0 & \abs{x}>\frac{a}{2}
+	\end{cases}
+\end{equation}
+Considering bound states in the well, the wavefunction can be written 
+\[\p(x)=A\sin kx + B\cos kx\]
+with our boundary conditions, we can throw away the sine term and we are left with
+\begin{equation}
+\p(x)=B\cos kx = \frac{B}{2}e^{+ikx}+\frac{B}{2}e^{-ikx}
+\end{equation}
+The wave \(\exp[-ikx]\) can be interpreted as a rightward travelling wave, while the \(\exp[+ikx]\) a leftward travelling wave; this can be used to draw an analogy of the classical case, where a particle would bounce back and forth between the walls. Just as the spin-\(\frac{1}{2}\) particle can be both up and down simultaneously, the bound particle can be right-travelling and left-travelling simultaneously.
+
+Outside the well, the wavefunction exponentially decays:
+\[\p(x)=Ce^{qx}+De^{-qx}\]
+The boundary conditions restrict this to
+\begin{equation}
+	\p(x)= \begin{cases}
+		Ce^{qx} & x<-\frac{a}{2}\\
+		De^{-qx} & x>\frac{a}{2}
+	\end{cases}
+\end{equation}
+This is due to the normalization condition; if the wavefunction does not vanish at infinity, then the wavefunction is not normalizable.
+
+Finally, at \(x=\pm \frac{a}{2}\), we have the conditions \(\p(x)\) is continuous, and 
+\[\at{\der{\p}{x}}{x+\varepsilon}-\at{\der{\p}{x}}{x-\varepsilon} = \int_{x-\varepsilon}^{x+\varepsilon}\d{x}\der{}{x}\left(\der{\p}{x}\right)=\int_{x-\varepsilon}^{x+\varepsilon}\d{x}\frac{2m}{\hbar^2}\left(V(x)-E\right)\p(x)\]
+This is zero unless \(V(x)\to\infty\).
+
+\subsection{Infinite Well}
+The Infinite Square Well, or ``particle in a box'' is the limiting case of the finite square well where \(V_0\to\infty\). The wavefunction outside the box tends to zero, forcing the boundary conditions to be \(\p(\pm a/2)=0\). Thus, we have the solutions to be restricted only to the sinusoidal terms within the potential:
+\begin{equation}
+	\p = \begin{cases}
+		\sqrt{\frac{2}{a}}\cos k_n x & n\text{\ odd}\\
+		\sqrt{\frac{2}{a}}\sin k_n x & n\text{\ even}\\
+		0 & \abs{x}>\frac{a}{2}
+	\end{cases}
+\end{equation}
+where
+\begin{equation}
+	k = \frac{n\pi}{a}
+\end{equation}
+and
+\begin{equation}
+	E_n=\frac{(\hbar k_n)^2}{2m}
+\end{equation}
+
+\begin{aside}[Expanding Box]
+	At time \(t=0\), a particle is in the \(n=0\) eigenstate of a box with width \(a\). The box suddenly expands to \(2a\) in length. The probability to find the state in the \(\p_1^{(2a)}\) state is then 
+	\begin{align*}
+		\abs{\bk{\p_1^{(2a)}}{\p_1^{(a)}}} &= \abs{\int_{-\infty}^\infty{\p_1^{(2a)}}\ast(x)\p_1^{(a)}(x)\d{x}}^2\\
+						   &= \abs{\int_{-a/2}^{a/2}\sqrt{\frac{2}{2a}}\cos\frac{\pi x}{2a} \sqrt{\frac{2}{a}}\cos\frac{\pi x}{a}\d{x}}^2\\
+						   &=\left(\frac{8}{3\pi}\right)^2\approx0.72
+	\end{align*}
+\end{aside}
+
+\section{Scattering}
+When a travelling particle hits a potential barrier, the particle will scatter; part of the incident wavefunction will be transmitted and part will be reflected. While we can obtain the coefficients of transimssion and reflection via integration, we can also use probability currents to obtain the same result.
+
+\subsection{Probability Current}
+Returning to the Schr\"odinger equation,
+\[\pder\p t = i\hbar\left[-\frac{\hbar^2}{2m}\pder{^2\p}{x^2}+V(x)\p\right]\]
+Using this, we can evaluate
+\[\pder{\p\ast\p}{t}=\p\pder{\p\ast}{t}+\p\ast\pder{\p}{t}=\frac{\p}{i\hbar}\frac{\hbar^2}{2m}\pder{^2\p\ast}{x^2}-\frac{\p\ast}{i\hbar}\frac{\hbar}{2m}\pder{^2\p}{x^2}\]
+We can rewrite this as
+\begin{equation}
+	\pder{\p\ast\p}{t}=-\pder{j_x}{x}
+\end{equation}
+where
+\begin{equation}
+	j_x = \frac{\hbar}{2mi}\left(\p\ast\pder{\p}{x}-\p\pder{\p\ast}{x}\right)
+\end{equation}
+is the \emph{probability current}. Evaluating 
+\[\der{}{t}\int_a^b\d{x}\p\ast\p = -j_x(b,t)+j_x(a,t)\]
+we can see that the rate of change of the probability in the region \([a,b]\) is the probability current going into the region at \(a\) minus the current going out at \(b\). If we have a wavefunction
+\[\p = e^{i\phi(t)}f(x)\]
+with real \(f\), the probability current is zero. It is only if \(\phi\) is a function \(\phi(x)\) that the wave becomes a ``travvelling wave'' with nontrivial probability current. For example, if we have the wavefunction
+\[\p=Ne^{ikx}\]
+the probability current is
+\[j_x = \abs{N}^2\frac{\hbar k}{m}\sim v\]
+which is akin to a velocity.
+
+\begin{aside}[Other expressions for the probability current]
+	Note that 
+	\[\p\ast \pder{\p}{x} = \left(\p \pder{\p\ast}{x} \right)\ast\]
+	Thus, we can rewrite
+	\begin{align*}
+		j_x&=\frac{\hbar}{2mi}\left[\p\ast\pder{\p}{x}-\left(\p\ast\pder{\p}{x}\right)\ast\right]\\
+		   &=\frac{\hbar}{m}\Im\left(\p\ast\pder{\p}{x}\right)\\
+		   &=\frac{1}{m}\Im\left(\p\ast\hbar\pder{\p}{x}\right)\\
+		   &=-\frac{1}{m}\Re\left(\p\ast\frac{\hbar}{i}\pder{\p}{x}\right)\\
+		   &=-\frac{1}{m}\Re\left(\p\ast\hat p_x \p\right)\\
+	\end{align*}
+	More generally,
+	\begin{equation}
+		\jh=\frac{1}{2m}\left(\p\ast\hat p_x \p - \p \hat p_x \p\ast\right)
+	\end{equation}
+\end{aside}
+
+
+\subsection{Step potential scattering}
+A wave \(e^{ikx}\) moves rightward until it encounters a potential
+\[V = \begin{cases}
+	V_0 & x>0\\
+	0 & x< 0
+\end{cases}\]
+Considering only the incident, reflected, and transmitted wave, the incident wave can be written \(e^{ikx}\), the reflected \(e^{-ikx}\) and the transmitted \(e^{ik_0x}\). We ignore the component \(e^{-ik_0 x}\) because of the physical interpretation of the problem.
+The coefficients are given
+\[k = \sqrt{\frac{2mE}{\hbar^2}} \qquad \qquad \qquad k_0 = \sqrt{\frac{2m(E-V_0)}{\hbar^2}}\]
+Let
+\[\p_- = Ae^{ikx}+Be^{-ikx}\]
+\[\p_+ = Ce^{ik_0x}\]
+then,
+\[\p_-(0)=A+B=C=\p(0)_+\]
+\[\p'_-(0)=ik(A-B)=ik_0C=\p'_+(0)\]
+\[A-B=\frac{k_0}{k}C\]
+\[\then C=\frac{2k}{k+k_0}A\]
+\[\then B=\frac{k-k_0}{k+k_0}A\]
+The value of A is not necessary, as it would be cancelled out in the transmission and reflection ratios, but could be solved for if the wavefunctions were normalizable. The probability currents are defined
+\[j_{inc}=\frac{\hbar k}{m}\abs{A}^2 \qquad \qquad j_{refl}=\frac{\hbar k}{m}\abs{B}^2 \qquad \qquad j_{trans}=\frac{\hbar k_0}{m}\abs{C}^2\]
+
+The reflection coefficient is given
+\begin{equation}
+	R = \frac{j_{refl}}{j_{inc}}=\frac{\abs{B}^2}{\abs{A}^2}=\left(\frac{k-k_0}{k+k_0}\right)^2
+\end{equation}
+and the transmission coefficient
+\begin{equation}
+	T = \frac{j_{trans}}{j_{inc}}= \frac{k_0}{k}\frac{\abs{C}^2}{\abs{A}^2}=\frac{4kk_0}{(k+k_0)^2}
+\end{equation}
+We see clearly that
+\begin{equation}
+	R+T=1
+\end{equation}
+For large \(E\), \(k_0\to k\) so \(R\to 0\). For \(E\to V_0\), \(k_0\to 0\) so \(T\to 0\).
+For \(E<V_0\), we see that we can transform \(ik_0\to -q\) so the region with non-zero potential becomes exponential decay \(Ce^{-qx}\). The reflection becomes
+\begin{equation}
+	R = \abs{\frac{k-iq}{k+iq}}^2=1
+\end{equation}
+which makes sense, as exponential decay is a real-valued function and thus carries no probability current.
+
+\subsection{Square Barrier}
+The potential barrier is given
+\[V = \begin{cases}
+	V_0 & 0<x<a\\
+	0 & \text{elsewhere}
+\end{cases}\]
+For an energy \(E<V_0\), in the region before the barrier, we have
+\[\p_I = Ae^{ikx}+Be^{-ikx}\]
+in the barrier
+\[\p_{II}=Fe^{qx}+Ge^{-qx}\]
+and after the barrier
+\[\p_{III}=Ce^{ikx}\]
+where
+\[k = \sqrt{\frac{2mE}{\hbar^2}} \qquad \qquad \qquad q = \sqrt{\frac{2m(V_0-E)}{\hbar^2}}\]
+Interestingly, this shows that we should have a non-zero probability current in the region \(II\).
+The boundary conditions are, at \(x=0\),
+\[A+B=F+G\]
+\[ik(A-B)=q(F-G)\]
+and at \(x=a\)
+\[Fe^{qa}+Ge^{-qa}=Ce^{ika}\]
+\[q\left(Fe^{qa}+Ge^{-qa}\right)=ikCe^{ika}\]
+Solving is left as an exercise in HW10. The transmission coefficient is given
+\begin{equation}
+	T = \frac{j_{trans}}{j_{inc}} = \frac{\abs{C}^2}{\abs{A}^2}=\frac{1}{1+\left(\frac{k^2+q^2}{2kq}\right)^2\sinh^2(qa)}
+\end{equation}
+For \(qa>>1\), \(\sinh(qa)\to \frac{1}{2}e^{qa}\) so \(T\to \frac{4qa}{k^2+q^2}e^{-2qa}\).
+
+The square potential barrier is an example of an important quantum phenomenon known as \emph{tunneling}. This principle is used in scanning tunnelling microscopy. A sharp probe is held at a height above the material being scanned, and has an electric potential held between the two objects. The current is a function of the distance between the tip and the surface being scanned; the probe tip is moved up and down in order to maintain a fixed current, and the height of the probe gives the image of the electron density contour. STM is so sensitive that it can map out a surface with sub-angstrom resolution.
+
+\begin{aside}[Scanning Tunnelling Microscope]
+In metals, the electrons are filled to the fermi level \(E_F\). The energy required for electrons to propagate is the \emph{vacuum level}, and is typically \(\sim \SI{4}{eV}\) above the Fermi level. This gap corresponds to the potential height that the electrons must tunnel across. Finally, the distance between the probe and surface is on the order of \(\SI{10}{\angstrom}\). Calculating, we obtain \(q\approx \SI{1}{\angstrom^{-1}}\). Thus,
+\[e^{-2q*\SI{1}{\angstrom}}\approx 0.1\]
+so a \SI{1}{\angstrom} change in the distance yields a \SI{10}{\percent} change in the current.
+\end{aside}
+
+If we instead consider the case \(E>V_0\), the region \(II\) becomes
+\[\p_{II}=Fe^{ik_0x}+Ge^{-ik_0x}\]
+More generally, we can stack square potentials (similar to a Riemann sum) to create arbitrary potentials to scatter off. This problem may be solved by ``integrating Schr\"odinger's equation.'' As we know the behaviour of the square barrier \(V_i\) in the region \(\Delta x_i\), we can solve for each of \(T_i\sim e^{2q(x)\Delta x}\) or \(\ln(T_i) = -2q(x)\Delta x\). The total transimission can then be obtained via:
+\[\ln(T)=\ln\left(\prod_i T_i\right) = \sum_i\ln(T_i)\sim\sum_i-2q(x_i)\Delta x_i\]
+thus,
+\begin{equation}
+	T\sim\exp\left[-2\int\d{x}\sqrt{\frac{2m[V(x)-E]}{\hbar^2}}\right]
+\end{equation}
+This is very similar to the WKB approximation.
+
+\section{Numerical Integration of Schr\"odinger's Equation}
+Any 1D system may be solved numerically using integration techniques. Trivially, we have
+\begin{equation}
+	\der{\psi}{x2} = \frac{2m(V-E)}{\hbar^2}\psi
+\end{equation}
+Using
+\[x_n = x_0 + n\delta x, \quad \p_n = \psi(x_n)\]
+we can use finite differences to obtain
+\[\der{\psi}{x2}\approx \frac{\psi_{n+1} - 2\psi_n + \psi_{n-1}}{(\Delta x)^2}\]
+Centring the potential at \(\psi_n\), we obtain
+\[\psi_{n+1} = 2\psi_n -\psi_{n-1} +(\Delta x)^2\frac{2m[V(x_n)-E]}{\hbar^2}\psi_n\]
+Thus, given two starting \(\psi_0, \psi_1\) we can obtain the wavefunction. There are no restrictions on \(\psi_0\) as variations may be removed in normalization. However, there are restrictions on the choice of \(\psi_1\).
+
+For a given \(\psi_1,\psi_2\) and a bound state, if the specified \(E>E_0\), then the wavefunction diverges to \(\pm\infty\), while if \(E<E_0\) the wavefunction diverges to \(\mp\infty\). The way we can distinguish between if the energy is taken to be too high or low is if we compare \(\psi(\infty)\) for two different energies \(E_1<E_2\). If the sign flips, then there is an energy \(E_1<E<E_2\) that is the location of the bound state.
+
+For a scatterning state, it is useful to iterate from \(+\infty\to-\infty\), as to ensure the outgoing wave is purely a rightward propagating wave. From \(e^{ikx}\) on the RHS, we can obtain the the incoming and reflected waves on the \(LHS\). Using \(\psi_n, \psi'_n\), we can obtain the coefficients necessary to write the LHS as
+\[Ae^{ikx}+B^{-ikx}\]
+
+Unfortunately, there is no such exact form for 3D potentials.

@@ -1,0 +1,321 @@
+%! TEX root = 0-main.tex
+\chapter{1D Harmonic Oscillator}
+The potential for a harmonic oscillator, in general, can be written
+\begin{equation}
+	V(x)=V_0+\frac{1}{2}k(x-x_0)^2
+\end{equation}
+where we usually take \(V_0\) to be zero and transform \(x\to x-x_0\) so
+\[V(x) = \frac{1}{2}kx^2\]
+
+Often, we hear that everything is a harmonic oscillator, but in fact, the harmonic oscillator potential can be applied to vibrations, cyclotron motion of electrons, and quantizizing EM fields.
+
+Rewriting \(k = m\omega^2\), the hamiltonian is given
+\begin{equation}
+	\hat H = \frac{\hat p^2}{2m} + \frac{1}{2}m\omega^2\hat x^2
+\end{equation}
+
+Rather than solve using the Schr\"odinger equation, we will solve using operator methods. 
+
+\section{Energy Eigenstates}
+We define two operators:
+\begin{subequations}
+	\begin{align}
+		\hat a &= \sqrt{\frac{m\omega}{2\hbar}}\left(\hat x + \frac{i}{m\omega}\hat p\right)\\
+		\hat a\adj &= \sqrt{\frac{m\omega}{2\hbar}}\left(\hat x - \frac{i}{m\omega}\hat p\right)
+	\end{align}
+\end{subequations}
+Using the cannonical commutation relation, we see that 
+\begin{equation}
+	\left[\hat a, \hat a\adj \right] = 1
+\end{equation}
+Further, we can rewrite the position and momentum operators as:
+\begin{subequations}
+	\begin{align}
+		\hat x & = \sqrt{\frac{\hbar}{2m\omega}}\left(\hat a + \hat a \adj \right)\\
+		\hat p & = -i\sqrt{\frac{m\omega\hbar}{2}}\left(\hat a - \hat a \adj\right)
+	\end{align}
+\end{subequations}
+From this, we see that the hamiltonian can be rewritten
+\[\hat H = \frac{\hbar\omega}{2}\left(\hat a \adj\hat a + \hat a \hat a\adj\right)\]
+Defining a ``number'' operator \(\hat N \equiv \hat a \adj \hat a\)
+\begin{equation}
+	\hat H = \hbar\omega \left(\hat{N} +\frac{1}{2}\right)
+\end{equation}
+
+Thus, we need only solve for the eigenstates of \(\hat N\) to find the energy eigenstates. 
+\[\hat N \k\eta = \eta\k\eta\]
+\[\b\eta\hat N \k\eta =\b\eta\hat a\adj \hat a \k\eta= \eta\bk\eta\eta\]
+Defining \(\k\p = \hat a \k\eta\),
+\[\bk{\p}{\p} = \eta\bk{\eta}{\eta}\]
+Thus, \(\eta\geq0\), by the semi-definite positivity of the inner product.
+
+Additional commutation relations show
+\begin{equation}
+	\left[\hat N, \hat a \right] = -\hat a \qquad\qquad \left[\hat N, \hat a\adj\right] = \hat a \adj
+\end{equation}
+
+Following a similar argument as for angular momentum,
+\begin{align*}
+	\hat N \hat a\adj \k\eta &= \left(\hat a \adj \hat N + \hat a\adj\right)\k{\eta}\\
+				 &= \left(\hat a \adj \eta + \hat a \adj\right)\k{\eta}\\
+\hat N \left(\hat a \adj\k\eta\right) &=\left(\eta + 1\right)\hat a\adj\k\eta
+\end{align*}
+Recalling the definition of the \(\eta\) eigenstates, we see that
+\[\hat a \adj\k\eta =c_+\k{\eta+1}\]
+Similar arguments with the commutator \(\left[\hat N, \hat a\right]\) shows that
+\[\hat a \k\eta = c_-\k{\eta-1}\]
+
+Knowing that \(\eta\) is bounded by \(\eta\geq0\), there must be a minimum value of \(\eta\). For this minimum value, we expect
+\[\hat a \k{\eta_{\min}}=0\]
+Acting on that state with \(\hat N\),
+\begin{align*}
+	\hat N \k{\eta_{\min}}&=\hat a \adj \hat a \k{\eta_{\min}}\\
+			    &=\hat a\adj 0\\
+	\eta_{\min}\k{\eta_{\min}}&=0
+\end{align*}
+Thus, \(\eta_{\min}=0\), and with integer separation, \(\eta\to n\geq0\) so
+\[\hat N\k{n} = n\k{n}\]
+and the Hamiltonian for energy eigenstates becomes
+\begin{equation}
+	\hat H \k n =\hbar\omega \left(n+\frac{1}{2}\right)\k{n}
+\end{equation}
+The energy eigenvalues equally spaced, with the lowest at \(E_0 = \hbar\omega/2\).
+
+\section{Ladder Operators}
+Recall that we had the two equations
+\[\hat a \adj \k n = c_+ \k{n+1}\]
+\[\hat a \k n = c_-\k{n-1}\]
+The former, raising eigenstates, is known as the \emph{creation operator}, while the latter, lowering eigenstates, is known as the \emph{annihilation operator}.
+We wish to build the matrix representation of these two operators in the \(\k{n}\) representation.
+\begin{align*}
+	\b n \hat a \hat a \adj \k n &= \k n \left(\hat a \adj \hat a + 1\right)\k n\\
+	\b{n+1}c_+\ast c_+ \k{n+1} &= \b{n}(n+1)\k{n}
+\end{align*}
+Choosing \(\bk{n}{n}=1\), we choose
+\begin{subequations}
+	\begin{align}
+		c_+&=\sqrt{n+1}\\
+		\intertext{similarly, we obtain}
+		c_-&=\sqrt{n}
+	\end{align}
+\end{subequations}
+Thus, we have
+\begin{align*}
+	\b{n'}\hat a \adj \k{n}&=\sqrt{n+1}\delta_{n',n+1}\\
+	\b{n'}\hat a \k{n} &= \sqrt{n}\delta_{n',n-1}
+\end{align*}
+Thus.
+\begin{equation}
+	\hat a \adj \simeq \begin{pmatrix}
+		0 & 0 & 0 &\cdots \\
+		\sqrt{1} & 0 & 0 &\cdots\\
+		0 & \sqrt{2} & 0 & \cdots\\
+		\vdots & \vdots & \vdots & \ddots
+	\end{pmatrix} \qquad\qquad \hat a \simeq \begin{pmatrix}
+		0 & \sqrt{1} & 0 \cdots\\
+		0 & 0 & \sqrt{2} & \cdots\\
+		0 & 0 & 0 & \cdots\\
+		\vdots & \vdots & \vdots & \ddots
+	\end{pmatrix}
+\end{equation}
+Additionally, we get a general formula for ket \(\k{n}\):
+\begin{equation}
+	\k{n} = \frac{\left(\hat a \adj \right)^n}{\sqrt{n!}}\k{0}\label{eq7:raise}
+\end{equation}
+
+\section{Position-Space Wavefunctions}
+From the time-independent Schr\"odinger equation,
+\[\hat H\k{n}=E_n\k{n}\]
+we can find the position-space wave function
+\[\k{x}\hat H\k{n}=E_n\bk{x}{n}\]
+or
+\begin{equation}
+	\left(-\frac{\hbar^2}{2m}\pder{^2}{x^2}+\frac{1}{2}m\omega^2 x^2\right)\p_n(x)=E_n\p(x)
+\end{equation}
+While this may be solved using a power series, we may also use the creation and annihilation operators. Annihilating the ground state, we know that we must have
+\begin{equation}
+	\p_0(x)=\b{x}\hat a \k{0} = 0
+\end{equation}
+or
+\[\sqrt{\frac{m\omega}{2\hbar}}\b{x}\left(\hat x + \frac{i}{m\omega}\hat p_x\right)\k{0}=0\]
+\[x\p_0+\frac{\hbar}{m\omega}\pder{}{x}\p_0=0\]
+which has the simple solution
+\begin{equation}
+	\bk{x}{0}=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}\exp\left[-\frac{m\omega}{2\hbar}x^2\right]
+\end{equation}
+To get th higher states, we need only apply the creation operator as in Equation~\ref{eq7:raise}
+so
+\begin{equation}
+	\p_n(x)=\bk{x}{n}=\frac{1}{\sqrt{n!}}\left(\frac{m\omega}{2\hbar}\right)^{n/2}\left(x-\frac{\hbar}{m\omega}\pder{}{x}\right)^n\left(\frac{m\omega}{\pi\hbar}\right)\exp\left[-\frac{m\omega}{2\hbar}x^2\right]
+\end{equation}
+Yeilding
+\[\p_1(x)\propto x\exp\left[-\frac{m\omega}{2\hbar}x^2\right]\]
+\[\p_2(x)\propto \left(\frac{2m\omega}{\hbar}x^2-1\right)\exp\left[-\frac{m\omega}{2\hbar}x^2\right]\]
+The number of zeroes, or \emph{nodes} in the wavefunction corresponds to the quantum number \(n\). This \(n\) corresponds to higher kinetic energy, and higher potential energy. 
+
+At high \(n\), we see the amplitude of the wavefunction is greatest near its turning points (where \(E=V(x)\)); this is similar to the classical expectation where the particle spends least time in the centre (where it's moving fastest) and most time at the turning points (where it's moving slowest). This is an example of the \emph{correspondence principle}
+
+\section{Zero Point Energy}
+Returning to the ground state, we see that it has \emph{zero point energy}, given \(E_0=\frac{1}{2}\hbar\omega_0\neq0\). It is true that any bound state that the lowest state does not have zero energy, but instead a finite zero point energy.
+
+Qualitatively, we examine
+\[\vect{E_0}=\b{0}\hat H\k{0}\]
+Selecting a ``trial wavefunction'' \(\bk{x}{0}\), we want to minimize the expectation \(\vect{E_0}\). The wavefunction that minimizes \(\vect{E_0}\) is actually the ground state for that well. In general,
+\begin{subequations}
+	\begin{align}
+		\vect{E} &= \frac{\vect{p_x^2}}{2m}+\frac{1}{2}m\omega^2\vect{x^2}\\
+			 &= \frac{1}{2m}\left[\left(\Delta p_x\right)^2+\vect{p_x}^2\right]+\frac{1}{2}m\omega^2\left[\left(\Delta x\right)^2+\vect{x}^2\right]
+	\end{align}
+\end{subequations}
+
+Selecting a wavefunction, we want it to be independent of time, and centred about \(x=0\), so \(\vect{p_x},\vect{x}\to0\). Thus,
+\[\vect{E} = \frac{\left(\Delta p_x\right)^2}{2m}+\frac{1}{2}m\omega^2\left(\Delta x\right)^2\]
+Selecting the test function \(\bk{x}{\p}=\delta(x)\), it can be easily seen that \(\bk{p}{\p}=\frac{1}{\sqrt{2\pi\hbar}}\), so \(\Delta x = 0\) and \(\Delta p \to \infty\). Thus, for the delta function, \(\vect{E_0}\to\infty\). Chosing instead \(\bk{p}{\p}=\delta(x)\), we obtain a similar result.
+
+Testing a gaussian with \(\Delta x,\Delta p_x\) both finite and minimizing \(\vect{E_0}\), we find that the ground state has
+\[\Delta x \Delta p_x = \frac{\hbar}{2}\]
+so the ground state a minimum uncertainty state. If the ground state energy energy for a bound state were zero, we must expect the uncertainties to both simultaneously go to zero, which would violate the uncertainty principle.
+
+\section{Time Dependence}
+We choose a wavefunction of the form
+\[\k{\p(0)} = c_n\k{n}+c_{n+1}\k{n+1}\]
+If we calculate the time dependence of this wavefunction, we see that
+\[\k{\p(t)} = \exp\left[-i\left(n+\frac{1}{2}\right)\omega t\right]\left[\k{n}+e^{-i\omega t}c_{n+1}\k{n+1}\right]\]
+As will be computed in HW 11, the expectation value for position can be found to be
+\begin{equation}
+	\vect{x} = A\cos(\omega t + \delta)
+\end{equation}
+which oscillates like a classical harmonic oscillator. We can compute the expectation value of the state
+\[\k{\p(t)} = \frac{e^{i\omega t/2}}{\sqrt{2}}\left(\k{0}+e^{-i\omega t}\k{1}\right)\]
+Evaluating as
+\[\vect{x} = \b{\p} \hat x \k\p = \b\p \left[\sqrt{\frac{\hbar}{2m\omega}}\left(\hat a + \hat a \adj\right)\right]\k\p = \sqrt{\frac{\hbar}{2m\omega}}\cos\omega t\]
+However, while the expectation value of position acts the same as classical position, the expectation of \(\vect{x^2}\) varies. A better analogue to the classical harmonic oscillator are the \emph{coherent states}
+
+\subsection{Coherent States}
+Coherent states exist for systems such as harmonic oscillators and spin states, as well as in general for a large class of systems. The easiest way to define the coherent states are as eigenstates of the lowering operator \(\hat a\), Thus, we want that
+\begin{align*}
+	\alpha\k\alpha&=\hat a \k\alpha\\
+		      &= \hat a \sum_n c_n \k n\\
+	\sum_nc_n\alpha\k{n}&= \sum_n c_n\sqrt{n}\k{n-1}\\
+\end{align*}
+Matching coeficients, we find that
+\begin{equation}
+	\k\alpha = e^{-\abs{\alpha}^2/2}\sum_0\frac{\alpha^n}{\sqrt{n!}}\k{n}
+\end{equation}
+for complex \(\alpha\). These coefficients form a \emph{Poisson Distribution}. Writing out the wavefunction in position space, the wavefunction is almost exactly a gaussian with constant width, but whose average oscillates back and forth in the well, like a classical harmonic oscillator. Computing the uncertainties, we obtain
+\begin{equation}
+	\left(\Delta x\right)^2 = \frac{\hbar}{2m\omega} \qquad\qquad \left(\Delta p_x\right)^2\frac{m\omega \hbar}{2}
+\end{equation}
+which is true for \emph{any} \(\alpha\). Thus, the uncertainty relation
+\begin{equation}
+	\Delta x \Delta p_x = \frac{\hbar}{2}
+\end{equation}
+so the coherent states are minimum uncertainty states.
+
+\section{Power Series Solution}
+The power series method is a general method used frequently in quantum mechanics to solve the Schr\"odinger equation; however, it can only be used under certain circumstances. Writing out in position space, the Schr\"odinger equation is given:
+\[-\frac{\hbar^2}{2m}\der{\p}{x2}+\frac{1}{2}m\omega^2x^2\p =  E\p\]
+This can be transformed into a simpler equation by:
+\[y = \sqrt{\frac{m\omega}{\hbar}}x \qquad \qquad \mathcal E = \frac{2E}{\hbar\omega}\]
+to yield
+\[-\frac{\hbar^2}{2m}\frac{m\omega}{\hbar}\pder{\p}{y2}+\frac{1}{2}m\omega^2*\frac{\hbar}{m\omega}y^2\p = E\p\]
+\begin{equation}
+	\p'' + \left(\mathcal E - y^2 \right)\p = 0
+\end{equation}
+Taking the guess of a gaussian,
+\[\p = e^{-\alpha x^2}\]
+\[\der{\p}{x} = e^{\alpha x^2}(-2\alpha x)\]
+\[\der{\p}{x2} = e^{-\alpha x^2}\left(4\alpha^2 x^2 - 2\alpha\right)\]
+however, the term \(2\alpha\) is difficult to eliminate. Instead, taking the guess of a gaussian multiplied by a polynomial.
+\[\p = h(y)e^{-y^2/2}\]
+\[\der{\p}{y} = \left(h'-yh\right)e^{-y^2/2}\]
+\[\der{\p}{y2} = \left(h''-2yh'+y^2h-h\right)e^{-y^2/2}\]
+Plugging into the transformed differential equation and dividing through by the gaussian, we obtain a differential equation for the polynomial \(h(y)\):
+\begin{equation}
+	h''-2yh'+(\mathcal E - 1)h = 0
+\end{equation}
+Writing out the polynomial as the power series
+\[h = \sum_k a_k y^k\]
+Substituting,
+\[\left(\sum_{k=2}^\infty a_kk(k-1)y^{k-2}\right)-2\left(\sum_{k=1}a_kky^k\right)+(\mathcal E - 1)\left(\sum_{k=0}a_ky^k\right)=0\]
+The second term can easily be written with the sum from \(k=0\) as the factor of \(k\) makes the first term zero anyway. The first term is more difficult, however. Writing \(k' = k-2\), the first term becomes
+\[\sum_{k'=0}(k'+2)(k'+1)a_{k'+2}y^{k'}\]
+so the equation can be written
+\[\sum_k \left[a_{k+2}(k+2)(k+1)-2a_k k +(\mathcal E-1)a_k\right]y^k=0\]
+Matching coefficients,
+\[a_{k+2}(k+2)(k+1)-2a_k k +(\mathcal E-1)a_k=0\]
+we obtain the recursion relation
+\begin{equation}
+	a_{k+2} = \frac{2k+1-\mathcal E}{(k+2)(k+1)}a_k
+\end{equation}
+If the series is infinite, with \(k\to\infty\), the coefficients would vanish with
+\[\frac{a_{k+2}}{a_k}\to\frac{2}{k}\then e^{+y^2}\]
+and so the overall wavefunction would become
+\[\p = e^{+y^2}e^{-y^2/2} = e^{+y^2/2}\]
+which diverges at infinity, and thus is unnormalizable. By contradiction, we must then have the series terminate at some \(k\):
+\[\frac{a_{k+2}}{a_k} = 0 = \frac{2k+1-\mathcal E}{(k+2)(k+1)}\]
+so
+\begin{equation}
+	\mathcal E_n = 2n +1
+\end{equation}
+Thus, we obtain two separate series, for if \(n\) is even or odd. By definition, we have
+\begin{equation}
+	E_n = \frac{\hbar\omega}{2}\mathcal E_n = \hbar\omega \left(n+\frac{1}{2}\right)
+\end{equation}
+thus, we obtain the recursion relation for a wavefunction
+\begin{equation}
+	a_{k+2} = \frac{2k-2n}{(k+2)(k+2)}a_k
+\end{equation}
+in
+\begin{equation}
+	\p_n = \left(\sum_{k = 0 \text{\ or } 1}^n a_ky^k\right)e^{-y^2/2}
+\end{equation}
+
+\section{Symmetry}
+Often, in higher levels of quantum mechanics and field theory, we will often know the symmetries of a hamiltonian, but not the hamiltonian as itself. From these symmetries, we can derive the behaviours of the hamiltonian.
+
+\subsection{Parity}
+The potential \(V(x)\propto x^2\) is even
+\begin{equation}
+	V(-x)=V(x)
+\end{equation}
+so there is \emph{inversion symmetetry}. From this inversion symmetry follows that the solutions must be even or odd, wrt \(x\). This is known as \emph{definite parity}. We want to show that this is true.
+
+We define a parity operator \(\hat \Pi\) defined as
+\begin{equation}
+	\hat \Pi \k{x} = \k{-x}
+\end{equation}
+We can then solve for the eigenstates. Applying the definition of the eigenstate twice
+\[\hat \Pi\k{\p_\lambda} = \lambda\k{\p_\lambda}\]
+\[\hat \Pi^2\k{\p_\lambda} = \lambda^2\k{\p_\lambda}\]
+and recalling that from the definition that the parity operator must be an involution, we then have
+\[\lambda^2\k{\p_\lambda} = (+1)\k{\p_{\lambda}}\]
+and so
+\begin{equation}
+	\lambda = \pm 1
+\end{equation}
+Further, 
+\begin{align*}
+	\b\f \hat \Pi \k\p&=\int_{\R}\d{x}\b\f\hat \Pi\k x \bk x \p\\
+			  &=\int_{\R}\d{x}\k \f {-x} \bk x \p\\
+			  &=\int_{-\R}-\d{x'}\bk \f {x'} \bk{-x'}{\p}\\
+			  &=\left(\int_{\R}\d{x'}\bk{\p}{-x'}\bk{x'}{\f}\right)\ast\\
+			  &=\left(\int_{\R}\d{x'}\b{\p}\hat\Pi\k{x'}\bk{x'}{\f}\right)\ast\\
+			  &=\b{\p}\hat \Pi\k\f\ast
+\end{align*}
+and so, the parity operator is hermitian. Thus, for an arbitrary state, we have
+\[\b{x}\hat \Pi \k\p = \bk{-x}\p = \p(-x)\]
+so the position space representations of the parity eigenstates are
+\begin{align}
+	\b{x}\hat \Pi \k{\p_\lambda}&=	\b{x}\hat \Pi \k{\p_\lambda}\\
+	\bk{-x}{\p_\lambda} &= \lambda\bk{x}{\p_\lambda}\\
+	\p_\pm(-x) &= \pm\p(x)
+\end{align}
+Thus, the eigenstates have representations of either even or odd parity functions. Further, we see that the parity operator commutes with the Hamiltonian.
+\begin{align*}
+	\b{x}\hat \Pi \hat H \k{\p}&= \b{-x}\hat H \k{\p}\\
+				   &=\left[-\frac{\hbar^2}{2m}\der{}{x2}+V(-x)\right]\p(-x)\\
+				   &=\left[-\frac{\hbar^2}{2m}\der{}{x2}+V(x)\right]\p(-x)\\
+				   &=\b{x}\hat H \hat \Pi \k{\p}
+\end{align*}
+Thus, the parity operator and hamiltonian can be simultaneously diagonalized, so energy eigenstates also have definite parity. In general, if we can find a symmetry that commutes with the Hamiltonian, we then know that that symmetry is a property of the solutions.

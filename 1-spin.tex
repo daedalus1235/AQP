@@ -1,0 +1,145 @@
+%! TEX root = 0-main.tex
+\chapter{Spin}
+\section{Angular Momentum}
+Recall from Quantum Physics the ubiquity of angular momenta in quantum mechanics. While spin itself is difficult to explain, it compares to different kinds of angularm momentum well
+\subsection{Orbital Angular Momentum}
+Imagine a charge orbiting a point. The magnetic moment is given 
+\[\mu=\frac{IA}{c}\]
+where \(A\) is the area enclosed by the circulating charge, and \(I\) is the current describing the movement. In a magnetic field \(\vv{B}\), the potential of particle is given
+\[V=-\vv{\mu}*\vv{B}\]
+We can rewrite the magnetic moment as:
+\begin{align}
+	\mu&= \left(\frac{q}{T}\right)\frac{\pi r^2}{c}\nonumber\\
+	   &= \frac{qv}{2\pi r}\frac{\pi r^2}{c}\nonumber\\
+	   &=\frac{q}{2mc}L\nonumber\\
+	\vv{\mu}&=\frac{q}{2mc}\vv{L}\label{eq1:muL}
+\end{align}
+
+with \(\vv{L}=\vv{r}\times\vv{p}\)
+
+A similar concept can be applied to spin. Many particles carry with them an intrinsic magnetic moment. Using equation~\ref{eq1:muL}, we can find the spin from the magnetic moment:
+\begin{equation}
+	\vv{\mu}=\frac{gq}{2mc}\vv{S}\label{eq1:muS}
+\end{equation}
+where \(g\) is an added factor resulting from QFT\@.
+For an electron, the value of \(g\) is 2; \(g=5.58\) for a proton, and \(g=-3.82\) for a neutron. 
+
+\begin{aside}[Angular Momentum Handout]
+The spin-\(\frac{1}{2}\) system has a direction in space, but does not act as a true vector.
+That is, it is not a 3-vector that can interact with the 3D rotation matrices (the group \(\operatorname{SO}(3)\)).
+It only has 2 independent components, or basis states.
+\textcolor{red}{This is why orbital angular momenta can cancel each other out, but spins don't (?)}
+\end{aside}
+
+\section{Stern-Gerlach}
+A beam of particles is sent through a collimator to produce a parallel beam. This parallel beam is sent through a magnet, causing the particle beam to deflect. 
+The magnetic field is oriented such that it is along the \(z\) direction: \(\pder{B_z}{Z}<0\).
+Examining the system classically, the force on the particle is given
+\[\vv{F}=-\del V=\del(\vv{\mu}*\vv{B})\]
+Focusing on the \(F_z\) term,
+\begin{align*}
+	F_z&=\vv{\mu}*\pder{B}{z}\sim \mu_z\pder{B_z}{Z}\\
+	   &=\frac{gq}{2mc}\pder{B_z}{z}S_z
+\end{align*}
+
+The experiment was originally performed with hot silver atoms, which have a single 4s electron.
+This single electron dominates the magnetic behaviour of the atom, as the other electrons are paired in closed shells, and the mass of the nucleus renders its contribution negligible (the factor of \(\frac{1}{m}\) in Equation~\ref{eq1:muS}).
+When the experiment was performed, rather than the continuous distribution expected classically, only two detection points are observed.
+This implies that \(S_z\) can only take the values of \(\pm \hbar/2\); these states are denoted by the \(\k{\pm\vv{z}}\) kets. An arbitrary state would then be given:
+\[\k\p = c_+\k{+\vv{z}}+c_-\k{-\vv{z}}\]
+The spin space is the space spanned by the \(\k{\pm\vv{z}}\) for any arbitrary direction \(\vv{z}\). However, there is a direction that the spin is oriented on; it is the direction where one of \(c_\pm=0\).
+
+The probability that a given state is given by the magnitude squared of the coefficient:
+\[P(\k{\pm\vv{z}})= \abs{c_\pm}^2\]
+This probability allows us to predict what happens in a repeated Stern-Gerlach experiment, or to change the basis of a given state. For example, if we have the state \(\k\p\), the probability amplitude of measuring the state \(\k\f\) is the inner product:
+\[\bk\f\p\]
+Thus, a state can be written in terms of a specific bases as:
+\begin{equation}
+	\k\p=\sum_i\bk{v_i}{\p}\k{v_i}\label{eq1:CoB}
+\end{equation}
+An analogous operation can be done by right multiplying bras by kets.
+
+This operation of multiplying bras and kets together is sesquilinear, in that
+\[\bk\p\f=\bk\f\p\ast\]
+
+\subsection{Repeated Stern-Gerlach}
+Perform an SGx followed by an SGz. The result of the SGz experiment is that both outputs have equal number. Thus, we have
+\[\k{+\vv{x}}=\frac{e^{i\delta_+}}{\sqrt{2}}\k{+\vv{z}}+\frac{e^{i\delta_-}}{\sqrt{2}}\k{-\vv{z}}\]
+
+The expectation value is the probability-weighted sum of the outcomes. For the SGx/SGz experiment described above, it becomes:
+\[\vect{S_z}=\abs{c_+}^2\frac{\hbar}{2}+\abs{c_-}^2\frac{-\hbar}{2}=0\]
+The uncertainty in this expectation value is:
+\[(\Delta S_z)^2\equiv\vect{(S_z-\vect{S_z})^2}=\vect{S_z^2}-\vect{S_z}^2\]
+\[\Delta S_z=\sqrt{\vect{S_z^2}-0}=\frac{\hbar}{2}\]
+
+Repeating with SGx followed by SGz, we observe that \(\abs{\bk{+\vv x}{+\vv y}}^2=\frac{1}{2}\)
+The ket \(\k{+\vv y}\) is given in a similar form to \(\k{+\vv x}\):
+\[\k{+\vv{y}}=\frac{e^{i\gamma_+}}{\sqrt{2}}\k{+\vv{z}}+\frac{e^{i\gamma_-}}{\sqrt{2}}\k{-\vv{z}}\]
+Thus,
+\begin{align*}
+	\bk{+\vv y}{+\vv x}&=\left(\frac{e^{-i\gamma_+}}{\sqrt{2}}\b{+\vv z}+\frac{e^{-i\gamma_-}}{\sqrt{2}}\b{-\vv z}\right)\left(\frac{e^{i\delta_+}}{\sqrt{2}}\k{+\vv z}+\frac{e^{i\delta_-}}{\sqrt{2}}\k{-\vv z}\right)\\
+		          &=\frac{1}{2}\left(e^{i(\delta_+-\gamma_+)}+e^{i(\delta_--\gamma_-)}\right)\\
+\abs{\bk{+\vv y}{+\vv x}}^2=\frac{1}{2}&=\frac{1}{4}\left(e^{i\Delta_+}+e^{i\Delta_-}\right)\left(e^{-i\Delta_+}+e^{-i\Delta_-}\right)\\
+			  &=\frac{1}{4}\left(2+e^{i(\Delta_+-\Delta_-)}+e^{-i(\Delta_+-\Delta_-)}\right)\\
+			  &=\frac{1}{4}\left(2+2\cos(\Delta_+-\Delta_-)\right)\\
+    \then\Delta_+-\Delta_-&=\pm\frac{\pi}{2}	  
+\end{align*}
+
+By convention, we take \(\delta_+=\delta_-=0\) and \(\gamma_+=0, \gamma_-=\frac\pi2\)
+
+Thus,
+\begin{subequations}
+\begin{equation}
+\k{+\vv{x}}=\frac{1}{\sqrt{2}}\k{+\vv{z}}+\frac{1}{\sqrt{2}}\k{-\vv{z}}
+\end{equation}
+\begin{equation}
+	\k{+\vv{y}}=\frac{1}{\sqrt{2}}\k{+\vv{z}}+\frac{e^{i\pi/2}}{\sqrt{2}}\k{-\vv{z}}
+\end{equation}
+\end{subequations}
+
+It then turns out that
+\begin{subequations}
+\begin{equation}
+	\k{-\vv{x}}=\frac{1}{\sqrt{2}}\k{+\vv{z}}-\frac{1}{\sqrt{2}}\k{-\vv{z}}
+\end{equation}
+\begin{equation}
+	\k{-\vv{y}}=\frac{1}{\sqrt{2}}\k{+\vv{z}}-\frac{e^{i\pi/2}}{\sqrt{2}}\k{-\vv{z}}
+\end{equation}
+\end{subequations}
+is the set of kets that obey the orthonormality condition.
+
+\begin{aside}[Example]
+Let 
+\[\k\p=\frac{1}{2}\k{+\vv z}+\frac{i\sqrt{3}}{2}\k{-\vv z}\]
+Clearly, the probability of SGz+ is \(\frac{1}{4}\) and SGz- is \(\frac{3}{4}\). However, what about for an SGy measurement?
+\begin{align*}
+	\abs{\bk{+ \vv y}{+\vv p}}^2&=\abs{\left(\frac{1}{\sqrt{2}}\b{+\vv z}+\frac{e^{-i\pi/2}}{\sqrt{2}}\right)\left(\frac{1}{2}\k{+\vv z}+\frac{i\sqrt{3}}{2}\k{-\vv z}\right)}^2\\
+				    &=\abs{\frac{1}{2\sqrt{2}}+\frac{\sqrt{3}}{2\sqrt{2}}}^2\\
+				    &=\frac{(1+\sqrt{3})^2}{8}
+\end{align*}
+	
+\end{aside}
+
+\begin{aside}[General spin direction]
+	In general, the \(\k{+\vv{n}}\) ket for the state pointing along the angle defined in spherial coordinates by \((\theta, \phi)\). 
+	\begin{equation}
+		\k{+\vv n}=\cos\frac\theta2\k{+\vv z}+e^{i\phi}\sin\frac\theta2\k{-\vv z}\label{eq1:nket}
+	\end{equation}
+	For example, the ket \(\k\p\) from the previous aside is along the direction \(\theta=\frac{2\pi}{3}\) and \(\phi=\frac{\pi}{2}\).
+\end{aside}
+
+\section{Summary}
+An \emph{observable} \(A\) is associated with \emph{eigenstates} \(\k{a_i}\). An arbitrary state \(\k\p\) can be decomposed into a linear combination, or \emph{superposition} of the eigenstates
+\[\k\p=\sum_i c_i \k{a_i}\]
+To find the coefficients, the state is left-multiplied by the eigenkets, as:
+\[c_i=\bk{a_i}{\p}\]
+A measurement of an observable changes the state that passes though it.
+
+\begin{aside}[Modified SGx]
+	Let a \(\k{+z}\) beam go through one \(+x\) magnet, two \(-x\) magnets, and a \(+x\) magnet. At both the input and ouptut of the magnets, the beam is in the \(\k{+z}\). However, when state is in the middle of the modified SGx apparatus, it is separated into a \(\k{+x}\) beam and a \(\k{-x}\) beam. 
+
+	An SGz+ apparatus outputs to a modified SGx apparatus followed by a SGz apparatus. As expected, the final output is exactly the same as the input. 
+	
+	The modified SGx apparatus is further modified such that the \(\k{-x}\) beam is blocked. Then, the output becomes a quarter \(\k{+z}\), a quarter \(\k{-z}\), and half blocked.
+\end{aside}
+

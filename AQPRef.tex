@@ -1,0 +1,340 @@
+\documentclass{article}
+\usepackage{hw}
+\usepackage{multicol}
+\geometry{paperheight=8.5in,
+	paperwidth=5.5in,
+	heightrounded,
+	margin=0.5in
+}
+\hfuzz=0.5in
+
+\title{Reference for AQP}
+\author{\vspace{-1em}Charles Yang}
+\date{\vspace{-1em}Last Updated \today}
+
+\begin{document}
+\vspace{-1in}
+\maketitle
+\vspace{-.5in}
+\section{Dirac Notation}
+\subsection{Representations}
+\subsubsection{Position}
+The position space representation of the momentum operator is
+\begin{equation}
+	\vb p\sim -i\hbar \del
+\end{equation}
+
+\section{Angular Momentum}
+The angular momentum operator \(\vb J\) has two corresponding eigenvalues:
+\begin{subequations}
+	\begin{multicols}{2}
+		\noindent \begin{equation}
+			J^2\k{j,m} = j(j+1)\hbar^2
+		\end{equation}
+		\begin{equation}
+			J_z\k{j,m} = m\hbar
+		\end{equation}
+	\end{multicols}
+\end{subequations}
+The \(J_z\) operator has two associated raising and lowering operators, which obey
+\begin{equation}
+	J_\pm\k{j,m} = \hbar\sqrt{j(j+1)-m(m\pm 1)}\k{j,m\pm 1}
+\end{equation}
+We can write the other components of the angular momentum operator as
+\begin{subequations}
+	\begin{multicols}{2}
+		\noindent \begin{equation}
+			J_x = \frac{J_++J_-}{2}
+		\end{equation}
+		\begin{equation}
+			J_y = \frac{J_+-J_-}{2i}
+		\end{equation}
+	\end{multicols}
+\end{subequations}
+The following commutation relations are obeyed,
+\begin{subequations}
+	\begin{multicols}{2}
+		\noindent \begin{equation}
+			[J_a,J_b] = i\hbar\varepsilon_{abc}J_c
+		\end{equation}
+		\begin{equation}
+			[J_z,J_\pm] = \pm\hbar J_\pm
+		\end{equation}
+	\end{multicols}
+\end{subequations}
+Due to linearity, when we add two angular momenta, \(\vb J=\vb J_1=\vb J_2\) all components are additive. In particular,
+\begin{equation}
+	J_{\pm} = J_{1\pm}+J_{2\pm}
+\end{equation}
+However, \(\vb J^2 = \vb J_1^2+\vb J_2^2+2\vb J_1*\vb J_2\). We can expand the last term in a more useful way as 
+\begin{equation}
+	2\vb J_1*\vb J_2 = J_{1+}J_{2-}+J_{1-}J_{2+}+2J_{1z}J_{2z}
+\end{equation}
+We can transform from the basis from \(\k{j_1,m_2,j_2,m_2}\) to \(\k{j,m,j_1,j_2}\) by using 
+\begin{subequations}
+	\begin{multicols}{2}
+		\noindent \begin{equation}
+			m= m_1+m_2
+		\end{equation}
+		\begin{equation}
+			\abs{j_1-j_2}\leq j \leq j_1+j_2
+		\end{equation}
+	\end{multicols}
+\end{subequations}
+We can use our overall \(J_\pm\) operator to generate other linear combinations.
+\subsection{Clebsch-Gordon Coefficients}
+\section{Symmetry}
+If two operators commute, then they can be diagonalized wrt the same set of eigenvectors.
+\section{Central Potentials}
+For a spherical wavefunction, the angular dependence is given entirely in angular momentum:
+\begin{equation}
+\bk{\theta,\phi}{\ell, m} = Y_{\ell,m}(\theta,\phi)
+\end{equation}
+We can find the \emph{spherical harmonics} by using the Legendre polynomials
+\begin{equation}Y_{\ell,0} = \sqrt{\frac{2\ell+1}{4\pi}}P_\ell(\cos\theta)\end{equation}
+which have the orthonormality constraint
+and applying the raising/lowering operators
+\begin{equation}
+L_\pm\simeq \frac{\hbar}{i}e^{\pm i\phi}\left(\pm i\pder{}{\theta}-\cot\theta\pder{}{\phi}\right)
+\end{equation}
+The spherical harmonics obey the orthonormality condition
+\begin{equation}
+	\int\d\Omega Y\ast_{\ell, m} Y_{\ell', m'} = \delta_{\ell,\ell'}\delta_{m,m'}
+\end{equation}
+and have parity given
+\begin{equation}
+\Pi Y_{\ell m} = (-1)^\ell Y_{\ell m}
+\end{equation}
+In general, for \(R = u/r\), the radial Schr\"odinger equation is
+\begin{equation}
+	\left[-\frac{\hbar^2}{2\mu}\der{}{r2}+\frac{\ell(\ell+1)\hbar^2}{2\mu r^2}+V(r)\right]u = Eu
+\end{equation}
+which can be solved using power-series solutions. The existence of the centrifugal term, \(\frac{\ell(\ell+1)\hbar^2}{2\mu r^2}\), forces \(R_{\ell\neq0}(r=0) = 0\). 
+
+\subsection{Hydrogen-like Atom}
+Along with the radial wavefunction, the orbitals of hydrogen-like atoms are denoted by the state \(\k{n,\ell,m}\). These orbitals have the property that the number of angular nodes is equal to \(\ell\), the number of radial nodes \(n_r\), and that \(n = n_r+\ell+1\). 
+
+Properties of the hydrogen-like atom are
+\begin{subequations}
+	\begin{multicols}{2}
+		\noindent \begin{equation}
+			E_n = -\frac{\mu c^2 Z^2\alpha^2}{2n^2}
+		\end{equation}
+		\begin{equation}
+			a_0 = \frac{\hbar c}{\alpha \mu c^2}
+		\end{equation}
+	\end{multicols}
+	We will often write the wavefunction in terms of the quantities
+	\begin{multicols}{2}		
+		\noindent \begin{equation}
+			\rho = \sqrt{\frac{8\mu\abs{E}}{\hbar^2}}=\frac{2Z}{n}\frac{r}{a_0}
+		\end{equation}\begin{equation}
+			\alpha = \frac{e^2}{\hbar c}
+		\end{equation}
+	\end{multicols}
+\end{subequations}
+\section{Special Systems}
+\subsection{Harmonic Oscillator}
+The harmonic oscillator has raising and lowering operators defined
+\begin{subequations}
+	\begin{multicols}{2}
+		\noindent \begin{equation}
+			a\k{n} = \sqrt{n}\k{n-1}
+		\end{equation} \begin{equation}
+		a\adj\k{n} = \sqrt{n+1}\k{n+1}
+		\end{equation}
+	\end{multicols}
+	Further, we can write position and momentum in terms of them
+	\begin{multicols}{2}
+		\noindent \begin{equation}
+			x = \sqrt{\frac{\hbar}{2m\omega}}(a+a\adj)
+		\end{equation} \begin{equation}
+		p = -i\sqrt{\frac{m\omega\hbar}{2}}(a-\adj a)
+		\end{equation}
+	\end{multicols}
+\end{subequations}
+The 3D harmonic oscillator in spherical coordinates has energy
+\begin{equation}
+	E_n = (2n_r+\ell+3/2)\hbar\omega = (n+3/2)\hbar\omega
+\end{equation}
+The degeneracy of each level can be determined using the relation \(n = 2n_r+\ell\).
+
+
+\section{Perturbation}
+Consider a perturbing hamiltonian \(H_1\) added to a known hamiltonian \(H_0\). We can approximate the energies and eigenstates for the hamiltonian given \(H=H_0+H_1\) using perturbation theory.
+\subsection{Non-degenerate Perturbation}
+The first order energy correction is given in terms of the unperturbed wavefunctions.
+\begin{equation}
+E_n^{(1)} = \b{\f_n^{(0)}}H_1\k{\f_n^{(0)}}\end{equation}
+The first order corrections to the wavefunction may be obtained as
+\begin{equation}\bk{\f_k^{(0)}}{\f_n^{(1)}} = \frac{\b{\f_k^{(0)}}H_1\k{\f_n^{(0)}}}{E_n^{(0)}-E_k^{(0)}}\end{equation}
+so our new eigenstate can be written
+\begin{equation}
+	\k{\p_n} \approx \k{\f_n^{(0)}}+\sum_{k\neq n} \k{\f_k^{(0)}}\frac{\b{\f_k^{(0)}}H_1\k{\f_n^{(0)}}}{E_n^{(0)}-E_k^{(0)}}\end{equation}
+A second order correction to the energy may be found
+\begin{equation}
+	E_n^{(2)} = \b{\f_n^{(0)}}H_1\k{\f_n^{(1)}} = \sum_{k\neq n}\frac{\abs{\b{\f_k^{(0)}}H_1\k{\f_n^{(0)}}}^2}{E_n^{(0)}-E_k^{(0)}}
+\end{equation}
+\subsection{Degenerate Perturbation}
+We see that when there are degenerate eigenspaces, that our non-degenerate perturbations fail. Instead, we \emph{restrict the perturbing hamiltonian} \(H_1\) to act only on the degenerate eigenspace \(E_n\) in question, and diagonalize the restricted hamiltonian \(H_1'\). Thus,
+\begin{enumerate}
+	\item The first-order energy corrections will be the eigenvalues of the diagonalized \(H_1'\).
+	\item The new eigenstates will be the linear combination of unperturbed degenerate eigenstates which diagonalize \(H_1'\).
+\end{enumerate}
+Often, we can make use of symmetries and commutation relations to force large regions of the restricted hamiltonian to vanish.
+\subsection{Time-Dependent Perturbation}
+Following a similar procedure to the non-degenerate perturbation, but for the time-dependent Schr\"odinger equation, we obtain the time-dependent coefficients to first order as
+\begin{equation}
+	c_f(t)=\delta_{fi} - \frac{i}{\hbar}\int_0^t\d{t'} e^{i(E_f^{(0)}-E_i^{(0)})t/\hbar}\b{E_f^{(0)}} H_1\k{E_i^{(0)}}
+\end{equation}
+The probability of a transition is correspondingly 
+\begin{equation}
+	P_f(t) = \abs{c_f(t)}^2
+\end{equation}
+From this transition probability, we can obtain Fermi's Golden Rule for the transition rate in terms of a density of states \(\rho(E)\)
+\begin{equation}
+	R = \frac{2\pi}{\hbar}\rho_f(E_f)\abs{\b{f}V_1\k{i}}^2
+\end{equation}
+
+\subsection{Variational Method}
+The ground state of a hamiltonian is the lowest energy state. Thus, we can take a guess a trial wavefunction with a free parameter, vary that parameter, and take the minimum energy as an upperbound for the ground state energy.
+
+
+\section{Indistinguishable Particles}
+Because electrons are fermions, the total wavefunction must be antisymmetric. Thus, either the spatial wavefunction or the spin wavefunction is symmetric and the other antisymmetric. The symmetric spin wavefunction is a \emph{triplet state} corresponding to \(\k{1,m}\), while the antisymmetric spin wavefnuction is a \emph{singlet state} corresponding to \(\k{0,0}\). Spin eigenstates can be factored into a position wavefunction and a spin wavefunction.
+
+The indistinguishability of particles leads to an ``exchange interaction'' which can cause a shift in the energy \(K\).
+
+\section{Scattering}
+When we send a planewave \(\p_{inc} = Ae^{ikz}\) toward a central scattering potential, we see that the far limit of the scattered wavefunction can be written
+\begin{equation}
+	\p_{sc} = Af(\theta,\phi)e^{ikr}/r
+\end{equation}
+The probability current can be found
+\begin{equation}
+	\vb j =\frac{\hbar}{2\mu i}(\p\ast\del\p-\p\del\p\ast)
+\end{equation}
+Dividing the incident probability flux by the scattered probability flux, we find the \emph{differential cross section} as a function of the \emph{scattering amplitude}.
+\begin{equation}
+	\der\sigma\Omega = \abs f^2
+\end{equation}
+For central potentials, we will have cylindrical symmetry which allows us to discard \(\phi\) dependence.
+\subsection{Born Approximation}
+When the incident energy is large compared to the potential (or, roughly, the scattering intensity is small compared to the incoming intensity), we can find the scattering amplitude as a fourier transform
+\begin{equation}
+	f(\theta,\phi) = -\frac{\mu}{2\pi\hbar^2}\int\d[3]{r'}V(\vb r')e^{i\vb q*\vb r'}
+\end{equation}
+where \(\vb q = \vb k_i-\vb k_f\) gives how much the momentum of the particle changes. Often, as \(\vb k_i\sim\vb k_f \equiv \vb k\), we can write 
+\begin{equation}\vb q \sim 2k\sin(\theta/2)\end{equation}
+
+In particular, for the Yukawa potential (whose special cases include the coulomb potential)
+\begin{equation}
+	V(r) = ge^{-m_0 r}/r
+\end{equation}
+we find
+\begin{equation}
+	f_{\text{Yukawa}}(\theta) = \frac{-2\mu g}{\hbar^2(m_0^2+q^2)}
+\end{equation}
+
+\subsection{Partial Wave Expansion}
+In the partial wave expansion, we use the completeness of the Legendre polynomials (and cylindrical symmetry) to write
+\begin{equation}
+	f(\theta) = \sum_\ell (2\ell+1)\frac{e^{i\delta_\ell}}{k}\sin\delta_\ell P_\ell(\cos\theta)
+\end{equation}
+From this, we can separate our analysis into each of the different values of \(\ell\). Typically, we analyze low energy waves, which causes large \(\ell\) to be negligible.
+
+Integrating, we find we can write the \(\ell\)\textsuperscript{th} partial subsection as
+\begin{equation}
+	\sigma_\ell = \frac{4\pi}{k^2}(2\ell+1)\sin^2\delta_\ell
+\end{equation}
+
+We can determine this phase shift by analyzing the asymtotic expressions for the wavefunction as \(r\to\infty\) with and without the potential.
+
+Often, analysis with \(u = rR\) is easier, because rather than bessel functions, we need only consider trig functions.
+
+\subsection{Resonance}
+When an incoming particle has energy near (but above) a bound state, the potential tries to pull it into the bound state, which causes it to get stuck briefly. This may result, for example, from the centrifugal barrier altering a finite well.
+
+In this case, to leading order, we have
+\begin{equation}
+	\sigma_\ell\approx \frac{4\pi}{k^2}(2\ell+1)\frac{\Gamma^2/4}{(E-E_0)^2+\Gamma^2/4}\qquad \at{\der{\delta_\ell}{E}}{E_0} = \frac{2}{\Gamma}
+\end{equation}
+Thus, we see a resonance peak near \(E = E_0\), whose thickness (FWHM) is related to the lifetime of the quasi-bound state.
+
+\section{Light}
+If we plug in the canonical momentum to the hamiltonian, we obtain the perturbing hamiltonian
+\begin{equation}
+	H_1 = \frac{i\hbar q}{mc}\vb A*\del
+\end{equation}
+If we plug this into Fermi's golden rule with a complex valued \(\vb A_0\) amplitude of the vector potential waves, we obtain that the rate of transitions depends on
+\begin{multline}
+	\b{n'\ell'm'}\hat n*\vb r\k{n\ell m}\\
+	=\sqrt{\frac{4\pi}{3}}\int r^3\d{r} R_{n'\ell'}\ast R_{n\ell}\\
+	\times\int\d\Omega Y_{\ell'm'}\ast\left(n_zY_{10}+\frac{-n_x+in_y}{\sqrt{2}}Y_{11}+\frac{n_x+in_x}{\sqrt{2}}Y_{1,-1}\right)Y_{\ell m}
+\end{multline}
+or, in terms of Clebsch-Gordon coefficients
+\begin{equation}
+	\int\d\Omega Y_{\ell'm'}\ast Y_{1q}Y_{\ell m} = \sqrt{\frac{3}{4\pi}\frac{2\ell+1}{2\ell'+1}}C_{\ell m 1 q}^{\ell'm'} C_{\ell 0 1 0}^{\ell'0}
+\end{equation}
+which gives the selection rules
+\begin{subequations}
+	\begin{multicols}{2}
+		\noindent \begin{equation}
+			\Delta m = 0,\pm 1
+		\end{equation}
+		\begin{equation}
+			\Delta\ell = \pm 1
+		\end{equation}
+	\end{multicols}
+\end{subequations}
+Using a black-box cavity at thermal equilibrium, we can use a steady-state rate law to show that we can relate the rate of spontaneous emission \(A\) to the rates of stimulated emission \(B_{ba}\rho(\omega_0)\) and absorption \(B_{ab}\rho(\omega_0)\) via
+\begin{subequations}
+	\begin{multicols}{2}
+		\noindent \begin{equation}
+			B_{ab} = B_{ba}
+		\end{equation}
+		\begin{equation}
+			A = \frac{\omega^3\hbar}{\pi^2c^3}B_{ba}
+		\end{equation}
+	\end{multicols}
+\end{subequations}
+
+
+\section{Math}
+The first three legendre polynomials are given
+\begin{equation}
+	P_0 = 1 \qquad\quad P_1 = x \qquad\quad P_2 =\frac{3}{2}x^2-\frac{1}{2} \quad\qquad P_3 = \frac{5}{2}x^3-\frac{3}{2}x
+\end{equation}
+A useful trig identiy is
+\begin{equation}
+	A\sin(x)+B\cos(x) = \sqrt{a^2+b^2}\sin(\theta+\delta)\qquad \tan\delta = B/A
+\end{equation}
+\subsection{Integrals}
+Recall the Gamma function is define
+\begin{equation}
+	\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}\d{t}
+\end{equation}
+It satisfies  the recurrence relation
+\begin{equation}
+	\Gamma(z+1) = z\Gamma(z)
+\end{equation}
+with particular values 
+\begin{subequations}
+	\begin{multicols}{2}
+		\noindent \begin{equation}
+			\Gamma(n+1)=n!
+		\end{equation}
+		\begin{equation}
+		\Gamma(1/2) = \sqrt{\pi}
+		\end{equation}
+	\end{multicols}
+\end{subequations}
+The gaussian integral, for \(\Re(a)>0\) and \(a\neq 0\) is given
+\begin{equation}
+	\int_{-\infty}^\infty\d{x}e^{-ax^2+bx} = \sqrt{\frac{\pi}{a}}e^{b^2/4a}
+\end{equation}
+and a generally useful integral is
+\begin{equation}
+	\int_0^\infty\d{t'}e^{i\omega t'}e^{-t'/\tau} = \frac{\tau}{1-i\omega \tau}
+\end{equation}
+\end{document}

@@ -1,0 +1,358 @@
+%! TEX root = 0-main.texj
+\chapter{Time Evolution}
+\section{Time Evolution Operator}
+We define an operator
+\begin{equation}
+	\hat{U}(t)\k{\p(0)} = \k{\p(t)}
+\end{equation}
+We constrain this operator to conserve probability; that is, it must be a unitary operator:
+\begin{equation}
+	\bk{\p(t)}{\p(t)} = \b{\p(0)}\hat{U}\adj(t)\hat{U}(t)\k{\p(0)} = \bk{\p(0)}{\p(0)}
+\end{equation}
+
+The time evolution operator can be written in terms of a generating operator:
+\begin{equation}
+	\hat{U}(\d{t}) = \mathbbm{1} - \frac{i}{\hbar}\hat{H}\d{t} \label{eq4:timegen}
+\end{equation}
+Becuase \(\hat{U}\) is unitary, we must have \(\hat{H}\) hermitian. Using the generator, we can write the operators in terms of a differential equation:
+\begin{align}
+	\hat U(t+\d{t}) & = \hat U(\d{t})\hat U(t)\nonumber\\
+		       &=\left(\mathbbm{1}-\frac{i}{\hbar}\hat H \d{t}\right) \hat U{t}\nonumber\\
+	\frac{\hat U (t+\d{t}) -\hat U(t)}{\d{t}}&= \frac{i}{\hbar}\hat H \hat U (t)\nonumber\\
+	i\hbar\der{}{t}\hat{U}(t) &= \hat{H}\hat{U}(t) \label{eq4:timeham}
+\end{align}
+Applying Equation~\ref{eq4:timeham} to a ket \(\k{\p(0)}\), we obtain the time-dependent schrodinger equation:
+\begin{equation}
+	i\hbar\der{}{t}\k{\p(t)} = \hat{H}\k{\p(t)}\label{eq4:tds}
+\end{equation}
+
+We can further write the time evolution operator in terms of the generator:
+\begin{equation}
+	\hat{U}(t)= \lim_{N\to \infty}\left[\mathbbm{1}-\frac{i}{\hbar}\hat{H}\frac{t}{N}\right]^N=\exp\left[-i\hat{H}t/\hbar\right]\label{eq4:gen}
+\end{equation}
+We know that \(\hat{H}\) has units of energy. Further, assuming \(\hat{H}\) is \emph{time independent},\footnote{This gets much more complicated with time dependence}
+\begin{align*}
+	\b{\p(t)}\hat{H}\k{\b(t)} & = \b{\p(0)}\hat U \adj \hat H \hat U \k{\p(0)}\\
+				  & = \b{\p(0)}\hat{H}\k{\b(0)}
+\end{align*}
+Since \([\hat{U}.\hat{H}]=0\), because \(\hat{U}\) is an (infinite) polynomial in \(hat{H}\). Because the expectation value of \(\hat{H}\) is independent with time, we identify \(\hat{H}\) as an \emph{energy operator}. We label:
+\begin{equation}
+	\hat{H}\k{E}=E\k{E}
+\end{equation}
+
+Energy eigenstates are also \emph{stationary states}:
+\begin{align}
+\hat{U}(t)\k{E} &=\left(1-\frac{i\hat{H}}{\hbar}+\frac{1}{2!}\left(\frac{i\hat H t}{\hbar}\right)^2+\cdots\right)\k{E}\nonumber\\
+			&=\left(1-\frac{i\hat{E}}{\hbar}+\frac{1}{2!}\left(\frac{i\hat E t}{\hbar}\right)^2+\cdots\right)\k{E}\nonumber\\
+			&=e^{-iEt/\hbar}\k{E}\label{eq4:statstate}
+\end{align}
+That is, the time dependence is a simple oscillatory time dependence in the phase.
+\subsection{Time dependence of Expectation Values}
+\begin{align}
+	\der{\vect{A}}{t}&=\der{}{t}\b{\p(t)}\hat{A}\k{\p(t)}\nonumber\\
+			 &=\hspace{4em}\vdots\nonumber\\
+			 & = \left(\frac{1}{-i\hbar}\b{\p(t)}\hat{H}\right)\hat{A}\k{\p(t)}+\b{\p(t)}\hat{A}\left(\frac{1}{i\hbar}\hat{H}\k{\p(t)}\right)+ \b{\p(t)}\pder{\hat{A}}{t}\k{\p(t)}\nonumber\\
+			 &=\frac{i}{\hbar}\b{\p(t)}\left[\hat{H},\hat{A}\right]\k{\p(t)} + \k{\p(t)}\pder{\hat{A}}{t}\k{\p(t)}
+\end{align}
+If \(\hat{A}\) is time indepedent and commutes with \(\hat{H}\), then \(\der{\vect{A}}{t}=0\), and the obersvable is considerred a constant of motion.
+
+\section{Spin Precession}
+\subsection{Constant Magnetic Field}
+Given a spin-\(\frac{1}{2}\) particle, the Hamiltonian can be written:
+\begin{align}
+	\hat{H}&=-\hat{\vv{\mu}}*\vv{B}\nonumber\\
+	       &=\frac{ge}{2mc}\hat{S}_zB_0\nonumber\\
+	       &\equiv \omega_0 \hat{S_z}
+\end{align}
+Thus, we have:
+\[\hat{H}\k{+z}=\frac{\hbar\omega_0}{2}\k{+z}\equiv E_+\k{+z}\]
+\[\hat{H}\k{-z}=-\frac{\hbar\omega_0}{2}\k{-z}\equiv E_-\k{-z}\]
+Using these two basis states, we can see the time evolution of an arbitrary state, using the operator:
+\begin{align}
+	\hat{U}(t)&=\exp\left[-\frac{i\hat{H} t}{\hbar}\right]\nonumber\\
+		  &=\exp\left[-\frac{i\hat S_z\omega_0 t}{\hbar}\right]\nonumber\\
+		  &\equiv\exp\left[-\frac{i\hat{S}_z \phi}{\hbar}\right]\nonumber\\
+		  &=\hat{R}(\phi\kh)
+\end{align}
+Thus, the time evolution is a rotation with period \(T=\frac{2\pi}{\omega_0}\); it is a precession of the spin.
+
+Choose \(\k{\p(0)}\) to be \(\k{+x}\). Then,
+\begin{align*}
+	\k{\p(t)} &= e^{-i\hat{H}t/\hbar}*\frac{1}{\sqrt{2}}(\k{+z}+\k{-z})\\
+		  &=\frac{e^{-iE_+t/\hbar}}{\sqrt{2}}\k{+z}+\frac{e^{-iE_-t/\hbar}}{\sqrt{2}}\k{-z}\\
+		  &=\frac{e^{-i\omega_0 t/2}}{\sqrt{2}}\k{+z}+\frac{e^{i\omega_0t/2}}{\sqrt{2}}\k{-z}\\
+		  &=e^{-i\omega_0t/2}\left(\frac{1}{\sqrt{2}}\k{+z}+\frac{e^{i\omega_0t}}{\sqrt{2}}\k{-z}\right)
+\end{align*}
+
+We recognize this state as a state in the \(x,y\) plane, rotating with angle \(\phi=\omega_0t\) around the \(z\)-axis.
+To verify this, we can take expectation values. They are:
+\begin{subequations}
+	\begin{align}
+		\vect{S_z}&=0\\
+		\vect{S_x}&=\frac{\hbar}{2}\cos(\omega_0t)\\
+		\vect{S_z}&=\frac{\hbar}{2}\sin(\omega_0t)
+	\end{align}
+\end{subequations}
+\newpage
+\begin{aside}[\(S_x\) Expectation]
+	Writing in terms of the \(S_z\) representation:
+	\begin{align*}
+		\vect{S_x}&=\b\p \hat{S}_x \k\p\\
+			  &=\frac{\hbar}{2}\frac{1}{2} \begin{pmatrix}
+				  1 & e^{-i\omega_0 t}
+			  \end{pmatrix} \begin{pmatrix}
+				  0 & 1 \\ 1 & 0
+			  \end{pmatrix} \begin{pmatrix}
+			  1\\e^{i\omega_0 t}
+			  \end{pmatrix}\\
+			  &=\frac{\hbar}{2}\frac{e^{i\omega_0t}+e^{-i\omega_0t}}{2}\\
+			  &=\frac{\hbar}{2}\cos(\omega_0 t)
+	\end{align*}
+\end{aside}
+
+Looking more closely at the \(S_x\) state, we see that the probabilitiies of each state is:
+\[\abs{\bk{+x}{\p(t)}}^2=\cos^2\frac{\omega_0t}{2}\]
+\[\abs{\bk{-x}{\p(t)}}^2=\sin^2\frac{\omega_0t}{2}\]
+
+From these, it can be seen more clearly that as time progresses, the state oscillates between the \(\k{+x}\) and \(\k{-x}\) states.
+
+The reason this phenomenon is called precession is that it is very similar to the precession of the angular momentum vector given a torque in classical gyroscopic precession. 
+
+\section{Magnetic Resonance}
+We can see from the Hamiltonian of the spin precession system that increasing the magnetic field increases the splitting between the \(\k{+z}\) and \(\k{-z}\) states. If we apply an oscillatory field perpendicular to the static field, with frequency \(\omega\), with \(B_1\ll B_0\), the plane of the precession begins to oscillater as well. 
+
+When the magnitude of \(\hbar\omega\) matches exactly the splitting between the \(\k{+z}\) and \(\k{-z}\) state, the oscillation of the precession becomes equivalent to a ``transition'' by a photon with frequency \(\omega\) between the two states. Thus, by sweeping the frequency of the perpendicular field, we can probe into the strength of this splitting. A typical frequency for this splitting is on the order of microwaves.
+
+Once again, we take the Hamiltonian to be
+\[\hat{H}=-\hat{\vv{\mu}}*\vv{B}\]
+However, the \(\vv{B}\) is now varying in the \(x\) direction. Thus, we rewrite the Hamiltonian as:
+\begin{equation}
+	\hat{H}=-\frac{gq}{2mc}\hat{\vb{S}}*\left(B_0\hat z + B_1\cos\omega t \hat{x}\right)
+\end{equation}
+We are interested in what happens when
+\[\omega=\omega_0\equiv\frac{egB_0}{2mc}\]
+While the \(B_0\) field is not static throughout a material due to the atomic structure, we assume it is constant and fix \(g=g_{\text{eff}}\) for simplicity.
+
+We define 
+\begin{equation}
+	\omega_1\equiv\frac{egB_0}{2mc}
+\end{equation}
+Then, the Hamiltonian becomes
+\begin{equation}
+	\hat{H}=\omega_0\hat{S}_z+\omega_1\left(\cos\omega t\right)\hat{S}_x
+\end{equation}
+Writing in terms of the \(S_z\) basis, we take the initial state to be
+\[\k{\p(0)}\simeq \begin{pmatrix}
+	1\\0
+\end{pmatrix}\]
+
+Because the hamiltonian is time dependent, we can no longer take the time evolution to be an exponential of the hamiltonian. Instead, we solve the differential equation of the time dependent Schr\"odinger equation:
+\[\hat{H}\k{\p(t)}=i\hbar\pder{}{t}\k{\p(0)}\]
+\begin{equation}
+\frac{\hbar}{2} \begin{pmatrix}
+	\omega_0 & \omega_1\cos\omega t\\ \omega_1\cos\omega t & -\omega_0
+\end{pmatrix} \begin{pmatrix}
+	a\\b
+\end{pmatrix} =i\hbar \begin{pmatrix}
+	\dot a\\ \dot b
+\end{pmatrix}\label{eq4:mrham}
+\end{equation}
+
+And so, we have two coupled differential equations. We use the result from spin precession (\(\omega_1=0\))
+\[ \begin{pmatrix}
+	a \\ b
+\end{pmatrix} = \begin{pmatrix}
+a e^{-i\omega_0 t/2} \\
+b e^{+i\omega_0 t/2}
+\end{pmatrix}\]
+we guess the solution
+\[ \begin{pmatrix}
+	a\\b
+\end{pmatrix} = \begin{pmatrix}
+c(t)e^{-i\omega_0t/2}\\
+d(t)e^{+i\omega_0t/2}
+\end{pmatrix}\]
+Plugging in and simplifying, we obtain
+\begin{equation}
+	i \begin{pmatrix}
+	\dot c \\ \dot d
+\end{pmatrix} = \frac{\omega_1}{2}\cos\omega t \begin{pmatrix}
+de^{+i\omega_0t}\\ce^{-i\omega_0t}
+\end{pmatrix} \label{eq4:nmrdiffeq}
+\end{equation}
+Unfortunately, this differential equation does not have an analytic solution. We can, however, observe the precession of the spin using a numerical simulation, using Equation~\ref{eq4:nmrdiffeq} as an interation step.
+
+\subsection{Approximations}
+We rewrite the cosine in terms of the exponential, and absorb it into the vector on the RHS\@:
+\[i \begin{pmatrix}
+	\dot c\\\dot d
+\end{pmatrix} = \frac{\omega_1}{2} \begin{pmatrix}
+d\left(e^{i(\omega_0+\omega)t}+e^{i(\omega_0-\omega)t}\right)\\
+c\left(e^{i(\omega-\omega_0)t}+e^{-i(\omega_0+\omega)t}\right)
+\end{pmatrix}\]
+
+Taking the limit \(\omega_1\ll\omega_0\), if \(\abs{\omega-\omega_0}\gg\omega_1\), there is a rapid oscillation of exponential terms, but the envelope of the oscillations is rather small---\(\dot c, \dot d\to0\).
+
+\subsubsection{On Resonance}
+If we take \(\omega=\omega_0\) we get \emph{resonance}. Neglecting the high frequency \(e^{\pm2i\omega_0t}\), which corresponds to the precession of the spin, we can observe the low frequency terms, which correspond to the precession of the plane. Thus,
+\begin{equation}
+	i \begin{pmatrix}
+		\dot c \\ \dot d 
+	\end{pmatrix}\approx\frac{\omega_1}{4} \begin{pmatrix}
+		d\\c
+	\end{pmatrix}
+\end{equation}
+This equation can be solved analytically by taking an additional derivative:
+\[ \begin{pmatrix}
+	\ddot c\\\ddot d
+	\end{pmatrix} = -\left(\frac{\omega_1}{4}\right)^2= \begin{pmatrix}
+	c\\d
+\end{pmatrix}\]
+Applying the initial conditions and solving, we obtain
+\begin{equation}
+	c=\cos\frac{\omega_1t}{4} \qquad d = -i\sin\frac{\omega_1 t}{4}
+\end{equation}
+
+Hence, we have
+\begin{subequations}
+	\begin{align}
+		\abs{\bk{+z}{\p(t)}}^2 &= \sin^2\frac{\omega_1 t}{4}\\
+		\abs{\bk{-z}{\p(t)}}^2 &= \cos^2\frac{\omega_1 t}{4}\\
+	\end{align}
+\end{subequations}
+Or, the plane of precession oscillates between the poles of a spherical surface with frequency \(\omega_1\), while the spin precesses with frequency \(\omega_0\). Thus, we see that the spin oscillates between the \(\k{+z}\) state and \(\k{-z}\).
+
+\subsubsection{Off Resonance}
+Take the case that \(\omega\neq\omega_0\) but \(\omega\approx\omega_0\). Once again discarding high frequency terms,
+\begin{equation}
+	i \begin{pmatrix}
+	\dot c \\ \dot d
+\end{pmatrix} \approx \frac{\omega_1}{4} \begin{pmatrix}
+de^{i(\omega_0-\omega)t}\\
+ce^{-i(\omega_0-\omega)t}
+\end{pmatrix}
+\end{equation}
+
+The entire proof is left as a homework problem in assignment HW5, but taking an additional derivative allows us to re-express the differential equaiotn in terms of a second-order ODE\@. Solving with initial conditions, we obtain Rabi's formula:
+\begin{equation}
+		\abs{\bk{-z}{\p(t)}}^2=\frac{\omega_1^2/4}{\left(\omega_0-\omega\right)^2+\omega_1^2/4}\sin^2\frac{\sqrt{\left(\omega_0-\omega\right)^2+\omega_1^2/4}}{2}t
+\end{equation}
+Plotting the magnitude of equation, we see that the maximum does not reach 1 unless \(\omega = \omega_0\). Additionally, we see that increasing the value of \(B_1\then \omega_1\), the peak of the resonance grows narrower, and so the resonance frequency can be more accurately determined.
+
+\section{Ammonia Molecule}
+The ammonia molecule is a trigonal pyramidal molecule made of one nitrogen and three bonded hydrogens. Ammonia has a dipole, with the nitrogen having a more negative charge and the hydrogens more positive. The dipole is denoted \(\vv{\mu}_e\), and points from the \textcolor{red}{nitrogen to the hydrogens}\footnote{pretty sure this is reversed}. We assume that the dipole is aligned either parallel or anti-parallel to the \(z\) axis. This reduces our hamiltonian to a ``two level system'' rather than one with a continuous spectrum. In the absence of an electric field,
+\begin{equation}
+	\b{1}\hat{H}\k{1}=\b{2}\hat{H}\k{2}=E_0
+\end{equation}
+The energy surface is given with respect to a fixed plane of hydrogens, with the nitrogen at \(\Delta Z_N\) wrt this plane. The two \(\Delta Z_N\) which minimize this surface are clearly those which correspond to an ammonia molecule. The nitrogen atom can tunnel between the states \(\k{1}\) and \(\k{2}\) through the potential wall at the plane of the hydrogens. Because of the tunnelling, there are off-diagonal elements in the hamiltonian. We set them equal and define them as:
+\begin{equation}
+	\b{1}\hat{H}\k{2}=\b{2}\hat{H}\k{1}\ast\equiv A\neq0
+\end{equation}
+Thus, the representation of the hamiltonian is given:
+\begin{equation}
+	\hat{H}\simeq \begin{pmatrix}
+		E_0 & -A \\
+		-A & -E_0
+	\end{pmatrix}
+\end{equation}
+Solving for the eigenvalues,
+\[\det(H-EI)=(E_0-E)^2-A^2=0\]
+\[E=E_0\pm A\]
+Solving for eigenvectors, we get
+\[\k{I}\simeq \frac{1}{\sqrt{2}}\begin{pmatrix}
+	1 \\ 1
+\end{pmatrix} \qquad \qquad \k{II}=\frac{1}{\sqrt{2}} \begin{pmatrix}
+1 \\ -1
+\end{pmatrix}\]
+or, in terms of kets,
+\begin{subequations}
+	\begin{align}
+		\k{I}&=\frac{1}{\sqrt{2}}\left(\k{1}+\k{2}\right)\\
+		\k{II}&=\frac{1}{\sqrt{2}}\left(\k{1}-\k{2}\right)
+	\end{align}
+\end{subequations}
+The magnitude of \(A\) has been experimentally determined to be about
+\[E_{II}-E_{I}=2A\approx\SI{e-4}{eV}\then \lambda\approx\SI{1.25}{cm}\]
+which is on the scale of microwaves.
+
+\subsection{Time Dependence}
+Recall that eigenstates of the hamiltonian are stationary states, while those that aren't have a non-trivial time dependence. We can align the ammonia molecules by applying an electric field in the \(z\) direction, as the potential is given 
+\[U_E=-\vv{\mu}_e*\vv{E}\]
+Writing the aligned state \(\k{1}\) in terms of eigenstates,
+\begin{equation}
+	\k{\p(0)}\equiv\k{1}=\frac{1}{\sqrt{2}}\left(\k{I}+\k{II}\right)
+\end{equation}
+we can write the time dependence as:
+\begin{align}
+	\k{\p(t)}&=\frac{1}{\sqrt{2}}\left(e^{-i(E-A)t/\hbar}\k{I} + e^{-i(E_0+A)t/\hbar}\k{II}\right)\nonumber\\
+		 &=\frac{e^{-i(E_0-A)t/\hbar}}{\sqrt{2}}\left(\k{I}+e^{-i2At/\hbar}\k{II}\right)
+\end{align}
+This is a oscilatory system with period
+\begin{equation}
+	T=\frac{2\pi\hbar}{2A}
+\end{equation}
+albeit with an additional phase factor. The system transitions between orientations with time
+\begin{equation}
+	\Delta t = \frac{\pi\hbar}{2A}\sim\frac{\hbar}{2A}\label{eq4:nh3order}
+\end{equation}
+\subsubsection{Energy-Time Uncertainty}
+The order in Equation~\ref{eq4:nh3order} turns out to be significant. Comparing it to the uncertainty in the energy for the \(\k{1}\) state,
+\begin{align}
+	\Delta E = \sqrt{\vect{E^2}-\vect{E}^2}\nonumber\\
+	&=\sqrt{E_0^2+A^2-E_0^2}\nonumber\\
+	&=A
+\end{align}
+Thus, we have that
+\begin{equation}
+	\Delta E \Delta t \gtrsim \frac{\hbar}{2}
+\end{equation}
+
+More generally, for an atom in an excited state, there is a transition energy of \(h\nu = E_\beta-E_\alpha\) with a characteristic time \(\tau\). The states \(\k{\alpha}\) and \(\k{\beta}\) are not stationary states when an EM field is included. The spectrum of this transition is broadened, and the line width transition \(\delta \nu\) is given \(\delta E / h\) with the property \(\delta E \tau \sim \frac{\hbar}{2}\).
+
+\subsection{Ammonia Maser}
+An ammonium maser can be made in two steps. First, separate the \(\k{I}\) and \(\k{II}\) states. A static \(\vv{E}\) field is applied
+\[-\vv\mu_e*\vv{E}=\pm\mu_e\mathcal{E}\]
+Thus, the Hamiltonian is written (in terms of states \(\k{1}\) and \(\k{2}\)):
+\begin{equation}
+	\hat H \simeq \begin{pmatrix}
+		E_0+\mu \mathcal{E} & -A \\ -A &E_0-\mu\mathcal{E}
+	\end{pmatrix}
+\end{equation}
+where the dipole \(\mu\) is the electric dipole \(\mu_e\).
+Diagonalizing, we see the eigenvalues are
+\begin{align}
+	0&=\det(H-EI)\nonumber\\
+	 &=(E_0+\mu\mathcal{E}-E)(E_0-\mu\mathcal E - E)-A^2\nonumber\\
+	 A^2+(\mu_\mathcal{E})^2=(E_0-E)^2\nonumber\\
+	E&= E_0\pm\sqrt{(\mu\mathcal{E})^2+A^2}\nonumber\\
+	 &=E_0\pm A\sqrt{1+\left(\frac{\mu\mathcal E}{A}\right)^2}\nonumber\\
+	 &\approx E_0\pm\left(A+\frac{(\mu\mathcal )^2}{2A}\right)\label{eq4:masereigenvalues}
+\end{align}
+where Equation~\ref{eq4:masereigenvalues} takes the approximation \(\mathcal E \ll \frac{A}{\mu}\).
+
+Then, applying an inhomogeneous field of strength
+\begin{equation}
+	F_z\approx -\pder{}{z}\left(\pm\frac{(\mu\mathcal E)^2}{2A}\right)
+\end{equation}
+we can separate the two states due to an induced dipole effect, similar to a Stern-Gerlach experiment.
+
+Second, collect the \(\k{II}\) beam in a microwave cavity with oscillating field
+\begin{equation}
+	\vv{E}=\mathcal E_0\cos\omega t
+\end{equation}
+with \(\omega\) such that \(\k{II}\) makes a transition to the \(\k{I}\) state. Because \(\k{I}\) is at a lower energy than \(\k{II}\), the energy released in the transition is added to the field ``coherently''---the transition amplifies the microwave field to produce a strong, in-phase beam of microwaves.
+Rewriting the hamiltonian in the \(\k{I},\k{II}\) basis,
+\begin{equation}
+	\hat H \simeq \begin{pmatrix}
+		E_0-A & \mu\mathcal E_0\cos\omega t\\ \mu\mathcal E_0 \cos\omega t & E_0 + A
+	\end{pmatrix}
+\end{equation}
+we see the hamiltonian is analogous to that of the magnetic resonance of an electron, Equation~\ref{eq4:mrham}.
+Thus, we see
+\begin{equation}
+	\abs{\b{I}{\p(t)}}^2=\sin^2\frac{\mu\mathcal E_0 t }{2\hbar}
+\end{equation}
+where we choose the transition time
+\begin{equation}
+	t = \frac{2\hbar}{\mu\mathcal E_0}\frac{\pi}{2}
+\end{equation}

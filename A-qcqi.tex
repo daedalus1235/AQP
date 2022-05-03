@@ -1,0 +1,94 @@
+%! TEX root = 0-main.tex
+\chapter{Quantum Computation}
+\section{2-level System}
+The prototypical 2-level system is, of course, the spin-\(\frac{1}{2}\) particle. Any spin state for a spin-\(\frac{1}{2}\) can be described in terms of two basis states. As we recall from the discussion of time-dependent phenomena, the application of an external magnetic field leads to an energy splitting between the two states aligned with the magnetic field. Applying an oscillatory field with frequency \(\Delta E/\hbar\) perpendicular to this axis allows us to change the spin direction---a pulse of length \(\frac{\pi m_e c}{2q_e B_q}\) can convert the \(\k{+z}\) state to the \(\k{+x}=\frac{1}{\sqrt{2}}(\k{+z}+\k{-z})\), and is called a ``\(\pi/2\) pulse.'' The same holds true for any 2-level system, such as point defects in crystals, known as ``colour centres.''
+
+\subsection{Platforms}
+An NMR computer uses magnetic resonance on a bulk material to do computation. The sample in the NMR tube is subject to an applied field which is screened by the environment into an effective field. The shielding is instead attributed to the electron and its environment via:
+\[B_{eff} g = Bg_{eff}\]
+The effective spin allows for selectivity via frequency, but is not very useful for computation.
+
+Another type of quantum computer is the ``silicon-based nuclear spin quantum computer'' which uses phosphorus dopants to act as qubits. However, research has not progressed very much, and has never been constructed.
+
+Similar is the NV centre in diamond, which hosts an electron pair from the nitrogen into the adjacent vacancy. The energy levels of the NV centre are very well known and can be controlled by tunable optical lasers. There is a lot of active research on this subject.
+
+All optical computing uses the polarization states of light to encode qubits. 
+
+Quantum dots can also be used to encode qubits. By applying different voltages to the qubits, the states of adjacent dots may be swapped. 
+
+\subsubsection{Josephson Junction}
+The predominant form of modern quantum computers is the Josephson Junction. A superconducting LC resonator can form a harmonic oscillator potential. Because they operate at low temperatures, there is a very low loss, and high \(Q\). A standard LC circuit forms has many accessible states; to remove all but the lowest two states, a non-linear element is added, such as in a Josephson Junction, which is a loop of semiconducting wire with a tunnel barrier that is added to remove the higher energy states. Josephson Junctions are also used to make devices that measure and control qubits. 
+
+\section{Qubits and Joint Probability Amplitudes}
+Consider several qubits \(\p_j\) characterized by coefficients \(f_j,g_j\) such that
+\[\psi_j = f_j\k{+z}_j+g_j\k{-z}_j\]
+We can modify this state by applying a \(\pi/2\) pulse in what is known as a ``Hadamard gate'' operation, such that
+\[\hat U_H \simeq \frac{1}{\sqrt{2}} \begin{bmatrix}
+	1 & 1 \\ 1 & -1
+\end{bmatrix}\]
+Thus, we obtain
+\[U_{H_j}\p_j\simeq \frac{1}{\sqrt{2}} \begin{bmatrix}
+	f_j+g_j\\
+	f_j-g_j
+\end{bmatrix}\]
+
+We then consider the joint probability amplitude for a specific state \(\k{\pm z}_N\cdots\k{\pm z}_1\k{\pm z}_0\) as the products of the individual amplitude. For example, the state \(\k{+z}\k{-z}\k{-z}\) can be denoted \([100]\), and has the joint probability amplitude \(f_2g_1g_2\equiv A_4\), where the subscript on \(A\) is the decimal representation for the binary state. This is the same as the coefficient for the tensor product of the individual states \(\k{\p_N}\cdots\k{\p_1}\k{\p_0}\). It is easy to see that for the 2-state qubits, that \(N\) qubits have \(2^N\) joint probability amplitudes \(A_j\).
+
+\section{Computation}
+Quantum computation is a sequence of \emph{gate operations} which affect all joint probability amplitudes. For example, the Hadamard Gate \(H_j\) is the application of \(\hat U_{H_j}\) to a specific qubit \(\p_j\) as shown earlier. The representation on a circuit diagram is given
+\begin{center}
+\begin{quantikz}
+	\lstick{\(\k{p_j}\)} & \gate{H} & \qw\ \rstick{\(\hat H_j\k{\p_j}\)}
+\end{quantikz}
+\end{center}
+
+For multiple qubits, we can compose gates using tensor products. For example, if we have a two qubit system \(\k{\p_1}\k{\p_0}\), we can write the hadamard operator \(\hat H_0\) as \(I\otimes H\)
+
+A controlled gate acts on two qubits. For a universal quantum computer, only a limited number of controlled gates are actually required. The Controlled Phase Gate \(R^{(k)}_{jj'}\) acts on the qubits \(j.j'\) and rotates the non-control bit at  angle \(2\pi/2^k\). This is denoted
+\begin{center}
+	\begin{quantikz}
+		\lstick{\(x_j\)} & \gate{R_{j,j'}^{(k)}} & \qw\\
+		\lstick{\(x_{j'}\)} & \octrl{-1} & \qw{}
+	\end{quantikz}
+\end{center}
+
+The representation of this is given
+\[U_{R_{jj'}^{(k)}} \simeq \begin{bmatrix}
+		1 & 0 & 0 & 0 \\
+		0 & 1 & 0 & 0 \\
+		0 & 0 & 1 & 0\\
+		0 & 0 & 0 & e^{i2\pi/2^{k}}
+	\end{bmatrix}\]
+
+\subsection{Quantum Fast Fourier Transform}
+For two qubits, the circuit for a QFFT is given
+\begin{center}
+	\begin{quantikz}
+		\lstick{\(x_1\)} & \gate{H} & \gate{R_{10}^{(2)}} & \qw{}	& \qw\\
+		\lstick{\(x_0\)} & \qw{}     & \octrl{-1}          & \gate{H} 	& \qw{}
+	\end{quantikz}
+\end{center}
+Such a circuit maps the coefficients of the inital state to their fourier transform (with bit order reversed). This computation scales much more nicely than for a classical computer--- the QFT scales with \((\log N)^2\), while an optimized classical FFT scales with \(N\log N\). The circuit for \(N=3\) has only 6 gates.
+
+The QFT is very useful in 
+Shor's Algorithm is an algorithm to factor large integers, such as those used in encryption, which are the product of two very large prime numbers. 
+
+\subsection{Readout of an Algorithm}
+Say we transform the state \(\k\p \to \k{\p'}\). Unfortunately, the best that we can measure the final state is \(\{\abs{A_i}^2\}\), by using the relevant density matrices and projections. However, even this requires the measurement on a multi-qubit state, but we are unfortunately only able to measure single-qubits. 
+
+When measuring the qubits we may of course use the reduced density matrix. Another way is to sequentially measure out each of the qubits. After measuring the qubit to be, say, \(0\), we can eliminate all terms that contain that qubit in \(0\). Renormalizing with the crossed-out terms (not changing the coefficients on the remaining terms), we can repeat this procedure for each qubit. Finally, we may multiply all the probabilities for the individual measurement to determine the probability for the overall state. This is not very desireable, as it requires multiple measurements.
+
+\subsection{Limitations on the development of quantum computers}
+Therer are multiple limitations on the development of quantum computers. The first is the ``coherence/relaxation'' times where due to interactions with the environment, the state can begin to degrade and change. While we may wish to periodically refresh this state, it is impossible due to the \emph{no-cloning theorem}, which states that you cannot copy a single qubit into two qubits identical to the original. However, there are many error-correcting schemes which are being actively researched; however, these require large, complicated circuits with many additional \emph{ancilla} qubits. These problems may be simulated using mixed states and dencity matrices.
+
+Additionally, we have previously assumed that they may be constructed. However, even seeemingly simple interactions, such as the ``exchange'' interaction, are incredibly difficult to implement. Even if we could achieve interactions, it is likely that we could only achieve interactions between neighbouring qubits (which would make large QFT circuits more difficult to implement). However, we often only need a single type of 2-qubit.
+\begin{aside}[Exchange Interaction]
+	An exchange interaction is defined by a hamiltonian in the form
+	\[H = J\hat {\vb S}_1*\hat{\vb S}_2\]
+	This results from the fact that when two particles are identical, then they must satisfy (anti)symmetry. When computing the hamiltonian, the matrix elements correspond to the particles ``exchanging places,'' which contributes an energy to the system.
+
+	If the separation between the spins increases, such as if they are on different atoms, the sign of \(J\) can vary. For example, in the Ising model, this is what results in phenomena such as magnetism. In neighbouring qubits, it is possible to construct an adjustable ``coupling'' between the two qubits that may have the form of an exchange interaction. For example, in a quantum dot computer, there is a tunneling interaction in the depletion zone between qubits which allows for the construction of a \emph{SWAP} gate. Similarly, in a Josephson Junction, a magnetic field may be applied by a gate between to junctions which can act as an exchange interaction.
+\end{aside}
+
+\subsection{Quantum Supremacy}
+In 2019, Google announced that they achieved \emph{quantum supremacy} on a computer containing 52 qubits. In this case, they completed a ``computation'' that was faster than was possible on a classical computer. However, as the gates they used could not function in a well-defined manner, no meaningful computation could be completed; however, they were able to run the computer in a way that provided a definite output. On a scale of 1 (classical computer) and 2 (quantum computer), their computer performed at \(1.0002\) which is marginally better than a classical computer, and thus demonstrated quantum supremacy. The reason there is such a large difference between this value and 2 can be attributed to the 99\% gate fidelity (1\% error rate) of the couplers that acted as gates between qubits.

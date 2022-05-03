@@ -1,0 +1,250 @@
+%! TEX root = 0-main.tex
+\chapter{Time-Independent Perturbation Theory}
+\section{Non-degenerate perturbation theory}
+The general idea behind perturbation theory is that we can rewrite a hamiltonian in terms of a known hamiltonian and a small quantity:
+\[H = H_0+H_1\]
+where \(H_0\gg H_1\) is the known hamiltonian. We then write
+\[H = H_0+\lambda H_1\]
+where  we take \(\lambda\to 1\) later.\footnote{Note, that \(\lambda\) is not small; rather, we use it as a bookkeeping method,} We then write our guess
+\[\k{\p_n} = \k{\f^{(0)}_n}+\lambda \k{\f_n^{(1)}} + \lambda^2\k{\f_n^{(2)}}+\dots\]
+\[E_n = E_n^{(0)} + \lambda E_n^{(1)} + \lambda^2 E_n^{(2)}+\dots\]
+We then plug in our expanded guess into the Schr\"odinger equation:
+\[(H_0+\lambda H_1)\sum_{m}\k{\f_n^{(m)}} = \sum_m\lambda E_m^{(m)}\sum_{k}\k{\f_n^{(k)}}\]
+Matching coefficients of \(\lambda^m\) we get the \emph{\(m^{\text{th}}\) order correction}
+\[H_0 \k{\f^{(0)}_n} = E_n^{(0)}\k{\f_n^{(0)}}\]
+\begin{equation}
+	H_0\k{\f^{(1)}_n} + H_1\k{\f_n^{(0)}} = E_n^{(0)}\k{\f^{(1)}_n} + E_n^{(1)}\k{\f_n^{(0)}}\label{eq11:foc}
+\end{equation}
+and so forth, We Equation~\ref{eq11:foc}  a \emph{first order correction}. Multiplying by the dual \(\b{\f^{(0)}_k}\), and fixing \(k=n\), we see
+\[\underbrace{\b{\f_n^{(0)}}H_0\k{\f_n^{(1)}}}_{=E_n^{(0)}\bk{\f_n^{(0)}}{\f_n^{(1)}}} + \b{\f_n^{(0)}}H_1\k{\f_n^{(0)}} = E_n^{(0)}\bk{\f_n^{(0)}}{\f_n^{(1)}} +E_n^{(1)}\bk{\f_n^{(0)}}{\f_n^{(0)}}\]
+Thus, we obtain the important result
+\begin{equation}
+	E_n^{(1)} = \b{\f_n^{(0)}}H_1\k{\f_n^{(0)}}
+\end{equation}
+which is the \emph{first order correction to the energy}
+For \(k\neq n\), 
+\begin{equation}
+	\underbrace{\b{\f_k^{(0)}}H_0\k{\f_n^{(1)}}}_{=E_k^{(0)}\bk{\f_k^{(0)}}{\f_n^{(1)}}} + \b{\f_k^{(0)}}H_1\k{\f_n^{(0)}} = E_n^{(0)}\bk{\f_k^{(0)}}{\f_n^{(1)}} +\cancelto{0}{E_n^{(1)}\bk{\f_k^{(0)}}{\f_n^{(0)}}}\label{eq11:focw}
+\end{equation}
+Rearranging, we obtain
+\begin{equation}
+	\bk{\f_k^{(0)}}{\f_n^{(1)}} = \frac{\b{\f_k^{(0)}}H_1\k{\f_n^{(0)}}}{E_n^{(0)}-E_k^{(0)}}
+\end{equation}
+Note that this may be problematic if we have degeneracies. We will discuss degeneracies later. This inner product is known as the \emph{first order correction to the wavefunction}. However, if we try to write \(\k{\f_n^{(1)}}\), we see we run into an issue with the index \(\bk{\f_n^{(0)}}{\f_n^{(1)}}\). However, we see that if we return to Equation~\ref{eq11:focw}, we can add any multiple of \(\k{\f_n^{(0)}}\) to \(\k{f_n^{(1)}}\) without changing the equality (\(\k{\f_n^{(1)}}\) is linear in all terms); this, WLOG we can fix \(\bk{\f_n^{(0)}}{\f_n^{(1)}}\), and similarly for higher order corrections. We thus can write
+\[\k{\p_n}\approx \k{\f_n^{(0)}}+\lambda\sum_{k\neq n}\k{\f_k^{(0)}}\frac{\b{\f_k^{(0)}}H_1\k{\f_n^{(0)}}}{E_n^{(0)}-E_k^{(0)}}\]
+If we repeat this calculation for the second order correction, 
+we see that we can write
+\[E_n^{(2)} = \b{\f_n^{(0)}}H_1\k{\f_n^{(1)}}=\sum_{k\neq n}\frac{\abs{\b{\f_k^{(0)}}H_1\k{\f_n^{(0)}}}^2}{E_n^{(0)}-E_k^{(0)}}\]
+
+\subsection{Harmonic Oscillator in E-Field}
+Consider a harmonic oscillator with field \(E\). Then, we can write the hamiltonian as
+\[H = \frac{p^2}{2m}+\frac{1}{2}m\omega^2 x^2 - qEx\]
+Note, we can rewrite this hamiltonian by completing the square
+\[H = \frac{p^2}{2m}+\frac{1}{2}m\omega^2\left(x-\frac{qE}{m\omega^2}\right)^2-\frac{1}{2}\frac{q^2E^2}{m\omega^2}\]
+Our Schr\"odinger equation then becomes
+\[\left[\frac{p^2}{2m}+\frac{1}{2}m\omega^2\left(x-\frac{qE}{m\omega^2}\right)^2\right]\p = \left[\varepsilon+\frac{1}{2}\frac{q^2E^2}{m\omega^2}\right]\p\]
+We can trivially pull out the energy as
+\[E = \left(n+\tfrac{1}{2}\right)\hbar\omega-\frac{q^2E^2}{2m\omega^2}\]
+and see that the wavefunctions are the just shifted \(\frac{qE}{m\omega^2}\) to the right.
+
+To examine how perturbation theory can be used, we can use \(H_0\) as the base harmonic oscillator, and add a term
+\[H_1 = -qEx = -\mu_e*E\]
+where we define
+\[\hat\mu_e = -q\hat r\]
+We thus have
+\[E_n^{(1)} = \b{n}-qEx\k{n} =-qE\sqrt{\frac{\hbar}{2m\omega}}\b{n}a+a\adj\k{n}=0\]
+This makes sense, as we know from the exact solution that the highest order correction is of second order.
+The second order correction to the energy becomes
+\[E_n^{(2)} = \sum_{k\neq n} \frac{\abs{\b{k}H_1\k{n}}^2}{\hbar\omega(n-k)}\]
+Note that using the representation of \(x\) using raising and lowering operators, we need only consider \(k = n\pm 1\). Thus,
+\[E_n^{(2)} = \frac{q^2E^2\hbar}{2m\omega}\left(\frac{n}{\hbar\omega}+\frac{n+1}{-\hbar\omega}\right) = -\frac{q^2E^2}{2m\omega^2}\]
+which matches our analytical solution.
+
+\section{Degenerate Perturbation Theory}
+As mentioned earlier, we run into singularities/divergences when two states have the same energy. Consider we have degenerate eigenspaces, denoted \(\k{\f_{n,i}^{(0)}}\) where \(i\in\{1,\dots, N\}\) denotes particular eigenvector in the eigenspace of \(E_n^{(0)}\). We quickly see that because our chosen basis for the eigenspace is not unique, we even run into issues with \(E_n^{(1)}\), as its value is dependent on the linear combination. Thus, even with small perturbations, we might get very large changes in the state. We wish to choose a basis such that small perturbations result in small changes.
+
+Similar to the ammonia molecule, we will consider only a restricted subspace of the problem. We write the solution to the total hamiltonian \(H = H_0+H_1\)
+\[\k{\p_n} = \sum_{i} c_i \k{\f_{n,i}^{(0)}}+\lambda \k{\f_n^{(1)}}\]
+Plugging into the zeroeth order correction, and left-multiplying \(\b{\f_{n,j}^{(0)}}\), we are left with
+\[\sum_i \b{\f_{n,j}^{(0)}}H_1\k{\f_{n,i}^{(0)}}c_i = E_n^{(1)}\sum_i\bk{\f_{nj}^{(0)}}{\f_{ni}^{(0)}}c_i = E_nc_j\]
+We thus obtain a standard eigenvalue equation,
+\[H_1\sum_i c_i \k{\f_{ni}^{(0)}} = E_nc_j\k{\f_{nj}^{(0)}}\]
+\[\simeq H_1c = E_n^{(1)}c\]
+which gives us a ``diagonalization'' of \(H_1\) in the subspace \(\k{\f_{ni}^{(0)}}\). This technique is commonly used in condensed matter physics and chemistry. In general, if we have \(\abs{E_n-E_k}\lesssim \abs{\b{n}H_q\k{m}}\) we use degenerat perturbation theory.
+
+\section{Stark Effect in Hydrogen}
+Consider an electric field being applied to a hydrogen atom (this is in similar to Zeeman splitting in response to a magnetic field). WLOG, fix \(\vb E = E\hat z\). Thus,
+\[H_1 = -\mu_e*E = eE z\]
+where we define a dipole moment \(\hat \mu = q\hat r\). Recall our base hamiltonian
+\[H_1 = \frac{p^2}{2\mu}-\frac{e^2}{r}\]
+has eigenvectors \(\k{n\ell m}\) which are degenerate due to \(\ell, m\). The \(n=1\) state is non-degenerate, so we can write 
+\[E_1^{(1)} = eE\b{100}z\k{100}=eE\int\d[3]{r}\abs{\p_{1s}}^2 z =0\]
+as the wavefunction is symmetric about the \(xy\) plane. However, the \(n=2\) state is quadrupply degenerate. Thus, we must evaluate
+\[\b{n,\ell, m} z\k{n',\ell',m'}\]
+we cna make use of the definite parity of the \(\p_{n\ell m}\) states, which is given \((-1)^\ell\). Thus, we see that the matrix elements are zero whenever \(\ell=\ell'\). However, off-diagonal terms with \(\ell=0,\ell'=1\) and vice versa need not be zero. If we represent our state by \([\k{00}, \k{10},\k{1,-1},\k{11}]\), we then have the representation
+\[H_1\sim \begin{bmatrix}
+	0 & - & - & - \\
+	- & 0 & 0 & 0 \\
+	- & 0 & 0 & 0 \\
+	- & 0 & 0 & 0 
+\end{bmatrix}\]
+We can further restrict the non-zero elements of the hamiltonian by observing
+\[[H,L_z]\sim[z, xp_x-p_xx]=0\]
+so we can write
+\[\b{n\ell' m'}L_zz\k{n\ell m} = \b{n\ell'm'}zL_z\k{n\ell m}\]
+\[m'\hbar\b{n\ell' m'}z\k{n\ell m} = m\hbar\b{n\ell'm'}z\k{n\ell m}\]
+Thus, we must have for \(m\neq m'\) that the matrix element is zero, so we have only two non-zero elements in the representation of \(H_1\), and only one independent entry (due to the hermiticity of the hamiltonian). We can obtain 
+\[eE\b{200}\hat z\k{210} = eE\int r^2\d{r}\int\d\Omega R_{2,0}\ast Y_{0,0}\ast r\cos\theta R_{2,1}Y_{10} = -3eEa_0\]
+Following degenerate perturbation theory, we wish to find a diagonal basis. Trivially, we see that we can diagonalize using \(\frac{1}{\sqrt{2}}\left(\k{2,0,0}\mp\k{2,1,0}\right)\) corresponding to the spectrum \(E_2^{(1)} = \pm 3eEa_0\). Thus, our originally quadrupply degenerate energy level splits into two \(E_2^{(0)}\) levels, and one each of \(E_2^{(0)}\pm 3eEa_0\). This effect is observed in many different types of spectroscopy. Further, we see that the lower energy eigenvector is ``symmetric'', while the higher energy eigenvector is ``antisymmetric''. Drawing out the wavefunctions of the two eigenstates, we see that they form two asymmetric dipoles with a large negative-phase lobe. If we imagine the dipole \(\hat\mu_e = -e\hat r\) we see the dipole points away from the negative-phase lobe. Thus, our lower energy state corresponds to an ``aligned'' dipole and the higher energy state corresponds to an ``anti-aligned'' dipole.
+
+\section{Relativistic corrections to Hydrogen}
+There are many corrections to the hydrogen atom that can be made due to relative motion between the nucleus and the electron.
+\subsection{Kinetic Energy}
+While the proton is likely moving slowly, the electron may be moving relativistically, so we can include a higher-order momentum term:
+\[\hat T = \frac{\hat p^2}{2\mu}-\frac{\left(\hat p_e^2\right)^2}{8m_e^3c^2}+O(\hat p_e^6)\]
+Moving to the centre-of-mass frame, our perturbation hamiltonian is thus given
+\[H_k = -\frac{(\hat p^2)^2}{8m_e^3c^2}\]
+Because this is a polynomial in \(p^2\), we see that \([H_k,\vv L] = 0\), so \(\ell,m\) states will not mix, and \(H_k\) is already diagonal. Thus, we need only consider \(n\) mixing. The diagonal entries can be found through laborious calculation
+\[E_{n,\ell}^{(1)}=\b{n,\ell,m}H_k\k{n,\ell,m}\]
+but there are various trick which make computation simpler.
+Define the original hamiltonian as
+\[H_0=\frac{p^2}{2\mu}-\frac{Ze^2}{r}\]
+we can thus approximate
+\[\frac{\hat p^2}{2m_e}\approx \frac{\hat p^2}{2\mu} \then H_k\approx -\frac{1}{2me_c^2}\left(H_0+\frac{Ze^2}{r}\right)^2\]
+We see that 
+\[E_{n\ell}^{(1)} \equiv E_k^{(1)} = -\frac{1}{2}m_ec^2Z^4\alpha^4\left[-\frac{3}{4n^4}+\frac{1}{n^3(\ell+\frac{1}{2})}\right]\]
+with \(\alpha\equiv \frac{e^2}{\hbar c}\approx \frac{1}{137}\) is the \emph{fine structure constant}. For Francium, for instance, this correction is actually quite significant---its valence electron is tightly bound due to this effect and the reactivity is decreased. Using \(m_ec^2\alpha^2/2 = \SI{1}{Ryd}\), we see that this energy is on the order of \(\sim0.73Z_{\text{eff}}^4\si{eV}\). However, there is no mixing of states.
+
+\subsection{Spin-Orbit Coupling}
+A classical argument of spin-orbit coupling is as follows. Moving into the rest frame of the electron, we see that the proton acts as a moving charge, and hence causes a current and corresponding magnetic field. 
+\[B = -\frac{Zev\times r}{cr^3}\]
+This magnetic field interacts with the spin of the electron and causes a splitting. Recall we have
+\[\hat \mu = -\frac{ge}{2m_ec}\hat S\]
+where \(g=2\) for an electron. Thus, we expect the additional potential to be given
+\[U = -\mu*B = \frac{Ze^2}{m_ec^2r^3}\vb S*\vb L\]
+This is acutally off by a factor of two due to an effect known as \emph{Thomas Precession}. Thus, our perturbing hamiltonian is given
+\[H_{so} = \frac{Ze^2}{2m_e^2c^2\abs{\hat{\vb r}}^3}\hat{\vb L}*\hat {\vb S}\]
+The form of this hamiltonian is how we obtain the form of our hamiltonians in our discussion of interacting spins. Recall that we can expand 
+\[2\hat{\vb L}*\hat{\vb S} = \hat L_+\hat S_-+\hat L_-\hat S_+ + 2\hat L_z\hat S_z\]
+and that
+\[[\hat{\vb L}*\hat{\vb S}, \hat{\vb L}+\hat{\vb S}] = 0\]
+Thus, let us define 
+\[\hat{\vb J} = \hat{\vb L}+\hat{\vb S}\]
+
+\subsubsection{Addition of Angular Momentum}
+Consider the addition of two angular momenta,
+\[\hat{\vb J}_1+\hat{\vb J}_2 = \hat{\vb J}\]
+We wish to transform our basis from
+\[\k{j_1,m_1,j_2,m_2}\to \k{j_1,j_2,j,m}\]
+Recall that in our linear combination, to maintain consistency, we should have 
+\[m=m_1+m_2\]
+However, \(j\) need not necessarily be \(j_1+j_2\); rather, they add like vectors, and thus we have
+\[\abs{j_1-j_2} \leq j \leq j_1+j_2\]
+In general, we can write
+\[\k{j_1,j_2,j,m}  = \sum_{m_1,m_2}c_{j_1,j_2,m_1,m_2}^{j,m}\k{j_1,m_1,j_2,m_2}\]
+where \(c\) are the Clebsch-Gordon coefficients.
+
+\break\subsubsection{Coupling}
+Trivially, for \(\ell=0\), we should expect no change in the wavefunction; there is no angular momentum to induce a magnetic field. 
+
+However, for \(\ell = 1\), we have \(m_\ell = 0,\pm 1\). For an electron, we of course, have \(s = 1/2\) so \(m_s = \pm 1/2\). Writing out all possible states,
+\begin{multicols}{2}
+	\noindent \begin{center}
+		\begin{tabular}{r|r|r|r}
+			\(\ell\) & \(m\) & \(s\) & \(m_s\)\\
+			\hline\hline
+			1 & 1 & 1/2 & \(1/2\)\\
+			\hline
+			1 & 1 & 1/2 & \(-1/2\)\\
+			1 & 0 & 1/2 & \(1/2\)\\
+			\hline
+			1 & -1 & 1/2 & 1/2 \\
+			1 &  0 & 1/2 & \(-1/2\)\\
+			\hline
+			1 & 0 & 1/2 & \(-1/2\)
+		\end{tabular}
+	\end{center}
+	\hphantom{i}
+	\begin{center}
+		\begin{tabular}{r|r|r|r}
+			\(j\) & \(\ell\) & \(s\) & \(m_j\)\\
+			\hline\hline
+			3/2 & 1 & 1/2 & 3/2\\
+			\hline
+			3/2 & 1 & 1/2 & 1/2\\
+			1/2 & 1 & 1/2 & 1/2\\
+			\hline
+			3/2 & 1 & 1/2 & \(-1/2\)\\
+			1/2 & 1 & 1/2 & \(-1/2\)\\
+			\hline
+			3/2 & 1 & 1/2 & \(-3/2\)
+		\end{tabular}
+	\end{center}
+\end{multicols}
+Trivially, we have the topmost states corresponding, and the bottommmost states corresponding. However, the two pairs end up mixing to form the corresponding states on the RHS.\@ We can obtain the coupling by using the matrix elements from \(2\hat{\vb L}*\hat{\vb S}\). Our representation in the original \(\k{\ell, m, m_s}\) basis gives the coupling between the states \(\k{\ell, m \up},\k{\ell,m+1,\dn}\) (where we condense \(\k{m=1/2, m_s=1/2} = \k{\up}\) and so forth)  as
+\[2\hat L * \hat S \then \hbar^2 \begin{bmatrix}
+	m & \sqrt{\ell(\ell+1)-m(m+1)} \\
+	\sqrt{\ell(\ell+1)-m(m+1)}  & -(m+1)
+\end{bmatrix}\]
+Diagonalizing these two blocks, we obtain the eigenvalues
+\[\lambda = \ell, -(\ell+1)\]
+which interestingly has no \(m\) dependence. Our energy perturbations are thus given in terms of
+\[2\vb L*\vb S = \hbar^2\lambda\]
+In terms of \(J^2\),
+\[j(j+1) = \ell(\ell+1)+s(s+1)+\lambda\]
+\[j = \ell\pm\frac{1}{2}\]
+which matches our initial assumptions. We can use our eigenvalues to determine the eigenstates
+\begin{equation}
+	\k{j=\ell\pm \tfrac{1}{2},m_j} = \sqrt{\frac{\ell\pm m_j+\frac{1}{2}}{2\ell+1}}\k{\ell,m_j-\frac{1}{2},\up}\pm\sqrt{\frac{\ell\mp m_j+\frac{1}{2}}{2\ell+1}}\k{\ell,m_j+\frac{1}{2},\dn}
+\end{equation}
+The uncoupled states are trivial to consider. The states do not change.
+
+Recalling our perturbation hamiltonian, the exact energy perturbations can be found
+\begin{align}
+	E_{so}^{(1)} &= \b{n,j,m_j} H_{so} \k{n,j,m_j}\nonumber\\
+		     &=\frac{Ze^2\hbar^2}{4m_e^2c^2}\vect{\frac{1}{r^3}}_{n\ell}\lambda\nonumber\\
+		     &=\frac{m_ec^2Z^4\alpha^4}{4n^3\ell(\ell+\tfrac{1}{2})(\ell+1)}\lambda
+\end{align}
+However, if we evaluate this for \(\ell = 0\), we get a non-zero result, despite not expecting no splitting. This is due to the \(\vect{1/r^3}\) term haveing a \(1/\ell\) term. This artifact vanishes using the relativistic Dirac equation. However, we can make one more perturbative correction to the hydrogen atom to deal with this seeming contradiction
+
+\subsection{Darwin Term}
+The Darwin correction is given
+\begin{equation}H_D = -\frac{1}{8m_e^2c^2}\left[\vb p *, \left[\vb p, V(\abs{\vb r})\right]\right]\end{equation}
+Upon evaluation, we end up with \(\vb p*\vb p\), so it is rotationally invariant. The commutator becomes something like \(-\hbar^2\del^2 V\). We can treat this problem with non-degenerate perturbation theory. Our first order correction becomes
+\begin{align*}
+	E_D^{(1)} &=\b{n,\ell,m}H_D\k{n,\ell, m}\\
+		  &=\int\d[3]{r}\abs{R_{n,\ell}Y_{\ell, m}}^2\frac{\hbar^2}{8me^2c^2}\del^2 V\\
+		  &=\int\d[3]{r}\abs{R_{n,\ell}Y_{\ell, m}}^2\frac{\hbar^2}{8me^2c^2}Ze^2\delta^3(\vb r)
+\end{align*}
+Thus, we see that there is only a contribution from the \(\ell=0\) state. It turns out this correction \emph{exactly} cancels out the the spin-orbit coupling term for the \(\ell=0\) state.
+\[E_D^{(1)} = \frac{m_ec^2Z^4\alpha^4}{2n^3}\]
+
+\subsubsection{Other Corrections}
+Summing all of our corrections, we see
+\begin{equation}
+	E_K^{(1)}+E_{so}^{(1)}+E_D^{(1)} = -\frac{m_ec^2(Z\alpha)^4}{2n^3}\left(\frac{1}{j+\frac{1}{2}}-\frac{3}{4n}\right)
+\end{equation}
+which has no \(\ell\) dependence. However, Lamb showed that for quantuzed EM fields, there is a splitting between the 2s\(_{1/2}\) and the 2p\(_{1/2}\) orbitals on the order of \SI{1}{GHz}, or microwaves.
+
+The hyperfine splitting is the interaction between the nuclear spin \(\vb I\) and the total angular momentum of the electron \(\vb J\). This splitting is on the order 
+\[E\sim \frac{m_ec^2(Z\alpha)^4}{m_p/m_e}\sim \SI{21}{cm}\]
+which gives us the \SI{21}{cm} line that is well studied in astrophysics. The anisotropy of the \SI{21}{cm} line allows us to understand the structure and formation of the universe.
+
+\section{Zeeman Splitting}
+The Zeeman effect is analogous to the Stark effect, albeit with an applied magnetic field rather than an electric field. We can write
+\begin{equation}
+	H_B = -\mu*B = -\left(\frac{-e}{2m_ec}\vb L + \frac{-e}{m_ec}\vb S\right)*\vb B
+\end{equation}
+Fixing \(\vb B = B\hat z\), and assuming \(H_0\) includes spin orbit coupling, we can write (recalling that we can rearrange the original hamiltonian as a constant times \(L+2S\)),
+\[H_B = \frac{eB}{2m_ec}(J_z+S_z)\]
+This we can see commutes with \(J_z\) and \(L^2\). This is not degenerate, so we can  find
+\[E_B^{(1)} = \frac{eB}{2m_ec}\b{j=\ell\pm 1/2,m_j} J_z+S_z\k{j=\ell\pm 1/2,m_j}\]
+using \(\vect{J_z} = m_j\hbar\) and \(\vect{S_z} = \pm\frac{m_j\hbar}{2\ell+1}\), we see
+\[E_B^{(1)} = \frac{e\hbar B}{2m_ec}m_j \left(1\pm\frac{1}{2\ell+1}\right)\]
+We consider 
+\[g(j,\ell) = 1\pm\frac{1}{2\ell+1}\]
+to be the \emph{Land\'e g-factor}, analogous to the \(g\) in the expression for spin.
+
+This splittinc can be observed optically. The selectrion rules are given \(\Delta m_j = 0,\pm 1\) and \(\Delta\ell = \pm 1\).
+
+These perturbations are useful in spectroscopic measurements, such as in chemistry (bonding/structure), crystallography (tuning crystal defects), etc.

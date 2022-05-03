@@ -1,0 +1,239 @@
+%! TEX root = 0-main.tex
+\chapter{Mathematical Formalism}
+\section{Representations}
+The ket is represented as a column vector, and the bra as a row vector:
+\begin{equation}
+	\k\p = \begin{bmatrix}c_+\\c_-\end{bmatrix}\qquad \b\p = \begin{bmatrix}c_+\ast & c_-\ast\end{bmatrix}\label{eq2:rep} 
+\end{equation}
+
+Thus, the inner product becomes:
+\begin{equation}
+	\bk\p\p=\begin{bmatrix}c_+\ast & c_-\ast\end{bmatrix}\begin{bmatrix}c_+ \\ c_-\end{bmatrix} = \abs{c_+}^2+\abs{c_-}^2
+\end{equation}
+
+We can then write the various spin states  in terms of the Sz representation as:
+\begin{align*}
+	\k{+\vv x}&=\frac{1}{\sqrt{2}}\k{+\vv{z}}+\frac{1}{\sqrt{2}}\k{-\vv{z}}=\frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\end{bmatrix}\\
+	\k{-\vv{x}}&=\frac{1}{\sqrt{2}}\begin{bmatrix}1\\-1\end{bmatrix}\\
+		\k{+\vv y}&=\frac{1}{\sqrt{2}}\begin{bmatrix}1\\i\end{bmatrix}
+\end{align*}
+
+For a spin state, the transformation between different representations is given by a corresponding rotation operator. Operators will be denoted by a hat. For example, the operator \(\hat R (\frac{\pi}{2} \jh)\) rotates \(\pi/2\) about the \(\jh\) direction, or the \(y\)-axis.
+
+The spin space is a ``Hilbert Space,'' namely the space ``\(\operatorname{SU}(2)\).'' The rotation operator is defined such that
+\[\k{+\vv x}=\hat R\left(\frac{\pi}{2}\jh\right) \k{+\vv z}\]
+
+For bras, the relation is instead
+\[\b{+\vv x} = \b{+\vv z}\hat R \adj\left(\frac{\pi}{2}\jh\right)\]
+
+Combining these two statements,
+\[\bk{+\vv x}{+\vv x}=\b{+\vv z}\hat R\adj\left(\frac{\pi}{2}\jh\right)\hat R \left(\frac{\pi}{2}\jh\right) \k{+\vv z}\]
+
+From this, we see that \(R\adj R = I\), which means that it is a \emph{unitary} operator. Using what we know from the definitions of \(\k{+\vv x}\) and \(\k{+\vv z}\), we can derive the representation of \(\hat R (\frac{\pi}{2}\jh)\) in terms of the Sz representation:
+\[\hat R\left(\frac{\pi}{2}\jh\right)=\frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\1&-1\end{pmatrix}\]
+
+\section{Generators of Rotation}
+An arbitrary operator can be written in terms of \emph{generators}. Imagine an infinitessimal angle \(\d\f\) applied around an axis \(\kh\). Then, the rotation can be written in terms of the generator \(\hat{J}_z\) as:
+\[\hat R (\d\f \kh)=1-\frac{i}{\hbar}\hat{J}_z\d\f\]
+Similarly, the adjoint can be written
+\[\hat R\adj (\d\f \kh)=1+\frac{i}{\hbar}\hat{J}_z\adj\d\f\]
+Multiplying these two equations together, we get:
+\[1=1+\frac{i}{\hbar} \left( \hat{J}_z\adj-\hat{J}_z \right)\d\f + \mathcal{O}(\d\phi^2)\]
+Thus, we have \(\hat{J}_z\adj=\hat{J}_z\), or \(\hat{J}_z\) is \emph{hermitian}. A useful property of hermitian operators is that they have real eigenvalues, and so are associated with ``observables.'' In particular, the \(\hat{J}_z\) operator can be identified as an angular momentum operator in the \(z\) direction.
+
+Observing that 
+\[\d\f = \lim_{N\to\infty}\frac{\phi}{N}\]
+we can write an arbitrary rotation as
+\begin{equation}
+	\hat R (\phi \kh)=\lim_{N\to\infty}\left[1-\frac{i}{\hbar}\hat{J}_z\left(\frac{\phi}{N}\right)\right]^N = \exp\left[-i\hat{J}_z\phi/\hbar\right]\label{eq2:rotgen}
+\end{equation}
+
+When we rotate \(\k{+\vv z}\) about the \(z\)-axis, the result is
+\begin{align}
+	\hat R (\phi \kh ) \k{+\vv z}&=e^{i\alpha}\k{+\vv z}\nonumber\\
+\intertext{Thus, we can rewrite in terms of \(J_z\) as}
+	&=\left(1-\frac{i\phi}{\hbar}\hat{J}_z+\frac{1}{2!}\left(\frac{i\phi}{\hbar}\right)^2\hat{J}^2_z+\ldots\right)\k{+\vv{z}}\nonumber\\
+	\intertext{Thus, we have that \(\k{+\vv{z}}\) is an eigenvector of the \(\hat{J}_z\) operator. We assert the eigenvalue is \(+\frac{\hbar}{2}\). Such an eigenvalue would be consistent with the spin operator \(\hat{S}_z\), with \(\hat{J_z}\equiv \hat{S_z}\).
+	Following this assertion, we se that the phase of the rotated matrix is}
+	&=\left(1-\frac{i\phi}{\cancel{\hbar}}\frac{\cancel{\hbar}}{2}+\frac{1}{2!}\left(\frac{i\phi}{\cancel{\hbar}}\right)^2\left(\frac{\hbar}{2}\right)^2+\ldots\right)\k{+\vv{z}}\nonumber\\
+	&=e^{-i\phi/2}\k{+\vv z}
+\end{align}
+Similarly, the rotation on the \(\k{-\vv z}\) becomes:
+\begin{equation}
+	\hat R (\phi \kh)\k{-\vv z}=e^{i\phi/2}\k{-\vv{z}}
+\end{equation}
+
+From these two bases, we can then determine how it acts on the \(\k{+\vv{x}}\) state:
+\begin{align*}
+	\hat R (\phi\kh)\k{+\vv x}&=\frac{1}{\sqrt{2}}\left(e^{-i\phi/2}\k{+\vv z} + e^{i\phi/2}\k{-\vv{z}}\right)
+	\intertext{Note, that for \(\phi=\pi/2\), this simply becomes:}
+				  &=\frac{e^{-i\pi/4}}{\sqrt{2}}\left(\k{+\vv{z}}+e^{i\pi/2}\k{-\vv z}\right)\\
+				  &=e^{-i\pi/4}\k{+\vv{y}}
+\end{align*}
+Which is what we expected (up to a phase factor).
+
+\begin{aside}[Spinor]
+	Let us rotate \(\k{+\vv{z}}\) by \(2\pi\). Then,
+	\[\hat{R}(2\pi \kh)\k{+\vv z}=e^{-i\pi}\k{+\vv z}=-\k{\vv z}\]
+	However, rotating a total angle of \(4\pi\) returns the state to the original state. This is in direct contrast to our knowledge of euclidian space, where a rotation of \(2\pi\) is expected to return an object to its original state. 
+\end{aside}
+
+We can then represent the \(\hat{R}(\phi \kh)\) operator the matrix (wrt \(\{\k{+\vv z}, \k{-\vv{z}}\}\))
+\begin{equation}
+	\hat R (\phi\kh) \to \begin{pmatrix}e^{-i\phi/2} & 0\\0 & e^{i\phi/2}\end{pmatrix}
+\end{equation}
+Similarly we can represent the \(\hat{J}_z\) operator as
+\begin{equation}
+	\hat{J}_z=\frac{\hbar}{2}\begin{pmatrix}1 & 0\\0&-1\end{pmatrix}
+\end{equation}
+:
+\section{Other operators}
+\subsubsection{Identity Operator}
+Recall Equation~\ref{eq1:CoB}, where 
+\[\k\p = \k{+\vv z}\b{+\vv z}\k\p+\k{-\vv{z}}\b{-\vv{z}}\k\p\]
+Note, that we can factor the above equation to obtain:
+\begin{align*}
+	\k\p &= \left(\k{+\vv z}\b{+\vv z}+\k{-\vv{z}}\b{-\vv{z}}\right)\k\p\\
+     &= \mathbbm{1} \k\p
+\end{align*}
+Thus, this operator is merely the \emph{identity operator}
+\begin{equation}
+	\k{+\vv z}\b{+\vv z}+\k{-\vv{z}}\b{-\vv{z}}=\mathbbm{1}
+\end{equation}
+Or, more generally,
+\begin{equation}
+	\mathbbm{1}=\sum_i\k{a_i}\b{a_i}\label{eq2:completeness}
+\end{equation}
+This is known as the completeness relation. The completeness relation is incredibly powerful, as it can be used to compute change-of-basis:
+\begin{align*}
+	\k{+\vv z}&=\mathbbm{1}_x \k{+\vv z}\\
+		  &=(\k{+\vv x}\b{+\vv x}+\k{-\vv x}\b{-\vv x})\k{+\vv z}\\
+		  &=\bk{+\vv x}{+\vv z}\k{+\vv x}+\bk{-\vv x}{+\vv z}\k{-\vv x}
+\end{align*}
+A similar relation can be shown for bras, and thus for the representation of an operator:
+\begin{align}
+	\hat A &= \mathbbm{1}_w\hat{A}\mathbbm{1}_z\nonumber\\
+	       &= \sum_{ij}\k{w_i}\b{w_i}\hat{A}\k{v_j}\b{v_j}\nonumber\\
+	       &= \sum_{ij}\b{w_i}\hat{A}\k{v_j}\k{w_i}\b{v_j}\label{eq2:opnot}
+\end{align}
+In Equation~\ref{eq2:opnot}, the matrix representation is given \(A_{ij}=\b{w_i}\hat{A}\k{v_j}\), with the input basis \(V\) and output basis \(W\).
+
+The quantity \(\k\p\b\f\) is defined to be an \emph{outer product}. The representation of the outer product can be easily obtained from the representations in Equation~\ref{eq2:rep}.
+
+\subsubsection{Projection Operator}
+Two projection operators are:
+\begin{subequations}
+	\begin{align}
+		\hat{P}_+&=\k{+\vv z}\b{+\vv z}\\
+		\hat{P}_-&=\k{-\vv z}\b{-\vv z}
+	\end{align}
+\end{subequations}
+These projection operators have the property that \(\hat P_++\hat P_-=\mathbbm{1}\), and have the eigenvalues 1 and 0.
+
+We can then represent the Stern Gerlach experiment with a projection operator. For instance, the SGz+ apparatus could be represented by the \(\hat{P}_+\) operator. 
+
+Further, projection operators have the property that \(\hat P_i ^2= \hat P_i\).
+
+\begin{aside}[Modified SGx Revisited]
+	Recall the Modified SGx experiment. For the base Mod SGx apparatus, the amount of \(\k{-\vv z}\) that outputs is
+	\[\b{-\vv z}\mathbbm{1}_x\k{+\vv z}= 0\]
+	However, if we block one of the beams, we can act instead as a projection operator. Thus, the blocked SGx can be modelled as:
+	\[\b{-\vv z} P^{(x)}_+\k{+\vv z} = \bk{-\vv z}{+\vv x}\bk{+\vv x}{+\vv z}=\frac{1}{\sqrt{2}}*\frac{1}{\sqrt{2}}=\frac{1}{2}\]
+	which describes the behaviour observed.	
+\end{aside}
+
+\subsubsection{Adjoint}
+The \emph{adjoint} of an operator is defined such that:
+\[\langle v, A w\rangle = \langle A\adj v, w\rangle\]
+Or, in the language of bra-ket notation:
+\begin{equation}
+	\hat{A}\k\p =\k\f\then \b\p\hat{A}\adj=\b\f \label{eq2:adj}
+\end{equation}
+From this, we find that 
+\[\b{i}\hat{A}\k{j}=\bk{i}{\f}=\bk{\f}{i}\ast=\b{j}\hat{A}\adj\k{i}\]
+or,
+\begin{equation}
+	\hat A\adj_{ij} = \hat A _{ji}\ast \label{eq2:complexconj}
+\end{equation}
+
+\subsubsection{Matrix Multiplication}
+\begin{align}
+	(AB)_{ik}=\b{i}AB\k{k}&=\b{i}A\mathbbm{1}_j B\k{k}\nonumber\\
+		    &=\sum_j \b{i}A\k{j}\b{j}B\k{k}\nonumber\\
+		    &=\sum_j A_{ij}B_{jk}
+\end{align}
+
+\subsubsection{Expectation Values}
+Recalling the definition of an expectation value, we can rederive the expectation as:
+\begin{equation}
+	\vect{\hat{A}}=\b{v}\hat{A}\k{v} \label{eq2:expval}
+\end{equation}
+
+\subsection{Changing Representations}
+\subsubsection{Change of Basis Matrices}
+We can change the representation of an operator \(A^{(w)}\) in terms of another representation \(A^{(v)}\) using a \emph{unitary matrix} \(S\). The property that defines a unitary matrix is:
+\begin{equation}
+	S\adj=S^{-1}\label{eq2:unitary}
+\end{equation}
+The matrix \(S:V\to W\) needed is the matrix that transforms vectors in the \(V\) representation to the \(W\) representation is:
+\begin{equation}
+	v_j = \sum_j s_{ij}w_i \label{eq2:cob}
+\end{equation}
+Thus, the matrix is:
+\begin{equation}
+	S=\begin{pmatrix} | & & | \\ v_1 & \cdots & v_n \\ | && | \end{pmatrix}\label{eq2:cobm}
+\end{equation}
+where \(v_j\) is written in terms of the \(W\) basis. Using the transformation matrices, we can change the representation of the operator as:
+\begin{equation}
+	A^{(v)} = S\adj A^{(w)} S \label{eq2:chrep}
+\end{equation}
+
+\subsubsection{Completeness Relation}
+This method can be confusing, namely the construction of the transformation matrix \(S\). An alternative approach is to use the completeness relation. First, the transformation matrix can be constructed as:
+\begin{equation}
+	S = \mathbbm{1}_w \mathbbm{1}_v = \sum_{ij}\bk{w_i}{v_j}\k{w_i}\b{v_j}
+\end{equation}
+and the  adjoint becomes
+\[ S\adj = \mathbbm{1}_v\mathbbm{1}_w\]
+so we have:
+\begin{equation}
+	A^{(v)} =S \adj A^{(w)} S = \mathbbm{1}_v A^{(w)} \mathbbm{1}_v \label{eq2:cob1}
+\end{equation}
+
+\begin{aside}[Transformation as Rotation]
+	Transforming a vector in the Sz representation to the Sx representation, we see that \(S\) looks the same as the Sz representation of an \(\hat R\) operator. The \(S\) is a ``passive rotation'' in that it rotates the basis rather than the vector. The  \(\hat R \adj\) on the other hand, is an ``active rotation'' in that it rotates the vector rather than the basis.
+\end{aside}
+
+\subsection{Circularly Polarized Light}
+For linearly polarized light, we can write the components of the \(\vv{E}\) field along two orthogonal directions. The transformation to another basis is merely a rotation matrix, rotating the initial basis to another offset by an angle \(\phi\).
+\[\hat{R}\k{x}=\k{x'} \qquad \hat{R}\k{y}=\k{y'}\]
+with 
+\[\hat{R}\sim\begin{pmatrix}\cos\phi & -\sin\phi \\ \sin\phi& \cos\phi \end{pmatrix}\]
+
+Classically, for circularly polarized light, we have the equation:
+\[E=\frac{E_0}{\sqrt{2}}\left(e^{i(kz-\omega t)}\ih + ie^{i(kz - \omega t)}\jh\right)\]
+
+Using the basis, 
+\[\k{R}=\frac{1}{\sqrt{2}}(\k x + i \k y) \qquad \k{L}=\frac{1}{\sqrt{2}}(\k x - i \k y)\]
+we act on it with the rotation matrix:
+\begin{align*}
+	\k{R'}=\hat{R}{R}\\
+	&=\frac{1}{\sqrt{2}}(\k{x'}+i\k{y'})
+	\intertext{in the \(x,y\) representation, this is:}
+	&=\begin{pmatrix} \cos\phi & -\sin\phi \\ \sin\phi & \cos\phi \end{pmatrix}\frac{1}{\sqrt{2}}\ncr{1}{i}\\
+	&=\frac{1}{\sqrt{2}}\ncr{\cos\phi-i\sin\phi}{\sin\phi+i\cos\phi}\\
+	&=\frac{1}{\sqrt{2}}\ncr{e^{-i\phi}}{ie^{-i\phi}}\\
+	&=\frac{e^{-i\phi}}{\sqrt{2}}\ncr{1}{i}\\
+	&=e^{-i\phi}\k{R}
+\end{align*}
+This shows that \(\k{R}\) is an eigenstate of \(\hat{J}_z\):
+\begin{align*}
+	\k{R'}&=\hat{R}(\phi\kh)\k{R}\\
+	      &=e^{i\hat{J}_z\phi/\hbar}\k{R}
+\end{align*}
+This implies that 
+\[\hat{J}_z\k{R} =\hbar \k R\]
+Similarly,
+\[\hat{J}_z\k L = -\hbar\k L\]
+This shows that \(\k R, \k L\) are photon spin 1 states; the angular momentum quantum number \(m=\pm1\) (not mass)\footnote{This is special, as there is no \(m=0\) state as expected. This is special for massless particles.}.
+
